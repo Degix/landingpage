@@ -3,28 +3,28 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>tegrovio – Automation. Delivery. Done.</title>
-  <meta name="description" content="tegrovio hilft Teams, Software schneller und zuverlässiger zu liefern – mit Platform Engineering, DevOps und Cloud Automation." />
+  <title>Tegrovio – Automation. Delivery. Done.</title>
+  <meta name="description" content="Tegrovio: GitLab CI/CD, Kubernetes, Helm/Helmfile & GitOps (Argo CD). Migration von On‑Prem in die Cloud und starke Developer Experience – persönlich & pragmatisch." />
   <meta name="robots" content="index,follow" />
-  <meta property="og:title" content="tegrovio – Automation. Delivery. Done." />
-  <meta property="og:description" content="Platform Engineering, DevOps & Cloud Automation für produktive Teams." />
+  <meta property="og:title" content="Tegrovio – Automation. Delivery. Done." />
+  <meta property="og:description" content="Tegrovio: GitLab CI/CD, Kubernetes, Helm/Helmfile & GitOps (Argo CD). Migration von On‑Prem in die Cloud und Developer Experience." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="/og-image.png" />
-  <meta property="og:url" content="https://<ihr-github-user>.github.io/<repo>/" />
+  <meta property="og:image" content="og-image.png" />
+  <meta property="og:url" content="https://degix.github.io/landingpage/" />
   <meta name="theme-color" content="#0f766e" />
-  <link rel="icon" href="/favicon.svg" />
+  <link rel="icon" href="favicon.svg" />
   <style>
     :root{
-      --bg: #0b0f14;           /* Tiefdunkel */
-      --card: #0f172a;         /* Slate-900 */
-      --accent: #0ea5a4;       /* Teal-500 */
-      --accent-2:#5eead4;      /* Teal-300 */
-      --fg: #e5e7eb;           /* Text hell */
-      --muted: #9ca3af;        /* Text gedämpft */
+      --bg: #0b0f14;           
+      --card: #0f172a;         
+      --accent: #0ea5a4;       
+      --accent-2:#5eead4;      
+      --fg: #e5e7eb;           
+      --muted: #9ca3af;        
       --ring: rgba(14,165,164,.35);
     }
     *{ box-sizing:border-box }
-    html, body { height: 100%; }
+    html, body { height: 100%; overflow-x: hidden }
     body{
       margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
       color: var(--fg); background: radial-gradient(1200px 600px at 10% -10%, rgba(94,234,212,.15), transparent 60%),
@@ -34,30 +34,30 @@
     }
     a{ color: var(--accent-2); text-decoration: none }
     a:hover{ text-decoration: underline }
-    /* Layout */
+    
     .wrap{ max-width: 1120px; margin: 0 auto; padding: 24px }
     header{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding: 12px 0 }
     .brand{ display:flex; align-items:center; gap:12px; font-weight:700; font-size: 1.05rem; letter-spacing:.4px }
     .brand svg{ width:28px; height:28px }
     nav a{ margin-left: 18px; opacity:.9 }
     nav a.btn{ margin-left: 28px }
-    /* Buttons */
+    
     .btn{ display:inline-flex; align-items:center; gap:10px; background: linear-gradient(135deg, var(--accent), #0ea5a4 40%, #14b8a6 100%);
       color: #002322; padding: 12px 16px; border-radius: 14px; font-weight: 700; letter-spacing:.3px; border:1px solid rgba(94,234,212,.35); box-shadow: 0 10px 20px rgba(14,165,164,.18);
       transition: transform .08s ease, box-shadow .2s ease; will-change: transform }
     .btn:hover{ transform: translateY(-1px); box-shadow: 0 14px 26px rgba(14,165,164,.28) }
     .btn.outline{ background: transparent; color: var(--fg); border:1px solid rgba(148,163,184,.35) }
-    /* Hero */
+    
     .hero{ padding: 64px 0 24px; display:grid; grid-template-columns: 1.2fr 1fr; gap: 36px; align-items:center }
     .eyebrow{ text-transform:uppercase; color: var(--accent-2); letter-spacing: .24em; font-size: .78rem; font-weight: 800 }
     h1{ font-size: clamp(2rem, 4vw + 1rem, 3.2rem); line-height:1.15; margin: 10px 0 16px }
     .lead{ font-size: clamp(1rem, 1vw + .8rem, 1.25rem); color: var(--fg); opacity:.9 }
     .cta{ margin-top: 22px; display:flex; gap: 12px; flex-wrap:wrap }
     .card{ background: linear-gradient(180deg, rgba(15,23,42,.7), rgba(2,6,23,.65)); border: 1px solid rgba(148,163,184,.18); border-radius: 18px; padding: 18px }
-    .hero .card{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px }
+    .hero .card{ display:grid; grid-template-columns: minmax(0,1fr) 320px; gap: 16px; align-items: stretch }
     .hero ul{ margin:0; padding:0; list-style:none }
-    .hero li{ display:flex; gap:10px; align-items:flex-start; color:var(--muted) }
-    .hero li svg{ flex: none; margin-top:4px }
+    .hero li{ display:grid; grid-template-columns: 18px 1fr; align-items:start; column-gap:10px; color:var(--muted); line-height:1.4 }
+    .hero li svg{ grid-column:1; margin-top:3px }
     .ill{
       border-radius: 18px; border:1px solid rgba(148,163,184,.18); background: linear-gradient(180deg, rgba(14,165,164,.08), transparent),
       radial-gradient(400px 200px at 70% -20%, rgba(20,184,166,.18), transparent 65%),
@@ -66,24 +66,63 @@
     .ill::after{ content:""; position:absolute; width:140%; height:140%; background:radial-gradient(40% 30% at 50% 0%, rgba(94,234,212,.15), transparent 60%);
       animation: float 6s ease-in-out infinite }
     @keyframes float { 0%{ transform: translateY(0)} 50%{ transform: translateY(6px)} 100%{ transform: translateY(0)} }
-    /* Sections */
+    
     section{ padding: 56px 0 }
-    .grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px }
+    .grid{ display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px }
     h2{ font-size: clamp(1.4rem, 1.6vw + 1rem, 2rem); margin:0 0 12px }
     .muted{ color: var(--muted) }
     .kpi{ display:flex; flex-direction:column; gap:6px; background: linear-gradient(180deg, rgba(15,23,42,.7), rgba(15,23,42,.45)); border:1px solid rgba(148,163,184,.18); border-radius:16px; padding:16px }
     .kpi b{ font-size:1.4rem }
-    /* Footer */
+    
     footer{ padding: 28px 0 60px; color: var(--muted); font-size:.95rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px }
-    /* Responsive */
+    
     @media (max-width:960px){ .hero{ grid-template-columns: 1fr } .hero .card{ grid-template-columns: 1fr } }
-  </style>
+  
+    .menu-btn{ display:none; position:relative; width:42px; height:42px; border:1px solid rgba(148,163,184,.35); border-radius:12px; background:rgba(15,23,42,.6); align-items:center; justify-content:center; flex-direction:column; gap:5px }
+    .menu-btn span{ display:block; width:22px; height:2px; background:var(--fg) }
+    .mobile-nav{ display:none }
+    @media (max-width:960px){
+      header{ gap:8px }
+      .desktop-nav{ display:none }
+      .menu-btn{ display:inline-flex }
+      .hero{ grid-template-columns: 1fr }
+      .hero .card{ grid-template-columns: 1fr }
+    }
+    @media (max-width:720px){
+      .wrap{ padding:16px }
+      .ill{ height:260px }
+    }
+    @media (max-width:480px){
+      .cta .btn{ flex:1 }
+      h1{ font-size: clamp(1.6rem, 7vw, 2.1rem) }
+    }
+    body.nav-open{ overflow:hidden }
+    body.nav-open #mobile-nav{ position:fixed; inset:0; background:rgba(2,6,23,.95); backdrop-filter: blur(6px); z-index:50; padding:84px 24px 24px; display:none; flex-direction:column; gap:16px }
+    body.nav-open #mobile-nav{ display:flex }
+    #mobile-nav a{ font-size:1.25rem }
+    .menu-close{ position:fixed; top:16px; right:16px; width:42px; height:42px; border:1px solid rgba(148,163,184,.35); border-radius:12px; background:rgba(15,23,42,.6); color:var(--fg); font-size:1.4rem; line-height:1; display:grid; place-items:center }
+    #mobile-nav{ position:fixed; inset:0; background:rgba(2,6,23,.95); backdrop-filter: blur(6px); z-index:50; padding:84px 24px 24px; display:flex; flex-direction:column; gap:16px }
+    #mobile-nav a{ font-size:1.25rem }
+  @media (min-width:960px){body.nav-open #mobile-nav{display:none !important}#mobile-nav{display:none !important}}
+@media (max-width:959px){body.nav-open #mobile-nav{display:flex}}
+#mobile-nav{display:none !important}
+@media (max-width:959px){ body.nav-open #mobile-nav{ display:flex !important }}
+@media (min-width:960px){ body.nav-open #mobile-nav{ display:none !important }}
+.menu-close{ z-index:60; cursor:pointer }
+@media (max-width:960px){ .grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width:640px){ .grid{ grid-template-columns: 1fr; } }
+.card,.kpi{ max-width:100%; overflow:hidden }
+body{ background-repeat:no-repeat }
+.hero .card>ul{ display:grid; gap:6px }
+.hero .card .kpi{ align-self:stretch; display:flex; flex-direction:column; justify-content:center }
+.hero .card li *{ word-break: normal }
+</style>
 </head>
 <body>
   <div class="wrap">
     <header>
       <div class="brand">
-        <!-- Simple tegrovio Logo -->
+        
         <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
           <defs>
             <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
@@ -97,41 +136,52 @@
         </svg>
         tegrovio
       </div>
-      <nav>
+      <nav class="desktop-nav">
         <a href="#leistungen">Leistungen</a>
-        <a href="#kontakt">Kontakt</a>
+        <a href="#impressum">Impressum</a>
+        <a href="#datenschutz">Datenschutz</a>
         <a class="btn outline" href="#kontakt">Kostenloses Gespräch</a>
       </nav>
+      <button class="menu-btn" id="menu-btn" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobile-nav">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="mobile-nav" id="mobile-nav" hidden>
+        <button class="menu-close" id="menu-close" aria-label="Menü schließen">×</button>
+        <a href="#leistungen">Leistungen</a>
+        <a href="#impressum">Impressum</a>
+        <a href="#datenschutz">Datenschutz</a>
+        <a href="#kontakt" class="btn">Kostenloses Gespräch</a>
+      </div>
     </header>
 
     <section class="hero">
       <div>
         <div class="eyebrow">Platform Engineering & DevOps</div>
         <h1>Automation. Delivery. <span style="color:var(--accent-2)">Done.</span></h1>
-        <p class="lead">Wir bauen CI/CD, Cloud-Automation und Developer Experience, damit Ihr Team mit weniger Risiko mehr ausliefert. Messbar, skalierbar, nachhaltig.</p>
+        <p class="lead">Tegrovio unterstützt Teams mit <b>GitLab CI/CD</b>, <b>Kubernetes</b>, <b>Helm/Helmfile</b> und <b>GitOps (Argo&nbsp;CD)</b>, damit On‑Prem‑Anwendungen sauber in die Cloud kommen – mit klaren Standards und starker Developer Experience.</p>
         <div class="cta">
           <a class="btn" href="mailto:kontakt@tegrovio.de?subject=Unverbindliches%20Kennenlernen">Jetzt kennenlernen</a>
-          <a class="btn outline" href="#leistungen">Was wir liefern</a>
+          <a class="btn outline" href="#leistungen">Leistungen</a>
         </div>
         <div class="card" style="margin-top:18px">
           <ul>
             <li>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 6L9 17l-5-5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Lead Time um <b>30–60 %</b> reduzieren
+              Lead Time spürbar reduzieren
             </li>
             <li>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 6L9 17l-5-5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Release-Risiko senken – mit <b>Automation & Standards</b>
+              Release-Risiko senken – mit Automation & Standards
             </li>
             <li>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 6L9 17l-5-5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Bessere DX: <b>glücklichere Entwickler:innen</b>
+              Bessere DX: glücklichere Entwickler:innen
             </li>
           </ul>
           <div class="kpi">
-            <span class="muted">Schnappschuss</span>
-            <b>+120% Pipeline‑Durchsatz</b>
-            <span class="muted">durch konsequente CI/CD‑Automatisierung</span>
+            <span class="muted">Fokus</span>
+            <b>GitLab CI/CD & GitOps</b>
+            <span class="muted">Kubernetes · Helm/Helmfile · Argo CD</span>
           </div>
         </div>
       </div>
@@ -149,20 +199,20 @@
     </section>
 
     <section id="leistungen">
-      <h2>Was wir liefern</h2>
+      <h2>Leistungen</h2>
       <p class="muted">End‑to‑end Unterstützung – von der Pipeline bis zur Plattform.</p>
       <div class="grid" style="margin-top:12px">
         <div class="card">
-          <h3>CI/CD & Release</h3>
-          <p>GitLab/Jenkins Pipelines, Quality Gates, automatisierte Releases, Playwright/Selenium‑Tests.</p>
+          <h3>CI/CD Enablement (GitLab)</h3>
+          <p>GitLab‑Pipelines, Quality Gates & Release‑Flows. <br/>Jobs für Tests/Scans bereitstellen (keine Playwright/Selenium‑Authoring).</p>
         </div>
         <div class="card">
-          <h3>Cloud Automation</h3>
-          <p>Docker, Kubernetes, Helm/Helmfile, ArgoCD, Azure – GitOps & IaC, reproduzierbar und sicher.</p>
+          <h3>GitOps & Deployments</h3>
+          <p>Docker, Kubernetes, Helm/Helmfile, Argo&nbsp;CD – GitOps & IaC, reproduzierbare Deployments. <br/>Begleitung bei der Migration von On‑Prem in die Cloud.</p>
         </div>
         <div class="card">
-          <h3>Developer Experience</h3>
-          <p>Standards, Templates, Renovate, Tooling & Observability (Grafana) – mehr Fokus, weniger Reibung.</p>
+          <h3>Platform & Developer Experience</h3>
+          <p>Standards, Templates & Renovate. Terraform‑Module/Erweiterungen rund um GitLab. <br/>Support fürs Platform‑Team & produktive DX.</p>
         </div>
       </div>
     </section>
@@ -171,33 +221,65 @@
       <h2>Warum tegrovio?</h2>
       <div class="grid" style="margin-top:12px">
         <div class="kpi"><span class="muted">Time‑to‑Value</span><b>Wochen statt Monate</b><span class="muted">Lean, pragmatisch, wirkungsorientiert</span></div>
-        <div class="kpi"><span class="muted">Leadership</span><b>Technisch & menschlich</b><span class="muted">Mentoring, Wissensteilung, Standards</span></div>
+        <div class="kpi"><span class="muted">Persönlich</span><b>Ein Ansprechpartner</b><span class="muted">Direkt, pragmatisch, transparent</span></div>
         <div class="kpi"><span class="muted">Sicherheit</span><b>Shift‑Left</b><span class="muted">Security früher & automatisiert</span></div>
       </div>
     </section>
 
     <section id="kontakt">
       <h2>Kontakt</h2>
-      <p class="muted">Kurze Mail, LinkedIn oder ein 20‑Minuten‑Call – wir melden uns fix.</p>
+      <p class="muted">Kurze Mail, LinkedIn oder ein 20‑Minuten‑Call – Wir melden uns zeitnah.</p>
       <div class="cta">
-        <a class="btn" href="mailto:hello@tegrovio.com">Mail an hello@tegrovio.com</a>
+        <a class="btn" href="mailto:kontakt@tegrovio.de">Mail an kontakt@tegrovio.de</a>
         <a class="btn outline" href="https://www.linkedin.com/in/dominik-kockel" target="_blank" rel="noopener">Auf LinkedIn vernetzen</a>
       </div>
+    </section>
+
+    <section id="impressum">
+      <h2>Impressum</h2>
+      <p class="muted">Angaben gemäß § 5 TMG</p>
+      <p><b>Tegrovio</b> – Inhaber: Dominik Kockel<br/>
+      E‑Mail: <a href="mailto:kontakt@tegrovio.de">kontakt@tegrovio.de</a><br/>
+      <span class="muted">Sternatlerweg 65, 40235 Düsseldorf</span></p>
+    </section>
+
+    <section id="datenschutz">
+      <h2>Datenschutz</h2>
+      <p class="muted">Kurzfassung: Diese Seite ist statisch (GitHub Pages). Es werden keine Cookies gesetzt, keine Formulare übermittelt.</p>
+      <ul>
+        <li>Server‑Logs entstehen bei GitHub Pages (Provider). Darauf habe ich keinen direkten Einfluss.</li>
+        <li>Kontakt per E‑Mail: Inhalte werden zur Bearbeitung der Anfrage verarbeitet.</li>
+        <li>Optionale Web‑Analyse (Plausible/Umami) ist datensparsam und ohne Cookies – nur wenn aktiviert (siehe Code).</li>
+      </ul>
     </section>
 
     <footer>
       <div>© <span id="y"></span> tegrovio</div>
       <div>
-        <a href="#" aria-disabled="true">Impressum</a> ·
-        <a href="#" aria-disabled="true">Datenschutz</a>
+        <a href="#impressum">Impressum</a> ·
+        <a href="#datenschutz">Datenschutz</a>
       </div>
     </footer>
   </div>
 
   <script>
-    // Jahr setzen
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
-  <!-- Optional: Plausible/Umami Analytics hier einfügen -->
+const y=document.getElementById('y');if(y)y.textContent=new Date().getFullYear();
+const btn=document.getElementById('menu-btn');
+const mobile=document.getElementById('mobile-nav');
+function isMobile(){return window.matchMedia('(max-width: 959px)').matches}
+function closeNav(){document.body.classList.remove('nav-open');if(btn)btn.setAttribute('aria-expanded','false');if(mobile)mobile.hidden=true}
+function openNav(){if(!isMobile())return;document.body.classList.add('nav-open');if(btn)btn.setAttribute('aria-expanded','true');if(mobile)mobile.hidden=false}
+closeNav();
+if(btn){btn.addEventListener('click',e=>{e.preventDefault();document.body.classList.contains('nav-open')?closeNav():openNav()})}
+if(mobile){ mobile.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>closeNav())); }
+document.addEventListener('click',e=>{if(e.target&&e.target.id==='menu-close'){e.preventDefault();closeNav()}})
+window.addEventListener('keydown',e=>{if(e.key==='Escape')closeNav()})
+window.addEventListener('resize',()=>{if(!isMobile())closeNav()})
+</script>
+  
+  
+  
+  
+  
 </body>
 </html>

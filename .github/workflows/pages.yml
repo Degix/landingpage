@@ -27,7 +27,7 @@ jobs:
       - name: Verify required files
         run: |
           test -f index.html
-          test -f og-image.png
+          test -f og-tegrovio-1200x630.png
           test -f favicon.svg
 
       - name: Upload artifact

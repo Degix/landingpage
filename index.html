@@ -1,12 +1,16 @@
 <!doctype html>
-<html lang="de">
+<html lang="de" class="no-js">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <!-- SEO -->
   <title>Dominik Palzer – Senior DevOps & GitLab CI/CD Consultant | Tegrovio</title>
   <meta name="description" content="Ich helfe Software-Teams, GitLab CI/CD-Pipelines schneller, stabiler und wartbarer zu machen: Pipeline Audit, Optimierung, Release-Automation, Renovate & Dependency Automation." />
   <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#0A0C10" />
+  <link rel="canonical" href="https://www.tegrovio.de/" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 
   <!-- OpenGraph -->
   <meta property="og:title" content="Dominik Palzer – Senior DevOps & CI/CD Consultant | Tegrovio" />
@@ -16,439 +20,737 @@
   <meta property="og:image:height" content="630" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://tegrovio.de/" />
+  <meta property="og:locale" content="de_DE" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://www.tegrovio.de/og-tegrovio-1200x630.png" />
 
   <!-- Schema.org -->
-   <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Dominik Palzer",
-      "jobTitle": "Senior DevOps & CI/CD Consultant",
-      "url": "https://www.tegrovio.de",
-      "sameAs": [
-        "https://www.linkedin.com/in/dominik-palzer"
-      ]
-    }
-    </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Dominik Palzer",
+    "jobTitle": "Senior DevOps & CI/CD Consultant",
+    "url": "https://www.tegrovio.de",
+    "sameAs": [
+      "https://www.linkedin.com/in/dominik-palzer"
+    ]
+  }
+  </script>
+
+  <!-- Self-hosted fonts (DSGVO: keine externen Requests) -->
+  <link rel="preload" href="fonts/space-grotesk-700.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin />
+
+  <!-- Avoid FOUC of reveal animations: mark JS available before paint -->
+  <script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
 
   <style>
+    /* ============ Fonts ============ */
+    @font-face{font-family:"Space Grotesk";src:url("fonts/space-grotesk-500.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+    @font-face{font-family:"Space Grotesk";src:url("fonts/space-grotesk-700.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap}
+    @font-face{font-family:"Inter";src:url("fonts/inter-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+    @font-face{font-family:"Inter";src:url("fonts/inter-500.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+    @font-face{font-family:"Inter";src:url("fonts/inter-600.woff2") format("woff2");font-weight:600;font-style:normal;font-display:swap}
+    @font-face{font-family:"JetBrains Mono";src:url("fonts/jetbrains-mono-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+    @font-face{font-family:"JetBrains Mono";src:url("fonts/jetbrains-mono-500.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+
+    /* ============ Tokens ============ */
     :root{
-      --bg:#0b0f14;
-      --panel:#0f1621;
-      --text:#e8eef6;
-      --muted:#a9b6c7;
-      --line:#223043;
-      --accent:#8b5cf6;
-      --accent2:#7dd3fc;
-      --ok:#86efac;
-      --warn:#fbbf24;
-      --shadow: 0 18px 60px rgba(0,0,0,.35);
-      --radius: 18px;
-      --max: 1080px;
+      --ink:#0A0C10;
+      --ink-2:#0C0F15;
+      --surface:#11151C;
+      --surface-2:#141A23;
+      --text:#E9EEF6;
+      --muted:#93A1B5;
+      --faint:#5E6B7E;
+      --line:rgba(255,255,255,.08);
+      --line-strong:rgba(255,255,255,.14);
+      --v:#8B5CF6;
+      --c:#7DD3FC;
+      --g:linear-gradient(120deg,#8B5CF6,#7DD3FC);
+      --ok:#86EFAC;
+
+      --display:"Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+      --body:"Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      --mono:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+      --max:1080px;
+      --measure:64ch;
+      --radius:16px;
+      --header-h:62px;
     }
+
+    /* ============ Base ============ */
     *{box-sizing:border-box}
-    html,body{height:100%}
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      background:
-        radial-gradient(800px 400px at 15% 10%, rgba(167,139,250,.12), transparent 60%),
-        radial-gradient(700px 500px at 85% 15%, rgba(125,211,252,.10), transparent 60%);
-    }
+    html{scroll-behavior:smooth}
     body{
       margin:0;
-      min-height:100vh;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background:var(--ink);
       color:var(--text);
-
+      font-family:var(--body);
+      font-size:17px;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+      overflow-x:hidden;
+    }
+    /* ambient: two very faint glows, fixed */
+    body::before{
+      content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
       background:
-        linear-gradient(
-          180deg,
-          #0b0f14 0%,
-          #0e141f 35%,
-          #0f1621 65%,
-          #0b0f14 100%
-        );
+        radial-gradient(620px 380px at 12% -5%, rgba(139,92,246,.10), transparent 60%),
+        radial-gradient(680px 420px at 92% 4%, rgba(125,211,252,.08), transparent 62%);
+    }
+    main, header, footer{position:relative;z-index:1}
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
 
-      background-attachment: fixed;
-      line-height:1.55;
-    }
-    h1 {
-      line-height: 1.05; /* default ~1.15 */
-    }
-    a{color:inherit; text-decoration:none}
-    .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 90px}
-    header{
-      position:sticky; top:0;
-      backdrop-filter: blur(10px);
-      background: rgba(11,15,20,.68);
-      border-bottom:1px solid rgba(34,48,67,.55);
-      z-index:50;
-    }
-    .nav{
-      max-width:var(--max); margin:0 auto; padding:14px 18px;
-      display:flex; align-items:center; justify-content:space-between; gap:14px;
-    }
-    .brand{display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.2px}
-    .dot{width:10px;height:10px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent2))}
-    .links{display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end}
-    .links a{
-      color:var(--muted);
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid transparent;
-    }
-    .links a:hover{color:var(--text); border-color:rgba(125,211,252,.25); background:rgba(15,22,33,.6)}
-    .cta{
-      background: linear-gradient(135deg, rgba(125,211,252,.18), rgba(167,139,250,.18));
-      border:1px solid rgba(125,211,252,.35);
-      color:var(--text)!important;
-    }
+    h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:-.02em;line-height:1.06;margin:0}
+    h2{font-size:clamp(26px,3.4vw,38px)}
+    h3{font-size:19px;letter-spacing:-.01em;line-height:1.25}
+    p{margin:0 0 1rem;color:var(--muted)}
+    strong{color:var(--text);font-weight:600}
 
-    .hero{padding:54px 0 30px}
-    .grid{display:grid; grid-template-columns: 1.1fr .9fr; gap:20px}
-    @media (max-width: 880px){ .grid{grid-template-columns:1fr} .hero{padding-top:34px} }
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+    .prose{max-width:var(--measure)}
 
-    .card{
-      background: rgba(15,22,33,.72);
-      border: 1px solid rgba(34,48,67,.7);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 22px;
+    /* ============ Eyebrow (signature: pipeline-stage label) ============ */
+    .eyebrow{
+      font-family:var(--mono);font-size:12.5px;font-weight:500;
+      letter-spacing:.04em;color:var(--faint);
+      display:inline-flex;align-items:center;gap:10px;margin:0 0 18px;
+      text-transform:none;
     }
-    h1{font-size: clamp(34px, 4vw, 54px); line-height:1.05; margin:0 0 12px}
-    h2{font-size: clamp(22px, 2.2vw, 30px); margin:0 0 10px}
-    h3{font-size: 18px; margin:0 0 8px}
-    p{margin:0 0 12px; color:var(--muted)}
-    .kicker{
-      display:inline-flex; gap:10px; flex-wrap:wrap; align-items:center;
-      font-size:13px; color:var(--muted);
+    .eyebrow::before{
+      content:"";width:26px;height:2px;border-radius:2px;background:var(--g);
+      flex:none;
     }
-    .pill{
-      border:1px solid rgba(34,48,67,.9);
-      background: rgba(11,15,20,.5);
-      padding:6px 10px; border-radius:999px;
-    }
-    .btnrow{display:flex; gap:12px; flex-wrap:wrap; margin-top:14px}
+    .eyebrow b{color:var(--muted);font-weight:500}
+
+    /* ============ Buttons ============ */
     .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:11px 14px;
-      border-radius:12px;
-      border:1px solid rgba(34,48,67,.8);
-      background: rgba(11,15,20,.55);
-      color:var(--text);
-      font-weight:600;
+      --bw:1px;
+      display:inline-flex;align-items:center;justify-content:center;gap:9px;
+      min-height:46px;padding:0 18px;border-radius:11px;
+      font-family:var(--body);font-weight:600;font-size:15px;
+      color:var(--text);background:var(--surface);
+      border:1px solid var(--line-strong);
+      transition:border-color .2s ease, transform .2s ease, background .2s ease;
+      cursor:pointer;white-space:nowrap;
     }
-    .btn:hover{border-color: rgba(125,211,252,.45)}
-    .btn.primary{
-      background: linear-gradient(135deg, rgba(139,92,246,.28), rgba(125,211,252,.22));
-      border-color: rgba(139,92,246,.55);
+    .btn:hover{border-color:rgba(125,211,252,.5);transform:translateY(-1px)}
+    .btn:active{transform:translateY(0)}
+    .btn .arr{transition:transform .2s ease}
+    .btn:hover .arr{transform:translateX(3px)}
+    .btn--primary{
+      position:relative;border-color:transparent;color:#0A0C10;font-weight:700;
+      background:var(--g);
     }
-    .mini{font-size:13px; color:var(--muted)}
-    .list{margin:10px 0 0; padding:0; list-style:none}
-    .list li{
-      display:flex; gap:10px; align-items:flex-start;
-      padding:9px 0;
-      border-top:1px solid rgba(34,48,67,.45);
-      color:var(--muted);
-    }
-    .list li:first-child{border-top:none}
-    .check{color:var(--ok); font-weight:900}
-    .section{margin-top:26px}
-    .split{display:grid; grid-template-columns: 1fr 1fr; gap:18px}
-    @media (max-width: 880px){ .split{grid-template-columns:1fr} }
+    .btn--primary:hover{border-color:transparent;filter:brightness(1.06)}
+    .btn--ghost{background:transparent}
 
-    .pricing{
-      display:grid; grid-template-columns: repeat(3, 1fr); gap:14px;
-      margin-top:10px;
+    /* ============ Header ============ */
+    .progress{
+      position:fixed;top:0;left:0;height:2px;width:100%;z-index:60;
+      background:var(--g);transform:scaleX(0);transform-origin:0 50%;
+      will-change:transform;
     }
-    @media (max-width: 980px){ .pricing{grid-template-columns:1fr} }
-    .price h3{display:flex; justify-content:space-between; gap:14px}
+    .site-header{
+      position:sticky;top:0;z-index:50;height:var(--header-h);
+      display:flex;align-items:center;
+      background:rgba(10,12,16,.72);
+      backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%}
+    .brand{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-family:var(--display);letter-spacing:-.01em;font-size:17px}
+    .brand img{width:22px;height:22px;filter:drop-shadow(0 0 7px rgba(125,211,252,.4))}
+    .nav-links{display:flex;align-items:center;gap:4px}
+    .nav-links a{
+      position:relative;color:var(--muted);font-size:14.5px;font-weight:500;
+      padding:9px 12px;border-radius:9px;transition:color .2s ease, background .2s ease;
+    }
+    .nav-links a:not(.nav-cta):hover{color:var(--text)}
+    .nav-links a.is-active:not(.nav-cta){color:var(--text)}
+    .nav-links a.is-active:not(.nav-cta)::after{
+      content:"";position:absolute;left:12px;right:12px;bottom:3px;height:2px;border-radius:2px;background:var(--g);
+    }
+    .nav-cta{
+      color:var(--text)!important;background:var(--surface);
+      border:1px solid var(--line-strong);margin-left:6px;
+    }
+    .nav-cta:hover{border-color:rgba(125,211,252,.5)}
+    .nav-toggle{
+      display:none;width:44px;height:44px;border-radius:10px;
+      background:transparent;border:1px solid var(--line);
+      color:var(--text);cursor:pointer;align-items:center;justify-content:center;
+    }
+    .nav-toggle svg{width:20px;height:20px}
+    .nav-toggle .ic-close{display:none}
+
+    /* ============ Sections ============ */
+    section{scroll-margin-top:calc(var(--header-h) + 14px)}
+    .band{padding:clamp(56px,8vw,104px) 0;border-top:1px solid var(--line)}
+    .band--tight{padding:clamp(40px,5vw,64px) 0}
+    .lead{font-size:clamp(17px,1.6vw,19px);color:var(--muted)}
+
+    /* ============ Hero ============ */
+    .hero{padding:clamp(64px,11vw,128px) 0 clamp(48px,7vw,84px)}
+    .hero h1{
+      font-size:clamp(40px,7.2vw,82px);line-height:1.02;letter-spacing:-.035em;
+      margin:0 0 22px;max-width:16ch;
+    }
+    .hero h1 .grad{
+      background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .hero-rule{height:2px;width:min(420px,72%);background:var(--g);border-radius:2px;margin:6px 0 26px;transform-origin:0 50%}
+    .hero .lead{max-width:54ch;margin:0 0 30px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+    .hero-status{
+      margin-top:26px;font-family:var(--mono);font-size:13px;color:var(--faint);
+      display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;
+    }
+    .hero-status .dot{display:inline-flex;align-items:center;gap:7px}
+    .hero-status .dot i{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 10px rgba(134,239,172,.7);font-style:normal}
+
+    /* ============ Tech strip ============ */
+    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+    .chip{
+      font-family:var(--mono);font-size:13px;color:var(--muted);
+      padding:8px 13px;border:1px solid var(--line);border-radius:999px;
+      background:rgba(255,255,255,.015);transition:border-color .2s ease,color .2s ease;
+    }
+    .chip:hover{color:var(--text);border-color:var(--line-strong)}
+
+    /* ============ Generic grids ============ */
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(20px,3vw,40px)}
+    .head-block{margin-bottom:clamp(28px,4vw,48px);max-width:var(--measure)}
+
+    /* feature list (problem / leistungen) */
+    .flist{list-style:none;margin:18px 0 0;padding:0}
+    .flist li{
+      display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;
+      padding:16px 0;border-top:1px solid var(--line);color:var(--muted);
+    }
+    .flist li:first-child{border-top:none;padding-top:0}
+    .flist .mk{
+      font-family:var(--mono);font-size:13px;color:var(--c);line-height:1.7;
+      width:1.4em;flex:none;
+    }
+    .flist li strong{display:block;color:var(--text);margin-bottom:2px;font-weight:600}
+
+    /* ============ Process (numbered) ============ */
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2.5vw,28px);margin-top:8px;counter-reset:step}
+    .step{position:relative;padding-top:18px;border-top:1px solid var(--line-strong)}
+    .step .num{
+      font-family:var(--mono);font-weight:500;font-size:14px;letter-spacing:.05em;
+      background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;
+      display:block;margin-bottom:14px;
+    }
+    .step h3{margin-bottom:8px}
+    .step p{font-size:15px;margin:0}
+
+    /* ============ Pricing ============ */
+    .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:8px;align-items:stretch}
+    .card{
+      background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+      padding:26px 24px;display:flex;flex-direction:column;
+      transition:transform .25s ease, border-color .25s ease;
+    }
+    .price-card:hover{transform:translateY(-3px);border-color:var(--line-strong)}
+    .price-card.featured{
+      border-color:rgba(139,92,246,.55);
+      background:linear-gradient(180deg, rgba(139,92,246,.10), rgba(125,211,252,.04)), var(--surface);
+      box-shadow:0 24px 70px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.04);
+    }
+    .price-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px}
+    .price-card h3{font-size:18px}
     .tag{
-      font-size:12px; padding:4px 10px; border-radius:999px;
-      border:1px solid rgba(34,48,67,.75);
-      color:var(--muted);
+      font-family:var(--mono);font-size:11px;letter-spacing:.04em;
+      padding:5px 10px;border-radius:999px;border:1px solid var(--line-strong);color:var(--faint);
     }
-    .money{color:var(--text); font-weight:800}
-    .foot{
-      margin-top:40px;
-      padding-top:16px;
-      border-top:1px solid rgba(34,48,67,.55);
-      color:var(--muted);
-      font-size:13px;
-      display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center;
+    .tag--hot{border-color:transparent;background:var(--g);color:#0A0C10;font-weight:500}
+    .price-card .desc{font-size:14.5px;min-height:0}
+    .money{font-family:var(--mono);font-weight:500;color:var(--text);font-size:30px;letter-spacing:-.01em;margin:14px 0 4px;font-variant-numeric:tabular-nums}
+    .money .pre{font-size:13px;color:var(--faint);font-weight:400;margin-right:8px}
+    .plist{list-style:none;margin:14px 0 0;padding:14px 0 0;border-top:1px solid var(--line)}
+    .plist li{display:grid;grid-template-columns:auto 1fr;gap:10px;padding:7px 0;color:var(--muted);font-size:14.5px}
+    .plist .ck{color:var(--ok);font-weight:700;line-height:1.5}
+
+    /* ============ FAQ ============ */
+    .faq{margin-top:8px;border-top:1px solid var(--line)}
+    .faq details{border-bottom:1px solid var(--line)}
+    .faq summary{
+      list-style:none;cursor:pointer;padding:20px 44px 20px 0;position:relative;
+      font-family:var(--display);font-weight:500;font-size:18px;color:var(--text);
     }
-    .smalllinks{display:flex; gap:10px; flex-wrap:wrap}
-    .smalllinks a{color:var(--muted)}
-    .smalllinks a:hover{color:var(--text)}
-    code.inline{
-      background: rgba(11,15,20,.6);
-      border:1px solid rgba(34,48,67,.7);
-      padding:2px 6px;
-      border-radius:8px;
-      color: var(--text);
-      font-size: 12px;
+    .faq summary::-webkit-details-marker{display:none}
+    .faq summary::after{
+      content:"";position:absolute;right:6px;top:50%;width:11px;height:11px;
+      border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);
+      transform:translateY(-70%) rotate(45deg);transition:transform .25s ease;
     }
-    .brand img{
-      display:block;
-      filter: drop-shadow(0 0 6px rgba(125,211,252,.35));
+    .faq details[open] summary::after{transform:translateY(-30%) rotate(225deg)}
+    .faq .answer{padding:0 44px 22px 0}
+    .faq .answer p{margin:0;font-size:15.5px}
+
+    /* ============ Contact ============ */
+    .contact-card{
+      border:1px solid var(--line-strong);border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(139,92,246,.08), rgba(125,211,252,.03)), var(--surface);
+      padding:clamp(28px,4vw,44px);
+    }
+
+    /* ============ Legal ============ */
+    .legal p{font-size:15px;color:var(--muted)}
+    .legal .addr{color:var(--text)}
+
+    /* ============ Footer ============ */
+    .site-footer{
+      border-top:1px solid var(--line);padding:34px 0;
+      display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;
+      color:var(--faint);font-size:13.5px;
+    }
+    .foot-links{display:flex;flex-wrap:wrap;gap:18px}
+    .foot-links a{color:var(--muted)}
+    .foot-links a:hover{color:var(--text)}
+
+    /* prose links */
+    .link{
+      color:var(--text);background-image:var(--g);background-repeat:no-repeat;
+      background-position:0 100%;background-size:100% 1.5px;padding-bottom:1px;
+      transition:background-size .2s ease;
+    }
+    .link:hover{background-size:100% 2.5px}
+
+    /* ============ Focus ============ */
+    :focus-visible{outline:2px solid var(--c);outline-offset:3px;border-radius:4px}
+    .skip{
+      position:absolute;left:16px;top:-60px;z-index:100;
+      background:var(--surface);border:1px solid var(--line-strong);
+      padding:10px 14px;border-radius:10px;transition:top .2s ease;
+    }
+    .skip:focus{top:12px}
+
+    /* ============ Reveal motion ============ */
+    .js .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.2,.7,.2,1), transform .6s cubic-bezier(.2,.7,.2,1)}
+    .js .reveal.in{opacity:1;transform:none}
+    /* staggered children inside a revealed group */
+    .js .reveal.in.stagger > *{animation:rise .55s cubic-bezier(.2,.7,.2,1) backwards}
+    .js .reveal.in.stagger > *:nth-child(1){animation-delay:.02s}
+    .js .reveal.in.stagger > *:nth-child(2){animation-delay:.08s}
+    .js .reveal.in.stagger > *:nth-child(3){animation-delay:.14s}
+    .js .reveal.in.stagger > *:nth-child(4){animation-delay:.20s}
+    .js .reveal.in.stagger > *:nth-child(5){animation-delay:.26s}
+    @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+    /* hero load animation */
+    .js .hero-rule{transform:scaleX(0);animation:drawrule .9s .25s cubic-bezier(.2,.7,.2,1) forwards}
+    @keyframes drawrule{to{transform:scaleX(1)}}
+    .js .hero-anim{opacity:0;transform:translateY(16px);animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
+    .js .hero-anim.d1{animation-delay:.05s}
+    .js .hero-anim.d2{animation-delay:.15s}
+    .js .hero-anim.d3{animation-delay:.30s}
+    .js .hero-anim.d4{animation-delay:.42s}
+
+    /* ============ Responsive ============ */
+    @media (max-width:880px){
+      .grid-2{grid-template-columns:1fr}
+      .steps{grid-template-columns:repeat(2,1fr);gap:28px}
+      .pricing{grid-template-columns:1fr}
+      .price-card.featured{order:-1}
+    }
+    @media (max-width:720px){
+      body{font-size:16px}
+      .nav-toggle{display:inline-flex}
+      .nav-links{
+        position:absolute;top:var(--header-h);left:0;right:0;
+        flex-direction:column;align-items:stretch;gap:2px;
+        background:var(--ink);backdrop-filter:blur(12px);box-shadow:0 24px 50px rgba(0,0,0,.5);
+        border-bottom:1px solid var(--line);padding:12px 16px 18px;
+        transform:translateY(-12px);opacity:0;pointer-events:none;visibility:hidden;
+        transition:opacity .22s ease, transform .22s ease, visibility .22s ease;
+      }
+      .site-header.open .nav-links{transform:none;opacity:1;pointer-events:auto;visibility:visible}
+      .site-header.open .nav-toggle .ic-open{display:none}
+      .site-header.open .nav-toggle .ic-close{display:block}
+      .nav-links a{padding:13px 12px;font-size:16px}
+      .nav-links a.is-active:not(.nav-cta)::after{display:none}
+      .nav-cta{margin-left:0;margin-top:8px;justify-content:center;min-height:48px;display:inline-flex;align-items:center}
+    }
+    @media (max-width:480px){
+      .steps{grid-template-columns:1fr}
+      .hero-actions .btn{flex:1 1 100%}
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *{animation-duration:.001ms!important;animation-delay:0ms!important;transition-duration:.001ms!important}
+      .js .reveal{opacity:1!important;transform:none!important}
+      .js .hero-anim{opacity:1!important;transform:none!important}
+      .js .hero-rule{transform:scaleX(1)!important}
     }
   </style>
 </head>
 
-<body>
-<header>
-  <nav class="nav">
-    <a class="brand" href="#top" aria-label="Start">
-      <img src="favicon.svg" alt="Tegrovio Logo" width="22" height="22" />
-      <span>Tegrovio</span>
-    </a>
-    <div class="links" role="navigation" aria-label="Hauptnavigation">
-      <a href="#leistungen">Leistungen</a>
-      <a href="#pakete">Pakete</a>
-      <a href="#ueber-mich">Über mich</a>
-      <a href="#kontakt" class="cta">Erstgespräch</a>
-      <a href="#impressum">Impressum</a>
-      <a href="#datenschutz">Datenschutz</a>
-    </div>
-  </nav>
-</header>
+<body id="top">
+  <a class="skip" href="#main">Zum Inhalt springen</a>
+  <div class="progress" id="progress" aria-hidden="true"></div>
 
-<main id="top" class="wrap">
-  <section class="hero">
-    <div class="grid">
-      <div class="card">
-        <div class="kicker">
-          <span class="pill">Dominik Palzer</span>
-          <span class="pill">Senior DevOps & CI/CD Consultant</span>
-          <span class="pill">GitLab-first</span>
+  <header class="site-header" id="header">
+    <nav class="nav wrap" aria-label="Hauptnavigation">
+      <a class="brand" href="#top" aria-label="Tegrovio – Start">
+        <img src="favicon.svg" alt="" width="22" height="22" />
+        <span>Tegrovio</span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="navLinks">
+        <svg class="ic-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="ic-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#leistungen">Leistungen</a>
+        <a href="#prozess">Ablauf</a>
+        <a href="#pakete">Pakete</a>
+        <a href="#ueber-mich">Über mich</a>
+        <a href="#faq">FAQ</a>
+        <a href="#kontakt" class="nav-cta">Erstgespräch</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow hero-anim d1"><b>// senior devops</b> · gitlab ci/cd · düsseldorf</p>
+        <h1 class="hero-anim d2">CI/CD, die <span class="grad">liefert</span>.</h1>
+        <div class="hero-rule" aria-hidden="true"></div>
+        <p class="lead hero-anim d3">
+          Ich beschleunige <strong>GitLab CI/CD-Pipelines</strong>, stabilisiere Releases und etabliere
+          saubere Standards – hands-on direkt im Repo. Pragmatisch, transparent, ohne Buzzword-Bingo.
+        </p>
+        <div class="hero-actions hero-anim d4">
+          <a class="btn btn--primary" href="#kontakt">Erstgespräch anfragen <span class="arr">→</span></a>
+          <a class="btn" href="#pakete">Pakete &amp; Preise</a>
+          <a class="btn btn--ghost" href="mailto:kontakt@tegrovio.de">kontakt@tegrovio.de</a>
         </div>
-
-        <h1>Ich baue CI/CD, die liefert – schneller, stabiler und wartbarer.</h1>
-
-        <p>
-          Ich helfe Software-Teams, ihre <strong>GitLab CI/CD-Pipelines</strong> zu beschleunigen,
-          Release-Prozesse zu stabilisieren und Standards zu etablieren – pragmatisch, transparent, ohne Buzzword-Bingo.
-        </p>
-
-        <div class="btnrow">
-          <a class="btn primary" href="#kontakt">20-Minuten-Call anfragen</a>
-          <a class="btn" href="#pakete">Pakete & Preise</a>
-          <a class="btn" href="mailto:kontakt@tegrovio.de">kontakt@tegrovio.de</a>
+        <div class="hero-status hero-anim d4" aria-hidden="true">
+          <span class="dot"><i></i>pipeline: green</span>
+          <span>stage: ready</span>
+          <span>focus: gitlab-first</span>
         </div>
-
-        <p class="mini" style="margin-top:12px;">
-          Fokus: GitLab CI/CD · GitLab Runner & Caching · Pipeline-Automation · Release-Flows · Renovate · Developer Experience
-        </p>
       </div>
+    </section>
 
-      <aside class="card">
-        <h2>Woran Teams typischerweise leiden</h2>
-        <ul class="list">
-          <li><span class="check">✓</span><span>Builds dauern ewig, Caches bringen nichts, Runner sind falsch dimensioniert.</span></li>
-          <li><span class="check">✓</span><span>Pipelines brechen unvorhersehbar und blockieren Releases.</span></li>
-          <li><span class="check">✓</span><span>Zu viele manuelle Schritte: Versioning, Releases, Deployments, Hotfixes.</span></li>
-          <li><span class="check">✓</span><span>Security/Scans kommen zu spät – oder gar nicht.</span></li>
-          <li><span class="check">✓</span><span>Niemand “owned” die Pipeline, Änderungen sind riskant.</span></li>
-        </ul>
-        <p class="mini" style="margin-top:10px;">
-          Wenn du bei mindestens 2 Punkten nickst: <a class="btn" href="#kontakt" style="padding:9px 12px; border-radius:12px; display:inline-flex">Kurz sprechen</a>
-        </p>
-      </aside>
-    </div>
-  </section>
-
-  <section id="leistungen" class="section">
-    <div class="split">
-      <div class="card">
-        <h2>Leistungen</h2>
-        <p>End-to-end Unterstützung – von Analyse bis Umsetzung (hands-on im Repo).</p>
-
-        <ul class="list">
-          <li><span class="check">✓</span><span><strong>CI/CD Enablement (GitLab)</strong>: Pipelines, Stages, Quality Gates, Release-Flows, Runner/Caching, Artefakte.</span></li>
-          <li><span class="check">✓</span><span><strong>Pipeline-Optimierung</strong>: schnellere Feedback-Loops, parallele Ausführung, Stabilität & Observability.</span></li>
-          <li><span class="check">✓</span><span><strong>Dependency Automation</strong>: Renovate-Setup, Update-Strategien, Risiko senken (inkl. JDK-Update-Automation auf Wunsch).</span></li>
-          <li><span class="check">✓</span><span><strong>Developer Experience</strong>: Templates, Standards, Doku, Onboarding – damit Teams nicht jedes Mal bei Null starten.</span></li>
-        </ul>
-        <p class="mini" style="margin-top:12px;">
-          Hands-on Unterstützung direkt im Repository – pragmatisch und umsetzungsorientiert.
-        </p>
+    <!-- ============ TECH STRIP ============ -->
+    <section class="band band--tight" aria-label="Tech-Stack">
+      <div class="wrap reveal">
+        <p class="eyebrow"><b>// stack</b> · womit ich arbeite</p>
+        <div class="chips stagger reveal">
+          <span class="chip">GitLab CI/CD</span>
+          <span class="chip">GitLab Runner &amp; Caching</span>
+          <span class="chip">Release-Automation</span>
+          <span class="chip">Renovate</span>
+          <span class="chip">Docker / Container Registry</span>
+          <span class="chip">Semantic Versioning</span>
+          <span class="chip">SAST / DAST Gates</span>
+          <span class="chip">Pipeline Templates</span>
+        </div>
       </div>
+    </section>
 
-      <div class="card">
-        <h2>So läuft’s ab</h2>
-        <ul class="list">
-          <li><span class="check">1</span><span><strong>20-Minuten-Call</strong> – Zielbild, Pain, Rahmenbedingungen.</span></li>
-          <li><span class="check">2</span><span><strong>Audit im Repo</strong> – schnelle Diagnose + Prioritätenliste (Quick Wins & Risiken).</span></li>
-          <li><span class="check">3</span><span><strong>Umsetzung</strong> – PRs/MRs, messbare Verbesserungen, saubere Doku.</span></li>
-          <li><span class="check">4</span><span><strong>Übergabe</strong> – Templates/Standards, damit ihr unabhängig bleibt.</span></li>
+    <!-- ============ PROBLEM ============ -->
+    <section class="band" id="problem" aria-labelledby="problem-h">
+      <div class="wrap">
+        <div class="head-block reveal">
+          <p class="eyebrow"><b>// problem</b></p>
+          <h2 id="problem-h">Woran CI/CD in der Praxis scheitert</h2>
+          <p class="lead" style="margin-top:14px">Wenn dir mindestens zwei davon bekannt vorkommen, lohnt sich ein kurzes Gespräch.</p>
+        </div>
+        <ul class="flist prose reveal stagger">
+          <li><span class="mk">01</span><span><strong>Builds dauern ewig.</strong> Caches greifen nicht, Runner sind falsch dimensioniert, alles läuft seriell.</span></li>
+          <li><span class="mk">02</span><span><strong>Pipelines brechen unvorhersehbar</strong> und blockieren Releases – niemand weiß genau warum.</span></li>
+          <li><span class="mk">03</span><span><strong>Zu viele manuelle Schritte:</strong> Versioning, Releases, Deployments und Hotfixes laufen per Hand.</span></li>
+          <li><span class="mk">04</span><span><strong>Security &amp; Scans kommen zu spät</strong> – oder fallen im Alltag ganz unter den Tisch.</span></li>
+          <li><span class="mk">05</span><span><strong>Niemand „owned" die Pipeline.</strong> Änderungen sind riskant, Wissen steckt in einzelnen Köpfen.</span></li>
         </ul>
-        <p class="mini" style="margin-top:10px;">
-          Ergebnisorientiert: kürzere Time-to-Production, weniger Release-Risiko, bessere Developer Experience.
-        </p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="pakete" class="section">
-    <div class="card">
-      <h2>Pakete (Start leicht gemacht)</h2>
-      <p>Fixpreis-Pakete für schnellen Einstieg – danach optional stunden- oder tagweise Umsetzung.</p>
+    <!-- ============ LEISTUNGEN ============ -->
+    <section class="band" id="leistungen" aria-labelledby="leistungen-h">
+      <div class="wrap">
+        <div class="head-block reveal">
+          <p class="eyebrow"><b>// leistungen</b></p>
+          <h2 id="leistungen-h">End-to-end Unterstützung – von der Analyse bis ins Repo</h2>
+        </div>
+        <div class="grid-2 reveal stagger">
+          <div>
+            <ul class="flist">
+              <li><span class="mk">✓</span><span><strong>CI/CD Enablement (GitLab)</strong>Pipelines, Stages, Quality Gates, Release-Flows, Runner &amp; Caching, Artefakte.</span></li>
+              <li><span class="mk">✓</span><span><strong>Pipeline-Optimierung</strong>Schnellere Feedback-Loops, parallele Ausführung, mehr Stabilität &amp; Observability.</span></li>
+            </ul>
+          </div>
+          <div>
+            <ul class="flist">
+              <li><span class="mk">✓</span><span><strong>Dependency Automation</strong>Renovate-Setup, Update-Strategien, Risiko senken – inkl. JDK-Update-Automation auf Wunsch.</span></li>
+              <li><span class="mk">✓</span><span><strong>Developer Experience</strong>Templates, Standards, Doku &amp; Onboarding – damit Teams nicht jedes Mal bei Null starten.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      <div class="pricing">
-        <div class="card price" style="box-shadow:none;">
-          <h3>
-            <span>Pipeline Health Check</span>
-            <span class="tag">Fixpreis</span>
-          </h3>
-          <p>
-            60–90 Min Kickoff + Repo-Review + konkrete Maßnahmenliste (Quick Wins, Risiken, Priorisierung).
+    <!-- ============ PROZESS ============ -->
+    <section class="band" id="prozess" aria-labelledby="prozess-h">
+      <div class="wrap">
+        <div class="head-block reveal">
+          <p class="eyebrow"><b>// ablauf</b></p>
+          <h2 id="prozess-h">So läuft die Zusammenarbeit</h2>
+        </div>
+        <div class="steps reveal stagger">
+          <div class="step"><span class="num">01</span><h3>Erstgespräch</h3><p>20 Minuten: Zielbild, Pain-Points und Rahmenbedingungen klären.</p></div>
+          <div class="step"><span class="num">02</span><h3>Audit im Repo</h3><p>Schnelle Diagnose mit priorisierter Maßnahmenliste – Quick Wins und Risiken.</p></div>
+          <div class="step"><span class="num">03</span><h3>Umsetzung</h3><p>Konkrete MRs, messbare Verbesserungen und saubere Doku.</p></div>
+          <div class="step"><span class="num">04</span><h3>Übergabe</h3><p>Templates &amp; Standards, damit ihr unabhängig weiterarbeiten könnt.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PAKETE ============ -->
+    <section class="band" id="pakete" aria-labelledby="pakete-h">
+      <div class="wrap">
+        <div class="head-block reveal">
+          <p class="eyebrow"><b>// pakete</b></p>
+          <h2 id="pakete-h">Fixpreis-Pakete für einen leichten Einstieg</h2>
+          <p class="lead" style="margin-top:14px">Danach optional stunden- oder tageweise Umsetzung – Umfang &amp; Abrechnung stimmen wir vorab ab.</p>
+        </div>
+        <div class="pricing reveal stagger">
+          <div class="card price-card">
+            <div class="price-top"><h3>Pipeline Health Check</h3><span class="tag">Fixpreis</span></div>
+            <p class="desc">60–90 Min Kickoff + Repo-Review + konkrete, priorisierte Maßnahmenliste.</p>
+            <div class="money">499&nbsp;€</div>
+            <ul class="plist">
+              <li><span class="ck">✓</span><span>Bottlenecks: Caches, Runner, Parallelisierung</span></li>
+              <li><span class="ck">✓</span><span>Stabilität: Retries, Timeouts, Runner-Setup</span></li>
+              <li><span class="ck">✓</span><span>Security- &amp; Quality-Gates (pragmatisch)</span></li>
+            </ul>
+          </div>
+
+          <div class="card price-card featured">
+            <div class="price-top"><h3>Pipeline Optimierung</h3><span class="tag tag--hot">Beliebt</span></div>
+            <p class="desc">Umsetzung im Repo (MRs). Ziel: spürbar schnellere Feedback-Loops und weniger Release-Stress.</p>
+            <div class="money"><span class="pre">ab</span>1.200&nbsp;€</div>
+            <ul class="plist">
+              <li><span class="ck">✓</span><span>Performance-Tuning: Caching, Stages, Runner</span></li>
+              <li><span class="ck">✓</span><span>Release-Flow: Versioning, Artifacts, Deploy</span></li>
+              <li><span class="ck">✓</span><span>Doku &amp; Standards als Templates</span></li>
+            </ul>
+          </div>
+
+          <div class="card price-card">
+            <div class="price-top"><h3>Renovate Setup</h3><span class="tag">Fixpreis</span></div>
+            <p class="desc">Automatisierte Dependency-Updates inkl. Strategie: Grouping, Schedules, Risk-Controls.</p>
+            <div class="money">600&nbsp;€</div>
+            <ul class="plist">
+              <li><span class="ck">✓</span><span>Renovate-Config + Best Practices</span></li>
+              <li><span class="ck">✓</span><span>Update-Gruppen &amp; Auto-Merge-Regeln</span></li>
+              <li><span class="ck">✓</span><span>Optional: JDK-Update-Automation</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ÜBER MICH ============ -->
+    <section class="band" id="ueber-mich" aria-labelledby="ueber-h">
+      <div class="wrap">
+        <div class="grid-2">
+          <div class="reveal">
+            <p class="eyebrow"><b>// über mich</b></p>
+            <h2 id="ueber-h">Dominik Palzer</h2>
+            <p class="lead" style="margin-top:16px">
+              Ich arbeite seit Jahren im Umfeld von Platform Engineering, DevOps und CI/CD.
+              Mein Schwerpunkt: <strong>Automation &amp; Standards</strong> – damit Teams schneller liefern,
+              ohne Qualität oder Sicherheit zu opfern.
+            </p>
+            <div class="hero-actions" style="margin-top:8px">
+              <a class="btn" href="https://www.linkedin.com/in/dominik-palzer/" rel="me noopener" target="_blank">LinkedIn <span class="arr">↗</span></a>
+              <a class="btn btn--ghost" href="#kontakt">Kontakt</a>
+            </div>
+          </div>
+          <div class="reveal">
+            <p class="eyebrow"><b>// passt gut, wenn …</b></p>
+            <ul class="flist">
+              <li><span class="mk">✓</span><span>ihr <strong>GitLab CI/CD</strong> nutzt und schneller &amp; stabiler werden wollt.</span></li>
+              <li><span class="mk">✓</span><span>Releases aktuell zu <strong>riskant oder zu manuell</strong> sind.</span></li>
+              <li><span class="mk">✓</span><span>ein Platform-/Enablement-Team <strong>Templates &amp; Standards</strong> etablieren möchte.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="band" id="faq" aria-labelledby="faq-h">
+      <div class="wrap">
+        <div class="head-block reveal">
+          <p class="eyebrow"><b>// faq</b></p>
+          <h2 id="faq-h">Häufige Fragen</h2>
+        </div>
+        <div class="faq prose reveal">
+          <details>
+            <summary>Arbeitest du nur mit GitLab?</summary>
+            <div class="answer"><p>Mein Schwerpunkt ist GitLab CI/CD – dort bin ich am schnellsten. GitHub Actions und andere Setups schaue ich mir auf Anfrage gerne an.</p></div>
+          </details>
+          <details>
+            <summary>Wie läuft die Abrechnung?</summary>
+            <div class="answer"><p>Zum Einstieg arbeite ich mit klaren Fixpreis-Paketen. Danach unterstütze ich stunden- oder tageweise – Umfang und Abrechnung stimmen wir vorab ab. Als Kleinunternehmer gemäß § 19 UStG weise ich keine Umsatzsteuer aus.</p></div>
+          </details>
+          <details>
+            <summary>Remote oder vor Ort?</summary>
+            <div class="answer"><p>Primär remote und hands-on direkt im Repository (MRs). Im Raum Düsseldorf ist ein Termin vor Ort nach Absprache möglich.</p></div>
+          </details>
+          <details>
+            <summary>Wie schnell können wir starten?</summary>
+            <div class="answer"><p>Das Erstgespräch lässt sich meist kurzfristig terminieren. Den Health Check kann ich in der Regel innerhalb weniger Tage einplanen.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ KONTAKT ============ -->
+    <section class="band" id="kontakt" aria-labelledby="kontakt-h">
+      <div class="wrap">
+        <div class="contact-card reveal">
+          <p class="eyebrow"><b>// kontakt</b></p>
+          <h2 id="kontakt-h">Lass uns kurz über euer Setup sprechen</h2>
+          <p class="lead prose" style="margin-top:16px">
+            Schreib mir in zwei Sätzen, wo es klemmt – z.&nbsp;B. „Pipelines zu langsam", „Release-Prozess unsauber"
+            oder „Renovate einführen". Ich melde mich zeitnah mit einem konkreten Vorschlag fürs Vorgehen.
           </p>
-          <p class="money">499 €</p>
-          <ul class="list">
-            <li><span class="check">✓</span><span>Bottlenecks (Caches, Runner, Parallelisierung)</span></li>
-            <li><span class="check">✓</span><span>Pipelinestabilität auf CI-Ebene (Retries, Timeouts, Runner-Setup)</span></li>
-            <li><span class="check">✓</span><span>Security/Quality Gates (pragmatisch)</span></li>
-          </ul>
-        </div>
-
-        <div class="card price" style="box-shadow:none;">
-          <h3>
-            <span>Pipeline Optimierung</span>
-            <span class="tag">ab</span>
-          </h3>
-          <p>
-            Umsetzung im Repo (MRs), Ziel: spürbar schnellere Feedback-Loops und weniger Release-Stress.
-          </p>
-          <p class="money">1.200 €</p>
-          <ul class="list">
-            <li><span class="check">✓</span><span>Performance-Tuning (Caching, Stages, Runner)</span></li>
-            <li><span class="check">✓</span><span>Release-Flow (Versioning, Artifacts, Deploy)</span></li>
-            <li><span class="check">✓</span><span>Doku & Standards (Templates)</span></li>
-          </ul>
-        </div>
-
-        <div class="card price" style="box-shadow:none;">
-          <h3>
-            <span>Renovate Setup</span>
-            <span class="tag">Fixpreis</span>
-          </h3>
-          <p>
-            Automatisierte Dependency Updates inkl. Strategie (Grouping, Schedules, Risk-Controls).
-          </p>
-          <p class="money">600 €</p>
-          <ul class="list">
-            <li><span class="check">✓</span><span>Renovate config + Best Practices</span></li>
-            <li><span class="check">✓</span><span>Update-Gruppen & Auto-Merge Regeln</span></li>
-            <li><span class="check">✓</span><span>Optional: JDK-Update-Automation</span></li>
-          </ul>
+          <div class="hero-actions" style="margin-top:24px">
+            <a class="btn btn--primary" href="mailto:kontakt@tegrovio.de?subject=Anfrage%20CI%2FCD%20Support&body=Hi%20Dominik%2C%0A%0AWir%20brauchen%20Unterst%C3%BCtzung%20bei%20...%0A%0ARepo%2FStack%3A%20...%0AZiel%3A%20...%0AZeitrahmen%3A%20...%0A%0AViele%20Gr%C3%BC%C3%9Fe">E-Mail senden <span class="arr">→</span></a>
+            <a class="btn" href="#pakete">Pakete ansehen</a>
+          </div>
         </div>
       </div>
+    </section>
 
-      <p class="mini" style="margin-top:12px;">
-        Nach dem Einstiegspaket unterstütze ich euch bei der Umsetzung
-flexibel und transparent – Umfang und Abrechnung stimmen wir vorab ab.
-      </p>
-    </div>
-  </section>
-
-  <section id="ueber-mich" class="section">
-    <div class="split">
-      <div class="card">
-        <h2>Über mich</h2>
-        <p>
-          Ich bin <strong>Dominik Palzer</strong> (Düsseldorf) und arbeite seit Jahren im Umfeld
-          von Platform Engineering, DevOps und CI/CD. Mein Schwerpunkt: <strong>Automation & Standards</strong>,
-          damit Teams schneller liefern können – ohne dabei Qualität und Sicherheit zu opfern.
-        </p>
-        <ul class="list">
-          <li><span class="check">✓</span><span>Hands-on: CI/CD von Konzept bis Umsetzung</span></li>
-          <li><span class="check">✓</span><span>Pragmatisch: Quick Wins + nachhaltige Standards</span></li>
-          <li><span class="check">✓</span><span>DX-Fokus: weniger Reibung, bessere Produktivität</span></li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h2>Für wen ich gut passe</h2>
-        <ul class="list">
-          <li><span class="check">✓</span><span>Teams, die GitLab CI/CD nutzen und schneller/stabiler werden wollen.</span></li>
-          <li><span class="check">✓</span><span>Organisationen, in denen Releases aktuell zu riskant oder zu manuell sind.</span></li>
-          <li><span class="check">✓</span><span>Platform-/Enablement-Teams, die Templates & Standards etablieren möchten.</span></li>
-        </ul>
-        <div class="btnrow">
-          <a class="btn" href="https://www.linkedin.com/in/dominik-palzer/" aria-label="LinkedIn">LinkedIn</a>
-          <a class="btn" href="#kontakt">Kontakt</a>
+    <!-- ============ LEGAL ============ -->
+    <section class="band legal" id="impressum" aria-labelledby="impressum-h">
+      <div class="wrap">
+        <div class="grid-2">
+          <div class="reveal">
+            <p class="eyebrow"><b>// impressum</b></p>
+            <h2 id="impressum-h">Impressum</h2>
+            <p style="margin-top:14px"><strong>Angaben gemäß § 5 TMG</strong></p>
+            <p class="addr">
+              Tegrovio<br/>
+              Inhaber: Dominik Palzer<br/>
+              Sternatlerweg 65<br/>
+              40235 Düsseldorf<br/>
+              E-Mail: kontakt@tegrovio.de
+            </p>
+            <p>Kleinunternehmer gemäß § 19 UStG – es wird keine Umsatzsteuer ausgewiesen.</p>
+          </div>
+          <div class="reveal" id="datenschutz">
+            <p class="eyebrow"><b>// datenschutz</b></p>
+            <h2>Datenschutz</h2>
+            <p style="margin-top:14px">Diese Website ist statisch (GitHub Pages). Es werden keine Cookies gesetzt und keine Formulare übertragen.</p>
+            <ul class="flist">
+              <li><span class="mk">·</span><span>Schriftarten werden <strong>lokal ausgeliefert</strong> – keine externen Requests an Dritte (z.&nbsp;B. Google Fonts).</span></li>
+              <li><span class="mk">·</span><span>Beim Aufruf entstehen Server-Logs beim Hosting-Provider (GitHub Pages).</span></li>
+              <li><span class="mk">·</span><span>Kontakt per E-Mail: Inhalte werden ausschließlich zur Bearbeitung deiner Anfrage verarbeitet.</span></li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="kontakt" class="section">
-    <div class="card">
-      <h2>Kontakt</h2>
-      <p>
-        Schreib mir kurz, was euer Ziel ist (z. B. “Pipelines zu langsam”, “Release-Prozess unsauber”, “Renovate einführen”).
-        Ich melde mich zeitnah mit einem Vorschlag fürs Vorgehen.
-      </p>
-      <div class="btnrow">
-        <a class="btn primary" href="mailto:kontakt@tegrovio.de?subject=Anfrage%20CI%2FCD%20Support&body=Hi%20Dominik%2C%0A%0AWir%20brauchen%20Unterst%C3%BCtzung%20bei%20...%0A%0ARepo/Stack%3A%20...%0AZiel%3A%20...%0AZeitrahmen%3A%20...%0A%0AViele%20Gr%C3%BC%C3%9Fe">E-Mail senden</a>
-        <a class="btn" href="#pakete">Pakete ansehen</a>
+    <footer class="site-footer wrap">
+      <div>© <span id="y"></span> Tegrovio · Dominik Palzer</div>
+      <div class="foot-links">
+        <a href="#leistungen">Leistungen</a>
+        <a href="#pakete">Pakete</a>
+        <a href="#faq">FAQ</a>
+        <a href="#impressum">Impressum</a>
+        <a href="#datenschutz">Datenschutz</a>
       </div>
-      <p class="mini" style="margin-top:10px;">
-        Alternativ: Nach kurzer E-Mail können wir einen 20-Minuten-Call vereinbaren, um Scope & next steps zu klären.
-      </p>
-    </div>
-  </section>
+    </footer>
+  </main>
 
-  <section id="impressum" class="section">
-    <div class="card">
-      <h2>Impressum</h2>
-      <p><strong>Angaben gemäß § 5 TMG</strong></p>
-      <p>
-        Tegrovio<br/>
-        Inhaber: Dominik Palzer<br/>
-        Sternatlerweg 65<br/>
-        40235 Düsseldorf<br/>
-        E-Mail: kontakt@tegrovio.de
-      </p>
+  <script>
+    // year
+    document.getElementById('y').textContent = new Date().getFullYear();
 
-      <p class="mini">
-        Kleinunternehmer gemäß § 19 UStG – es wird keine Umsatzsteuer ausgewiesen.
-      </p>
-    </div>
-  </section>
+    // mobile nav toggle
+    (function(){
+      var header = document.getElementById('header');
+      var toggle = document.getElementById('navToggle');
+      var links = document.getElementById('navLinks');
+      function close(){ header.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); toggle.setAttribute('aria-label','Menü öffnen'); }
+      toggle.addEventListener('click', function(){
+        var open = header.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        toggle.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+      });
+      links.addEventListener('click', function(e){ if(e.target.tagName === 'A') close(); });
+      window.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
+    })();
 
-  <section id="datenschutz" class="section">
-    <div class="card">
-      <h2>Datenschutz</h2>
-      <p>
-        Diese Website ist statisch (GitHub Pages). Es werden keine Cookies gesetzt und keine Formulare übertragen.
-      </p>
-      <ul class="list">
-        <li><span class="check">✓</span><span>Beim Aufruf entstehen Server-Logs beim Hosting-Provider (GitHub Pages).</span></li>
-        <li><span class="check">✓</span><span>Kontakt per E-Mail: Inhalte werden zur Bearbeitung deiner Anfrage verarbeitet.</span></li>
-      </ul>
-    </div>
-  </section>
+    // scroll progress bar
+    (function(){
+      var bar = document.getElementById('progress');
+      var ticking = false;
+      function update(){
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        var p = max > 0 ? h.scrollTop / max : 0;
+        bar.style.transform = 'scaleX(' + p + ')';
+        ticking = false;
+      }
+      window.addEventListener('scroll', function(){ if(!ticking){ ticking = true; requestAnimationFrame(update); } }, {passive:true});
+      update();
+    })();
 
-  <footer class="foot">
-    <div>© <span id="y"></span> Tegrovio</div>
-    <div class="smalllinks">
-      <a href="#leistungen">Leistungen</a>
-      <a href="#pakete">Pakete</a>
-      <a href="#impressum">Impressum</a>
-      <a href="#datenschutz">Datenschutz</a>
-    </div>
-  </footer>
-</main>
+    // reveal on scroll
+    (function(){
+      var els = document.querySelectorAll('.reveal');
+      if(!('IntersectionObserver' in window)){ els.forEach(function(el){ el.classList.add('in'); }); return; }
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+        });
+      }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+      els.forEach(function(el){ io.observe(el); });
+    })();
 
-<script>
-  document.getElementById('y').textContent = new Date().getFullYear();
-</script>
+    // scroll-spy active nav link
+    (function(){
+      var ids = ['leistungen','prozess','pakete','ueber-mich','faq'];
+      var map = {};
+      ids.forEach(function(id){
+        var link = document.querySelector('.nav-links a[href="#'+id+'"]');
+        var sec = document.getElementById(id);
+        if(link && sec) map[id] = {link:link, sec:sec};
+      });
+      if(!('IntersectionObserver' in window)) return;
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          var id = en.target.id;
+          if(map[id] && en.isIntersecting){
+            Object.keys(map).forEach(function(k){ map[k].link.classList.remove('is-active'); });
+            map[id].link.classList.add('is-active');
+          }
+        });
+      }, {rootMargin:'-45% 0px -50% 0px', threshold:0});
+      Object.keys(map).forEach(function(k){ io.observe(map[k].sec); });
+    })();
+  </script>
 </body>
 </html>

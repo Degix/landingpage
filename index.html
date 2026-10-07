@@ -4,14 +4,17 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Dominik Palzer | KI-Beratung, Automatisierung &amp; CI/CD | Tegrovio</title>
-  <meta name="description" content="Ich helfe Teams, KI so einzusetzen, dass sie echte Arbeit abnimmt. Konzept und Review statt Dauerberatung: euer Team setzt um, das Wissen bleibt im Haus. Tegrovio, Düsseldorf." />
+  <title>KI-Beratung, Automatisierung &amp; CI/CD | Dominik Palzer</title>
+  <meta name="description" content="KI-Beratung für Teams: Konzept und Review statt Dauerberatung. Euer Team setzt um, das Wissen bleibt im Haus. Remote, aus Düsseldorf." />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#F5F7F7" id="themeColor" />
   <link rel="canonical" href="https://www.tegrovio.de/" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 
-  <meta property="og:title" content="Dominik Palzer | KI-Beratung, Automatisierung &amp; CI/CD | Tegrovio" />
+  <meta property="og:title" content="KI-Beratung, Automatisierung &amp; CI/CD | Dominik Palzer" />
+  <meta property="og:site_name" content="Tegrovio" />
   <meta property="og:description" content="Ich helfe Teams, KI so einzusetzen, dass sie echte Arbeit abnimmt. Konzeption, Empfehlung, Review: euer Team setzt um, das Wissen bleibt im Haus." />
   <meta property="og:image" content="https://www.tegrovio.de/og-tegrovio-1200x630.png" />
   <meta property="og:image:width" content="1200" />
@@ -26,16 +29,41 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Dominik Palzer",
-    "jobTitle": "Berater für KI, Automatisierung und CI/CD",
-    "email": "mailto:kontakt@tegrovio.de",
-    "url": "https://www.tegrovio.de/",
-    "image": "https://www.tegrovio.de/images/dominik.jpg",
-    "sameAs": ["https://www.linkedin.com/in/dominik-palzer/"],
-    "address": { "@type": "PostalAddress", "addressLocality": "Düsseldorf", "addressCountry": "DE" },
-    "worksFor": { "@type": "Organization", "name": "Tegrovio", "url": "https://www.tegrovio.de/" },
-    "knowsAbout": ["Künstliche Intelligenz", "Large Language Models", "KI-Agenten", "Kontext-Engineering", "Automatisierung", "GitLab CI/CD", "DevOps", "Platform Engineering"]
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://www.tegrovio.de/#person",
+        "name": "Dominik Palzer",
+        "jobTitle": "Berater für KI, Automatisierung und CI/CD",
+        "email": "kontakt@tegrovio.de",
+        "url": "https://www.tegrovio.de/",
+        "image": "https://www.tegrovio.de/images/dominik.jpg",
+        "sameAs": ["https://www.linkedin.com/in/dominik-palzer/"],
+        "worksFor": { "@id": "https://www.tegrovio.de/#business" },
+        "knowsAbout": ["Künstliche Intelligenz", "Large Language Models", "KI-Agenten", "Kontext-Engineering", "Automatisierung", "GitLab CI/CD", "DevOps", "Platform Engineering"]
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://www.tegrovio.de/#business",
+        "name": "Tegrovio",
+        "description": "KI-Beratung, Automatisierung und CI/CD für Teams: Konzeption, Empfehlung und Review, remote.",
+        "url": "https://www.tegrovio.de/",
+        "email": "kontakt@tegrovio.de",
+        "logo": "https://www.tegrovio.de/apple-touch-icon.png",
+        "image": "https://www.tegrovio.de/og-tegrovio-1200x630.png",
+        "founder": { "@id": "https://www.tegrovio.de/#person" },
+        "address": { "@type": "PostalAddress", "addressLocality": "Düsseldorf", "addressCountry": "DE" },
+        "areaServed": { "@type": "Country", "name": "Deutschland" }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.tegrovio.de/#website",
+        "url": "https://www.tegrovio.de/",
+        "name": "Tegrovio",
+        "inLanguage": "de",
+        "publisher": { "@id": "https://www.tegrovio.de/#business" }
+      }
+    ]
   }
   </script>
 
@@ -55,6 +83,7 @@
 
   <link rel="preload" href="fonts/space-grotesk-700.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/space-grotesk-500.woff2" as="font" type="font/woff2" crossorigin />
 
   <style>
     @font-face { font-family: "Space Grotesk"; src: url("fonts/space-grotesk-500.woff2") format("woff2"); font-weight: 500; font-display: swap; }
@@ -238,13 +267,15 @@
     .portrait-tag small { display: block; color: var(--muted); font-size: 13px; font-weight: 400; }
 
     @media (prefers-reduced-motion: no-preference) {
-      .hello, .hero h1, .hero-lead, .hero-cta, .hero-note, .proof { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
+      .hello, .hero h1, .hero-lead { animation: lift .7s cubic-bezier(.2,.7,.2,1) both; }
+      .hero-cta, .hero-note, .proof { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
       .hero h1 { animation-delay: .05s; }
       .hero-lead { animation-delay: .1s; }
       .hero-cta, .hero-note { animation-delay: .16s; }
       .proof { animation-delay: .24s; }
       .portrait-stage { animation: pop .9s cubic-bezier(.2,.8,.2,1) both .1s; }
     }
+    @keyframes lift { from { transform: translateY(14px); } to { transform: none; } }
     @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
     @keyframes pop { from { opacity: 0; transform: scale(.95); } to { opacity: 1; transform: none; } }
 
@@ -667,7 +698,7 @@
 
   <header class="site-header" id="top">
     <nav class="wrap nav" aria-label="Hauptnavigation">
-      <a class="brand" href="#top" aria-label="Dominik Palzer, Tegrovio, zum Seitenanfang">
+      <a class="brand" href="#top">
         <img src="favicon.svg" alt="" width="36" height="36" />
         <span class="brand-name">Dominik Palzer<small>Tegrovio</small></span>
       </a>
@@ -723,7 +754,10 @@
         <div class="portrait-stage">
           <div class="portrait">
             <span class="initials" aria-hidden="true">DP</span>
-            <img src="images/dominik.jpg" alt="Portrait von Dominik Palzer" width="860" height="860" onerror="this.remove()" />
+            <picture>
+              <source type="image/avif" srcset="images/dominik-320.avif 320w, images/dominik-860.avif 860w" sizes="(max-width: 700px) 140px, (max-width: 1000px) 340px, 430px" />
+              <img src="images/dominik-860.jpg" srcset="images/dominik-320.jpg 320w, images/dominik-860.jpg 860w" sizes="(max-width: 700px) 140px, (max-width: 1000px) 340px, 430px" alt="Portrait von Dominik Palzer" width="860" height="860" fetchpriority="high" decoding="async" onerror="this.remove()" />
+            </picture>
           </div>
           <p class="portrait-tag">Düsseldorf<small>komplett remote</small></p>
         </div>
@@ -747,7 +781,7 @@
 
         <figure class="doc" style="margin:0" aria-labelledby="doc-cap">
           <div class="doc-head"><span><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><code>AGENTS.md</code></span><span>Auszug, gekürzt</span></div>
-<pre><code><span class="h">## Was Tooling NICHT erzwingt</span><span class="m" aria-label="Punkt 1">1</span>
+<pre><code><span class="h">## Was Tooling NICHT erzwingt</span><span class="m" aria-hidden="true">1</span>
 - Stores halten State, keine Logik.
   Logik lebt in services/.
 - Duplikation ist billiger als die
@@ -755,14 +789,14 @@
 - Features außerhalb des Phasenplans:
   Issue mit Label „geparkt“, nicht bauen.
 
-<span class="h">## Issues</span><span class="m" aria-label="Punkt 2">2</span>
+<span class="h">## Issues</span><span class="m" aria-hidden="true">2</span>
 <span class="c">Dominik sieht, wo er ran muss.
 Ein Agent sieht, was er bauen darf.</span>
 - dran: dominik (Gerät, Konto, Geld)
 - dran: entscheidung (Code wartet)
 - dran: agent (darf gebaut werden)
 
-<span class="h">## Delegation</span><span class="m" aria-label="Punkt 3">3</span>
+<span class="h">## Delegation</span><span class="m" aria-hidden="true">3</span>
 - Suchen, Umsetzen: günstiges Modell
 - Architektur, Schema: starkes Modell
 - Bleibt oben: entscheiden, committen<span class="cursor" aria-hidden="true"></span></code></pre>
@@ -1164,7 +1198,10 @@ Ein Agent sieht, was er bauen darf.</span>
         <div class="contact-card">
           <div class="contact-portrait">
             <span class="initials" aria-hidden="true">DP</span>
-            <img src="images/dominik.jpg" alt="" width="320" height="320" loading="lazy" onerror="this.remove()" />
+            <picture>
+              <source type="image/avif" srcset="images/dominik-320.avif" />
+              <img src="images/dominik-320.jpg" alt="" width="320" height="320" loading="lazy" decoding="async" onerror="this.remove()" />
+            </picture>
           </div>
           <div>
             <h2 id="contact-title">Lass uns über KI bei euch sprechen.</h2>
@@ -1272,7 +1309,7 @@ Ein Agent sieht, was er bauen darf.</span>
       var header = document.querySelector('.site-header');
       var onScroll = function () { header.classList.toggle('scrolled', window.scrollY > 8); };
       window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
+      requestAnimationFrame(onScroll);
     })();
     // Bewegung: Reveals, Zähler, aktive Navigation
     (function () {

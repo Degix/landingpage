@@ -29,6 +29,7 @@ jobs:
           test -f index.html
           test -f og-tegrovio-1200x630.png
           test -f favicon.svg
+          test -f datenschutz.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

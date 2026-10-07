@@ -199,9 +199,6 @@
     .btn-light:hover { background: #D5F5F0; color: #0B3A39; }
     .btn-outline-light { color: #fff; border-color: rgba(255,255,255,.5); background: transparent; }
     .btn-outline-light:hover { border-color: #fff; color: #fff; background: rgba(255,255,255,.08); }
-    .copy-btn .ok { display: none; }
-    .copy-btn.copied .ok { display: inline; }
-    .copy-btn.copied .label { display: none; }
 
     /* Header */
     .site-header {
@@ -737,14 +734,14 @@
             Ich konzipiere und empfehle, euer Team setzt um. So bleibt das Wissen im Haus.
           </p>
           <div class="hero-cta">
-            <!-- Sobald ein Kalender-Link existiert (z. B. Cal.com), hier als Ziel eintragen. Nur verlinken, nicht einbetten. -->
-            <a class="btn btn-primary" href="mailto:kontakt@tegrovio.de?subject=Anfrage%20Erstgespr%C3%A4ch">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>
-              Erstgespräch anfragen
+            <!-- Cal.com nur verlinken, nicht einbetten (kein Drittanbieter-Code auf der Seite). -->
+            <a class="btn btn-primary" href="https://cal.com/tegrovio/erstgespraech">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+              Erstgespräch buchen
             </a>
             <a class="btn btn-ghost" href="#beispiel">Aus der Praxis ansehen</a>
           </div>
-          <p class="hero-note">Kostenlos, 20 bis 30 Minuten. Ich nehme bewusst nur wenige Projekte parallel an.</p>
+          <p class="hero-note">Kostenlos, 30 Minuten per Video. Ich nehme bewusst nur wenige Projekte parallel an.</p>
 
           <section class="proof" aria-labelledby="proof-title">
             <h2 id="proof-title">Zuletzt</h2>
@@ -1001,7 +998,7 @@ Ein Agent sieht, was er bauen darf.</span>
         <div class="formats">
           <article class="fmt fmt-intro">
             <div class="fmt-top"><h3>Erstgespräch</h3><span class="price">kostenlos</span></div>
-            <p>Etwa 20 bis 30 Minuten, per Video oder Telefon.</p>
+            <p>30 Minuten per Video. Den Termin bucht ihr direkt in meinem Kalender.</p>
             <div class="get">
               <h4>Das bekommt ihr</h4>
               <ul>
@@ -1207,20 +1204,18 @@ Ein Agent sieht, was er bauen darf.</span>
           </div>
           <div>
             <h2 id="contact-title">Lass uns über KI bei euch sprechen.</h2>
-            <p>Schreib mir in zwei Sätzen, wo ihr gerade steht und was ihr vorhabt. Ich melde mich mit einem Terminvorschlag für das Erstgespräch.</p>
+            <p>Such dir direkt einen Termin für das Erstgespräch aus, 30 Minuten per Video. Lieber erst schreiben? Dann reichen zwei Sätze, wo ihr steht und was ihr vorhabt.</p>
             <div class="contact-actions">
-              <!-- Sobald ein Kalender-Link existiert, wird dieser Button zu "Termin buchen" und die E-Mail wandert nach hinten. -->
-              <a class="btn btn-light" href="mailto:kontakt@tegrovio.de?subject=Anfrage%20Erstgespr%C3%A4ch&amp;body=Hallo%20Dominik%2C%0A%0AWorum%20geht%20es%3A%20...%0AWo%20steht%20ihr%20heute%3A%20...%0AZeitrahmen%3A%20...%0A%0AViele%20Gr%C3%BC%C3%9Fe">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>
-                Erstgespräch anfragen
+              <a class="btn btn-light" href="https://cal.com/tegrovio/erstgespraech">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+                Erstgespräch buchen
               </a>
-              <button class="btn btn-outline-light copy-btn" type="button" data-copy="kontakt@tegrovio.de">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2.5"/><path d="M16 8V6.5A2.5 2.5 0 0 0 13.5 4h-7A2.5 2.5 0 0 0 4 6.5v7A2.5 2.5 0 0 0 6.5 16H8"/></svg>
-                <span class="label">Adresse kopieren</span><span class="ok">Kopiert</span>
-              </button>
+              <a class="btn btn-outline-light" href="mailto:kontakt@tegrovio.de?subject=Anfrage%20Erstgespr%C3%A4ch&amp;body=Hallo%20Dominik%2C%0A%0AWorum%20geht%20es%3A%20...%0AWo%20steht%20ihr%20heute%3A%20...%0AZeitrahmen%3A%20...%0A%0AViele%20Gr%C3%BC%C3%9Fe">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>
+                Lieber per E-Mail
+              </a>
             </div>
             <p class="contact-small">kontakt@tegrovio.de · <a href="https://www.linkedin.com/in/dominik-palzer/" target="_blank" rel="me noopener">LinkedIn</a></p>
-            <p class="sr-only" aria-live="polite" id="copyStatus"></p>
           </div>
         </div>
       </div>
@@ -1242,7 +1237,7 @@ Ein Agent sieht, was er bauen darf.</span>
         </section>
         <section id="datenschutz" aria-labelledby="ds-title">
           <h2 id="ds-title">Datenschutz</h2>
-          <p>Diese Website setzt keine Cookies, nutzt kein Tracking und lädt keine Inhalte von Drittanbietern. Die Schriften werden lokal ausgeliefert.</p>
+          <p>Diese Website setzt keine Cookies, nutzt kein Tracking und lädt keine Inhalte von Drittanbietern. Die Schriften werden lokal ausgeliefert. Termine buchst du über einen normalen Link zu Cal.com.</p>
           <p><a href="datenschutz.html">Datenschutzerklärung lesen</a></p>
         </section>
       </div>
@@ -1271,26 +1266,6 @@ Ein Agent sieht, was er bauen darf.</span>
         var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
         apply(next);
         try { localStorage.setItem('tegrovio-theme', next); } catch (e) {}
-      });
-    })();
-
-    // E-Mail-Adresse kopieren
-    (function () {
-      var status = document.getElementById('copyStatus');
-      document.querySelectorAll('.copy-btn').forEach(function (b) {
-        b.addEventListener('click', function () {
-          var text = b.getAttribute('data-copy');
-          var done = function () {
-            b.classList.add('copied');
-            status.textContent = 'E-Mail-Adresse kopiert';
-            setTimeout(function () { b.classList.remove('copied'); status.textContent = ''; }, 2000);
-          };
-          if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(text).then(done, function () { window.location.href = 'mailto:' + text; });
-          } else {
-            window.location.href = 'mailto:' + text;
-          }
-        });
       });
     })();
 

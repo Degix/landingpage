@@ -140,3 +140,5 @@ dist
 
 # vs
 .vs
+# Entwürfe und Vorlagen (nicht deployen)
+entwuerfe/

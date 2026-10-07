@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="de" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Datenschutzerklärung | Tegrovio</title>
+  <meta name="description" content="Datenschutzerklärung von tegrovio.de: keine Cookies, kein Tracking, keine Inhalte von Drittanbietern." />
+  <meta name="robots" content="noindex,follow" />
+  <link rel="canonical" href="https://www.tegrovio.de/datenschutz.html" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  <!-- Gleiche Theme-Wahl wie auf der Startseite -->
+  <script>
+    (function(){
+      var d=document.documentElement, t=null;
+      try{ t=localStorage.getItem('tegrovio-theme'); }catch(e){}
+      if(t!=='dark'&&t!=='light'){
+        t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+      }
+      d.setAttribute('data-theme',t);
+    })();
+  </script>
+
+  <style>
+    @font-face { font-family: "Space Grotesk"; src: url("fonts/space-grotesk-700.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+    @font-face { font-family: "Inter"; src: url("fonts/inter-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+    @font-face { font-family: "Inter"; src: url("fonts/inter-600.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+
+    :root {
+      color-scheme: light;
+      --bg: #F5F7F7;
+      --ink: #102221;
+      --muted: #4C5E5D;
+      --line: #D6E1E0;
+      --acc: #0A7472;
+      --acc-deep: #075856;
+      --head: "Space Grotesk", "Avenir Next", system-ui, sans-serif;
+      --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #0B1312;
+      --ink: #E4EEED;
+      --muted: #9DB1AF;
+      --line: #213332;
+      --acc: #5EEAD4;
+      --acc-deep: #99F3E5;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--ink);
+      font-family: var(--body); font-size: 17px; line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--acc); text-underline-offset: 3px; overflow-wrap: anywhere; }
+    a:hover { color: var(--acc-deep); }
+    :focus-visible { outline: 3px solid var(--acc); outline-offset: 3px; border-radius: 6px; }
+    p { margin: 0; }
+    p + p { margin-top: 12px; }
+
+    .wrap { width: 100%; max-width: 760px; margin: 0 auto; padding: 0 24px; }
+    .top { border-bottom: 1px solid var(--line); }
+    .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 72px; }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); font-family: var(--head); font-weight: 700; font-size: 17px; }
+    .brand:hover { color: var(--ink); }
+    .brand img { width: 36px; height: 36px; display: block; }
+    .back { display: inline-block; padding: 12px 0; font-weight: 600; text-decoration: none; }
+
+    main { padding: 56px 0 72px; }
+    h1 { font-family: var(--head); font-weight: 700; font-size: clamp(30px, 5vw, 42px); line-height: 1.12; letter-spacing: -0.02em; margin: 0 0 20px; text-wrap: balance; }
+    h2 { font-family: var(--head); font-weight: 700; font-size: 20px; line-height: 1.25; margin: 36px 0 10px; }
+    .legal-date { margin-top: 40px; font-size: 14px; color: var(--muted); }
+
+    footer { border-top: 1px solid var(--line); padding: 24px 0 40px; font-size: 15px; color: var(--muted); }
+    footer a { color: var(--muted); display: inline-block; padding: 12px 6px; }
+    footer a:hover { color: var(--ink); }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="/"><img src="favicon.svg" alt="" width="36" height="36" />Tegrovio</a>
+      <a class="back" href="/">Zur Startseite</a>
+    </div>
+  </header>
+
+  <main>
+    <article class="wrap" aria-labelledby="ds-title">
+      <h1 id="ds-title">Datenschutzerklärung</h1>
+      <p>Kurz vorweg: Diese Website setzt keine Cookies, nutzt kein Tracking und lädt keine Inhalte von Drittanbietern. Die Schriften werden lokal ausgeliefert.</p>
+
+      <h2>Verantwortlicher</h2>
+      <p>Dominik Palzer, Tegrovio, Sterntalerweg 65, 40235 Düsseldorf, <a href="mailto:kontakt@tegrovio.de">kontakt@tegrovio.de</a></p>
+
+      <h2>Hosting und Server-Logs</h2>
+      <p>Die Seite wird bei GitHub Pages gehostet (GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA). Beim Aufruf verarbeitet GitHub technisch notwendige Daten, etwa IP-Adresse, Zeitpunkt, aufgerufene Seite und Browser-Kennung, um die Seite sicher und stabil auszuliefern. Ich selbst habe auf diese Logs keinen Zugriff. Rechtsgrundlage ist mein berechtigtes Interesse an einer funktionierenden Website (Art. 6 Abs. 1 lit. f DSGVO).</p>
+      <p>Dabei können Daten in die USA übermittelt werden. GitHub ist nach dem EU-U.S. Data Privacy Framework zertifiziert, für das ein Angemessenheitsbeschluss der EU-Kommission besteht (Art. 45 DSGVO). Details: <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">Datenschutzerklärung von GitHub</a>.</p>
+
+      <h2>Hell- oder Dunkelmodus</h2>
+      <p>Wenn du die Darstellung umschaltest, speichert dein Browser die Wahl lokal (Local Storage, Schlüssel „tegrovio-theme“). Der Wert wird nicht an mich übertragen und lässt sich jederzeit in den Browsereinstellungen löschen. Die Speicherung ist für die von dir gewünschte Funktion erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG).</p>
+
+      <h2>Kontakt per E-Mail</h2>
+      <p>Wenn du mir schreibst, verarbeite ich deine Angaben (etwa Name, E-Mail-Adresse, Inhalt der Nachricht), um deine Anfrage zu beantworten. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, wenn es um einen möglichen Auftrag geht, sonst Art. 6 Abs. 1 lit. f DSGVO. Mein E-Mail-Postfach liegt bei IONOS SE, Elgendorfer Str. 57, 56410 Montabaur, als Auftragsverarbeiter. Ich lösche die Nachrichten, wenn die Anfrage erledigt ist, es sei denn, gesetzliche Aufbewahrungspflichten (etwa aus Handels- oder Steuerrecht) stehen dem entgegen.</p>
+
+      <h2>Link zu LinkedIn</h2>
+      <p>Der Link zu meinem LinkedIn-Profil ist ein normaler Link. Erst wenn du ihn anklickst, wechselst du zu LinkedIn, dann gilt die Datenschutzerklärung von LinkedIn.</p>
+
+      <h2>Deine Rechte</h2>
+      <p>Du hast das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung sowie auf Datenübertragbarkeit (Art. 15 bis 18 und 20 DSGVO). Einer Verarbeitung auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO kannst du widersprechen (Art. 21 DSGVO). Eine kurze E-Mail an <a href="mailto:kontakt@tegrovio.de">kontakt@tegrovio.de</a> genügt.</p>
+      <p>Außerdem kannst du dich bei einer Datenschutz-Aufsichtsbehörde beschweren, zum Beispiel bei der Landesbeauftragten für Datenschutz und Informationsfreiheit Nordrhein-Westfalen (LDI NRW).</p>
+      <p>Eine automatisierte Entscheidungsfindung oder Profilbildung findet nicht statt.</p>
+      <p class="legal-date">Stand: Oktober 2026</p>
+    </article>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <a href="/">Startseite</a> <a href="/#impressum">Impressum</a>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="de" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Seite nicht gefunden | Tegrovio</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <!-- Gleiche Theme-Wahl wie auf der Startseite -->
+  <script>
+    (function(){
+      var d=document.documentElement, t=null;
+      try{ t=localStorage.getItem('tegrovio-theme'); }catch(e){}
+      if(t!=='dark'&&t!=='light'){
+        t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+      }
+      d.setAttribute('data-theme',t);
+    })();
+  </script>
+
+  <style>
+    @font-face { font-family: "Space Grotesk"; src: url("/fonts/space-grotesk-700.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+    @font-face { font-family: "Inter"; src: url("/fonts/inter-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+    @font-face { font-family: "Inter"; src: url("/fonts/inter-600.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+
+    :root {
+      color-scheme: light;
+      --bg: #F5F7F7;
+      --ink: #102221;
+      --muted: #4C5E5D;
+      --line: #D6E1E0;
+      --acc: #0A7472;
+      --acc-deep: #075856;
+      --head: "Space Grotesk", "Avenir Next", system-ui, sans-serif;
+      --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #0B1312;
+      --ink: #E4EEED;
+      --muted: #9DB1AF;
+      --line: #213332;
+      --acc: #5EEAD4;
+      --acc-deep: #99F3E5;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--ink);
+      font-family: var(--body); font-size: 17px; line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--acc); text-underline-offset: 3px; overflow-wrap: anywhere; }
+    a:hover { color: var(--acc-deep); }
+    :focus-visible { outline: 3px solid var(--acc); outline-offset: 3px; border-radius: 6px; }
+    p { margin: 0; }
+    p + p { margin-top: 12px; }
+
+    .wrap { width: 100%; max-width: 760px; margin: 0 auto; padding: 0 24px; }
+    .top { border-bottom: 1px solid var(--line); }
+    .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 72px; }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); font-family: var(--head); font-weight: 700; font-size: 17px; }
+    .brand:hover { color: var(--ink); }
+    .brand img { width: 36px; height: 36px; display: block; }
+    .back { display: inline-block; padding: 12px 0; font-weight: 600; text-decoration: none; }
+
+    main { padding: 56px 0 72px; }
+    h1 { font-family: var(--head); font-weight: 700; font-size: clamp(30px, 5vw, 42px); line-height: 1.12; letter-spacing: -0.02em; margin: 0 0 20px; text-wrap: balance; }
+    h2 { font-family: var(--head); font-weight: 700; font-size: 20px; line-height: 1.25; margin: 36px 0 10px; }
+    .lead { color: var(--muted); max-width: 52ch; }
+    .home { display: inline-block; margin-top: 28px; padding: 14px 24px; border-radius: 999px; background: var(--acc); color: var(--bg); font-weight: 600; text-decoration: none; }
+    .home:hover { background: var(--acc-deep); color: var(--bg); }
+    .legal-date { margin-top: 40px; font-size: 14px; color: var(--muted); }
+
+    footer { border-top: 1px solid var(--line); padding: 24px 0 40px; font-size: 15px; color: var(--muted); }
+    footer a { color: var(--muted); display: inline-block; padding: 12px 6px; }
+    footer a:hover { color: var(--ink); }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="/"><img src="/favicon.svg" alt="" width="36" height="36" />Tegrovio</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <h1>Diese Seite gibt es nicht.</h1>
+      <p class="lead">Vielleicht hat sich ein Tippfehler in die Adresse geschlichen, oder der Link ist veraltet.</p>
+      <a class="home" href="/">Zur Startseite</a>
+    </div>
+  </main>
+</body>
+</html>

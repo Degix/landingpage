@@ -1,755 +1,1382 @@
 <!doctype html>
-<html lang="de" class="no-js">
+<html lang="de" data-theme="light">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- SEO -->
-  <title>Dominik Palzer – Senior DevOps & GitLab CI/CD Consultant | Tegrovio</title>
-  <meta name="description" content="Ich helfe Software-Teams, GitLab CI/CD-Pipelines schneller, stabiler und wartbarer zu machen: Pipeline Audit, Optimierung, Release-Automation, Renovate & Dependency Automation." />
+  <title>KI-Beratung, Automatisierung &amp; CI/CD | Dominik Palzer</title>
+  <meta name="description" content="KI-Beratung für Teams: Konzept und Review statt Dauerberatung. Euer Team setzt um, das Wissen bleibt im Haus. Remote, aus Düsseldorf." />
   <meta name="robots" content="index,follow" />
-  <meta name="theme-color" content="#0A0C10" />
+  <meta name="theme-color" content="#F5F7F7" id="themeColor" />
   <link rel="canonical" href="https://www.tegrovio.de/" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 
-  <!-- OpenGraph -->
-  <meta property="og:title" content="Dominik Palzer – Senior DevOps & CI/CD Consultant | Tegrovio" />
-  <meta property="og:description" content="Ich baue CI/CD, die liefert – schneller, stabiler und wartbarer." />
+  <meta property="og:title" content="KI-Beratung, Automatisierung &amp; CI/CD | Dominik Palzer" />
+  <meta property="og:site_name" content="Tegrovio" />
+  <meta property="og:description" content="Ich helfe Teams, KI so einzusetzen, dass sie echte Arbeit abnimmt. Konzeption, Empfehlung, Review: euer Team setzt um, das Wissen bleibt im Haus." />
   <meta property="og:image" content="https://www.tegrovio.de/og-tegrovio-1200x630.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Dominik Palzer, Tegrovio: Ich helfe Teams, KI so einzusetzen, dass sie echte Arbeit abnimmt." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://tegrovio.de/" />
+  <meta property="og:url" content="https://www.tegrovio.de/" />
   <meta property="og:locale" content="de_DE" />
-
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://www.tegrovio.de/og-tegrovio-1200x630.png" />
 
-  <!-- Schema.org -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Dominik Palzer",
-    "jobTitle": "Senior DevOps & CI/CD Consultant",
-    "url": "https://www.tegrovio.de",
-    "sameAs": [
-      "https://www.linkedin.com/in/dominik-palzer"
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://www.tegrovio.de/#person",
+        "name": "Dominik Palzer",
+        "jobTitle": "Berater für KI, Automatisierung und CI/CD",
+        "email": "kontakt@tegrovio.de",
+        "url": "https://www.tegrovio.de/",
+        "image": "https://www.tegrovio.de/images/dominik.jpg",
+        "sameAs": ["https://www.linkedin.com/in/dominik-palzer/"],
+        "worksFor": { "@id": "https://www.tegrovio.de/#business" },
+        "knowsAbout": ["Künstliche Intelligenz", "Large Language Models", "KI-Agenten", "Kontext-Engineering", "Automatisierung", "GitLab CI/CD", "DevOps", "Platform Engineering"]
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://www.tegrovio.de/#business",
+        "name": "Tegrovio",
+        "description": "KI-Beratung, Automatisierung und CI/CD für Teams: Konzeption, Empfehlung und Review, remote.",
+        "url": "https://www.tegrovio.de/",
+        "email": "kontakt@tegrovio.de",
+        "logo": "https://www.tegrovio.de/apple-touch-icon.png",
+        "image": "https://www.tegrovio.de/og-tegrovio-1200x630.png",
+        "founder": { "@id": "https://www.tegrovio.de/#person" },
+        "address": { "@type": "PostalAddress", "addressLocality": "Düsseldorf", "addressCountry": "DE" },
+        "areaServed": { "@type": "Country", "name": "Deutschland" }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.tegrovio.de/#website",
+        "url": "https://www.tegrovio.de/",
+        "name": "Tegrovio",
+        "inLanguage": "de",
+        "publisher": { "@id": "https://www.tegrovio.de/#business" }
+      }
     ]
   }
   </script>
 
-  <!-- Self-hosted fonts (DSGVO: keine externen Requests) -->
+  <!-- Theme vor dem ersten Paint setzen (kein Flackern). Reihenfolge: localStorage, prefers-color-scheme, hell -->
+  <script>
+    (function(){
+      var d=document.documentElement, t=null;
+      try{ t=localStorage.getItem('tegrovio-theme'); }catch(e){}
+      if(t!=='dark'&&t!=='light'){
+        t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+      }
+      d.setAttribute('data-theme',t);
+      // Scroll-Animationen nur mit JS und ohne reduzierte Bewegung
+      if('IntersectionObserver' in window&&window.matchMedia&&matchMedia('(prefers-reduced-motion: no-preference)').matches){ d.classList.add('anim'); }
+    })();
+  </script>
+
   <link rel="preload" href="fonts/space-grotesk-700.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin />
-
-  <!-- Avoid FOUC of reveal animations: mark JS available before paint -->
-  <script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
+  <link rel="preload" href="fonts/space-grotesk-500.woff2" as="font" type="font/woff2" crossorigin />
 
   <style>
-    /* ============ Fonts ============ */
-    @font-face{font-family:"Space Grotesk";src:url("fonts/space-grotesk-500.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
-    @font-face{font-family:"Space Grotesk";src:url("fonts/space-grotesk-700.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap}
-    @font-face{font-family:"Inter";src:url("fonts/inter-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
-    @font-face{font-family:"Inter";src:url("fonts/inter-500.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
-    @font-face{font-family:"Inter";src:url("fonts/inter-600.woff2") format("woff2");font-weight:600;font-style:normal;font-display:swap}
-    @font-face{font-family:"JetBrains Mono";src:url("fonts/jetbrains-mono-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
-    @font-face{font-family:"JetBrains Mono";src:url("fonts/jetbrains-mono-500.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+    @font-face { font-family: "Space Grotesk"; src: url("fonts/space-grotesk-500.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+    @font-face { font-family: "Space Grotesk"; src: url("fonts/space-grotesk-700.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+    @font-face { font-family: "Inter"; src: url("fonts/inter-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+    @font-face { font-family: "Inter"; src: url("fonts/inter-500.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+    @font-face { font-family: "Inter"; src: url("fonts/inter-600.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+    @font-face { font-family: "JetBrains Mono"; src: url("fonts/jetbrains-mono-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
 
-    /* ============ Tokens ============ */
-    :root{
-      --ink:#0A0C10;
-      --ink-2:#0C0F15;
-      --surface:#11151C;
-      --surface-2:#141A23;
-      --text:#E9EEF6;
-      --muted:#93A1B5;
-      --faint:#5E6B7E;
-      --line:rgba(255,255,255,.08);
-      --line-strong:rgba(255,255,255,.14);
-      --v:#8B5CF6;
-      --c:#7DD3FC;
-      --g:linear-gradient(120deg,#8B5CF6,#7DD3FC);
-      --ok:#86EFAC;
+    /* Farben hell (Standard). Ein Akzent: das Teal aus dem Logo. */
+    :root {
+      color-scheme: light;
+      --bg: #F5F7F7;
+      --paper: #FFFFFF;
+      --tint: #E5F1F0;
+      --ink: #102221;
+      --muted: #4C5E5D;
+      --line: #D6E1E0;
+      --acc: #0A7472;           /* Text, Links, Icons */
+      --acc-deep: #075856;      /* Hover */
+      --acc-soft: #C9E7E4;      /* Flächen, Rahmen */
+      --btn: #0A7472;
+      --btn-hover: #075856;
+      --on-btn: #FFFFFF;
+      --team: #46536E;
+      --team-soft: #ECEFF4;
+      --team-line: #B9C2D4;
+      --on-team: #FFFFFF;
+      --feature-bg: #102221;
+      --feature-ink: #E6F0EF;
+      --feature-muted: #A9BDBB;
+      --feature-acc: #5EEAD4;
+      --contact-bg: #0B3A39;
+      --doc-bg: #FBFCFC;
+      --header-bg: rgba(245, 247, 247, .9);
+      --shadow: rgba(16, 34, 33, .30);
 
-      --display:"Space Grotesk", ui-sans-serif, system-ui, sans-serif;
-      --body:"Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-      --mono:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+      --head: "Space Grotesk", "Avenir Next", system-ui, sans-serif;
+      --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
-      --max:1080px;
-      --measure:64ch;
-      --radius:16px;
-      --header-h:62px;
-    }
-
-    /* ============ Base ============ */
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      background:var(--ink);
-      color:var(--text);
-      font-family:var(--body);
-      font-size:17px;
-      line-height:1.6;
-      -webkit-font-smoothing:antialiased;
-      text-rendering:optimizeLegibility;
-      overflow-x:hidden;
-    }
-    /* ambient: two very faint glows, fixed */
-    body::before{
-      content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
-      background:
-        radial-gradient(620px 380px at 12% -5%, rgba(139,92,246,.10), transparent 60%),
-        radial-gradient(680px 420px at 92% 4%, rgba(125,211,252,.08), transparent 62%);
-    }
-    main, header, footer{position:relative;z-index:1}
-    img{max-width:100%;display:block}
-    a{color:inherit;text-decoration:none}
-
-    h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:-.02em;line-height:1.06;margin:0}
-    h2{font-size:clamp(26px,3.4vw,38px)}
-    h3{font-size:19px;letter-spacing:-.01em;line-height:1.25}
-    p{margin:0 0 1rem;color:var(--muted)}
-    strong{color:var(--text);font-weight:600}
-
-    .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
-    .prose{max-width:var(--measure)}
-
-    /* ============ Eyebrow (signature: pipeline-stage label) ============ */
-    .eyebrow{
-      font-family:var(--mono);font-size:12.5px;font-weight:500;
-      letter-spacing:.04em;color:var(--faint);
-      display:inline-flex;align-items:center;gap:10px;margin:0 0 18px;
-      text-transform:none;
-    }
-    .eyebrow::before{
-      content:"";width:26px;height:2px;border-radius:2px;background:var(--g);
-      flex:none;
-    }
-    .eyebrow b{color:var(--muted);font-weight:500}
-
-    /* ============ Buttons ============ */
-    .btn{
-      --bw:1px;
-      display:inline-flex;align-items:center;justify-content:center;gap:9px;
-      min-height:46px;padding:0 18px;border-radius:11px;
-      font-family:var(--body);font-weight:600;font-size:15px;
-      color:var(--text);background:var(--surface);
-      border:1px solid var(--line-strong);
-      transition:border-color .2s ease, transform .2s ease, background .2s ease;
-      cursor:pointer;white-space:nowrap;
-    }
-    .btn:hover{border-color:rgba(125,211,252,.5);transform:translateY(-1px)}
-    .btn:active{transform:translateY(0)}
-    .btn .arr{transition:transform .2s ease}
-    .btn:hover .arr{transform:translateX(3px)}
-    .btn--primary{
-      position:relative;border-color:transparent;color:#0A0C10;font-weight:700;
-      background:var(--g);
-    }
-    .btn--primary:hover{border-color:transparent;filter:brightness(1.06)}
-    .btn--ghost{background:transparent}
-
-    /* ============ Header ============ */
-    .progress{
-      position:fixed;top:0;left:0;height:2px;width:100%;z-index:60;
-      background:var(--g);transform:scaleX(0);transform-origin:0 50%;
-      will-change:transform;
-    }
-    .site-header{
-      position:sticky;top:0;z-index:50;height:var(--header-h);
-      display:flex;align-items:center;
-      background:rgba(10,12,16,.72);
-      backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-      border-bottom:1px solid var(--line);
-    }
-    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%}
-    .brand{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-family:var(--display);letter-spacing:-.01em;font-size:17px}
-    .brand img{width:22px;height:22px;filter:drop-shadow(0 0 7px rgba(125,211,252,.4))}
-    .nav-links{display:flex;align-items:center;gap:4px}
-    .nav-links a{
-      position:relative;color:var(--muted);font-size:14.5px;font-weight:500;
-      padding:9px 12px;border-radius:9px;transition:color .2s ease, background .2s ease;
-    }
-    .nav-links a:not(.nav-cta):hover{color:var(--text)}
-    .nav-links a.is-active:not(.nav-cta){color:var(--text)}
-    .nav-links a.is-active:not(.nav-cta)::after{
-      content:"";position:absolute;left:12px;right:12px;bottom:3px;height:2px;border-radius:2px;background:var(--g);
-    }
-    .nav-cta{
-      color:var(--text)!important;background:var(--surface);
-      border:1px solid var(--line-strong);margin-left:6px;
-    }
-    .nav-cta:hover{border-color:rgba(125,211,252,.5)}
-    .nav-toggle{
-      display:none;width:44px;height:44px;border-radius:10px;
-      background:transparent;border:1px solid var(--line);
-      color:var(--text);cursor:pointer;align-items:center;justify-content:center;
-    }
-    .nav-toggle svg{width:20px;height:20px}
-    .nav-toggle .ic-close{display:none}
-
-    /* ============ Sections ============ */
-    section{scroll-margin-top:calc(var(--header-h) + 14px)}
-    .band{padding:clamp(56px,8vw,104px) 0;border-top:1px solid var(--line)}
-    .band--tight{padding:clamp(40px,5vw,64px) 0}
-    .lead{font-size:clamp(17px,1.6vw,19px);color:var(--muted)}
-
-    /* ============ Hero ============ */
-    .hero{padding:clamp(64px,11vw,128px) 0 clamp(48px,7vw,84px)}
-    .hero h1{
-      font-size:clamp(40px,7.2vw,82px);line-height:1.02;letter-spacing:-.035em;
-      margin:0 0 22px;max-width:16ch;
-    }
-    .hero h1 .grad{
-      background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;
-    }
-    .hero-rule{height:2px;width:min(420px,72%);background:var(--g);border-radius:2px;margin:6px 0 26px;transform-origin:0 50%}
-    .hero .lead{max-width:54ch;margin:0 0 30px}
-    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
-    .hero-status{
-      margin-top:26px;font-family:var(--mono);font-size:13px;color:var(--faint);
-      display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;
-    }
-    .hero-status .dot{display:inline-flex;align-items:center;gap:7px}
-    .hero-status .dot i{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 10px rgba(134,239,172,.7);font-style:normal}
-
-    /* ============ Tech strip ============ */
-    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
-    .chip{
-      font-family:var(--mono);font-size:13px;color:var(--muted);
-      padding:8px 13px;border:1px solid var(--line);border-radius:999px;
-      background:rgba(255,255,255,.015);transition:border-color .2s ease,color .2s ease;
-    }
-    .chip:hover{color:var(--text);border-color:var(--line-strong)}
-
-    /* ============ Generic grids ============ */
-    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(20px,3vw,40px)}
-    .head-block{margin-bottom:clamp(28px,4vw,48px);max-width:var(--measure)}
-
-    /* feature list (problem / leistungen) */
-    .flist{list-style:none;margin:18px 0 0;padding:0}
-    .flist li{
-      display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;
-      padding:16px 0;border-top:1px solid var(--line);color:var(--muted);
-    }
-    .flist li:first-child{border-top:none;padding-top:0}
-    .flist .mk{
-      font-family:var(--mono);font-size:13px;color:var(--c);line-height:1.7;
-      width:1.4em;flex:none;
-    }
-    .flist li strong{display:block;color:var(--text);margin-bottom:2px;font-weight:600}
-
-    /* ============ Process (numbered) ============ */
-    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2.5vw,28px);margin-top:8px;counter-reset:step}
-    .step{position:relative;padding-top:18px;border-top:1px solid var(--line-strong)}
-    .step .num{
-      font-family:var(--mono);font-weight:500;font-size:14px;letter-spacing:.05em;
-      background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;
-      display:block;margin-bottom:14px;
-    }
-    .step h3{margin-bottom:8px}
-    .step p{font-size:15px;margin:0}
-
-    /* ============ Pricing ============ */
-    .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:8px;align-items:stretch}
-    .card{
-      background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
-      padding:26px 24px;display:flex;flex-direction:column;
-      transition:transform .25s ease, border-color .25s ease;
-    }
-    .price-card:hover{transform:translateY(-3px);border-color:var(--line-strong)}
-    .price-card.featured{
-      border-color:rgba(139,92,246,.55);
-      background:linear-gradient(180deg, rgba(139,92,246,.10), rgba(125,211,252,.04)), var(--surface);
-      box-shadow:0 24px 70px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.04);
-    }
-    .price-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px}
-    .price-card h3{font-size:18px}
-    .tag{
-      font-family:var(--mono);font-size:11px;letter-spacing:.04em;
-      padding:5px 10px;border-radius:999px;border:1px solid var(--line-strong);color:var(--faint);
-    }
-    .tag--hot{border-color:transparent;background:var(--g);color:#0A0C10;font-weight:500}
-    .price-card .desc{font-size:14.5px;min-height:0}
-    .money{font-family:var(--mono);font-weight:500;color:var(--text);font-size:30px;letter-spacing:-.01em;margin:14px 0 4px;font-variant-numeric:tabular-nums}
-    .money .pre{font-size:13px;color:var(--faint);font-weight:400;margin-right:8px}
-    .plist{list-style:none;margin:14px 0 0;padding:14px 0 0;border-top:1px solid var(--line)}
-    .plist li{display:grid;grid-template-columns:auto 1fr;gap:10px;padding:7px 0;color:var(--muted);font-size:14.5px}
-    .plist .ck{color:var(--ok);font-weight:700;line-height:1.5}
-
-    /* ============ FAQ ============ */
-    .faq{margin-top:8px;border-top:1px solid var(--line)}
-    .faq details{border-bottom:1px solid var(--line)}
-    .faq summary{
-      list-style:none;cursor:pointer;padding:20px 44px 20px 0;position:relative;
-      font-family:var(--display);font-weight:500;font-size:18px;color:var(--text);
-    }
-    .faq summary::-webkit-details-marker{display:none}
-    .faq summary::after{
-      content:"";position:absolute;right:6px;top:50%;width:11px;height:11px;
-      border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);
-      transform:translateY(-70%) rotate(45deg);transition:transform .25s ease;
-    }
-    .faq details[open] summary::after{transform:translateY(-30%) rotate(225deg)}
-    .faq .answer{padding:0 44px 22px 0}
-    .faq .answer p{margin:0;font-size:15.5px}
-
-    /* ============ Contact ============ */
-    .contact-card{
-      border:1px solid var(--line-strong);border-radius:var(--radius);
-      background:linear-gradient(180deg, rgba(139,92,246,.08), rgba(125,211,252,.03)), var(--surface);
-      padding:clamp(28px,4vw,44px);
+      --r-lg: 28px;
+      --r-md: 18px;
+      --r-sm: 12px;
+      --wrap: 1160px;
     }
 
-    /* ============ Legal ============ */
-    .legal p{font-size:15px;color:var(--muted)}
-    .legal .addr{color:var(--text)}
-
-    /* ============ Footer ============ */
-    .site-footer{
-      border-top:1px solid var(--line);padding:34px 0;
-      display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;
-      color:var(--faint);font-size:13.5px;
+    /* Farben dunkel */
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #0B1312;
+      --paper: #111C1B;
+      --tint: #142A28;
+      --ink: #E4EEED;
+      --muted: #9DB1AF;
+      --line: #213332;
+      --acc: #5EEAD4;
+      --acc-deep: #99F3E5;
+      --acc-soft: #1D4A46;
+      --btn: #5EEAD4;
+      --btn-hover: #99F3E5;
+      --on-btn: #05201E;
+      --team: #B5C0D8;
+      --team-soft: #1A2230;
+      --team-line: #39455D;
+      --on-team: #0B1312;
+      --feature-bg: #0F3A37;
+      --feature-ink: #E4EEED;
+      --feature-muted: #A9BDBB;
+      --feature-acc: #5EEAD4;
+      --contact-bg: #0F3533;
+      --doc-bg: #0E1817;
+      --header-bg: rgba(11, 19, 18, .86);
+      --shadow: rgba(0, 0, 0, .6);
     }
-    .foot-links{display:flex;flex-wrap:wrap;gap:18px}
-    .foot-links a{color:var(--muted)}
-    .foot-links a:hover{color:var(--text)}
 
-    /* prose links */
-    .link{
-      color:var(--text);background-image:var(--g);background-repeat:no-repeat;
-      background-position:0 100%;background-size:100% 1.5px;padding-bottom:1px;
-      transition:background-size .2s ease;
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--ink);
+      font-family: var(--body); font-size: 17px; line-height: 1.6;
+      -webkit-font-smoothing: antialiased; overflow-x: hidden;
+      transition: background-color .25s ease, color .25s ease;
     }
-    .link:hover{background-size:100% 2.5px}
+    img, svg { display: block; max-width: 100%; }
+    a { color: var(--acc); text-underline-offset: 3px; }
+    a:hover { color: var(--acc-deep); }
+    :focus-visible { outline: 3px solid var(--acc); outline-offset: 3px; border-radius: 6px; }
+    h1, h2, h3, h4 { text-wrap: balance; }
+    h1, h2, h3 { font-family: var(--head); font-weight: 700; line-height: 1.12; letter-spacing: -0.02em; margin: 0; }
+    p { margin: 0; }
 
-    /* ============ Focus ============ */
-    :focus-visible{outline:2px solid var(--c);outline-offset:3px;border-radius:4px}
-    .skip{
-      position:absolute;left:16px;top:-60px;z-index:100;
-      background:var(--surface);border:1px solid var(--line-strong);
-      padding:10px 14px;border-radius:10px;transition:top .2s ease;
+    .wrap { width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+    .skip { position: absolute; left: -9999px; top: 12px; background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 10px; z-index: 100; }
+    .skip:focus { left: 12px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      font-family: var(--body); font-weight: 600; font-size: 16px; text-decoration: none; cursor: pointer;
+      padding: 14px 24px; border-radius: 999px; border: 2px solid transparent;
+      transition: background-color .2s ease, color .2s ease, border-color .2s ease;
     }
-    .skip:focus{top:12px}
+    .btn svg { width: 18px; height: 18px; flex: none; }
+    .btn-primary { background: var(--btn); color: var(--on-btn); }
+    .btn-primary:hover { background: var(--btn-hover); color: var(--on-btn); }
+    .btn-ghost { color: var(--ink); border-color: var(--line); background: var(--paper); }
+    .btn-ghost:hover { border-color: var(--acc); color: var(--acc); }
+    .btn-light { background: #fff; color: #0B3A39; }
+    .btn-light:hover { background: #D5F5F0; color: #0B3A39; }
+    .btn-outline-light { color: #fff; border-color: rgba(255,255,255,.5); background: transparent; }
+    .btn-outline-light:hover { border-color: #fff; color: #fff; background: rgba(255,255,255,.08); }
+    .copy-btn .ok { display: none; }
+    .copy-btn.copied .ok { display: inline; }
+    .copy-btn.copied .label { display: none; }
 
-    /* ============ Reveal motion ============ */
-    .js .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.2,.7,.2,1), transform .6s cubic-bezier(.2,.7,.2,1)}
-    .js .reveal.in{opacity:1;transform:none}
-    /* staggered children inside a revealed group */
-    .js .reveal.in.stagger > *{animation:rise .55s cubic-bezier(.2,.7,.2,1) backwards}
-    .js .reveal.in.stagger > *:nth-child(1){animation-delay:.02s}
-    .js .reveal.in.stagger > *:nth-child(2){animation-delay:.08s}
-    .js .reveal.in.stagger > *:nth-child(3){animation-delay:.14s}
-    .js .reveal.in.stagger > *:nth-child(4){animation-delay:.20s}
-    .js .reveal.in.stagger > *:nth-child(5){animation-delay:.26s}
-    @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-
-    /* hero load animation */
-    .js .hero-rule{transform:scaleX(0);animation:drawrule .9s .25s cubic-bezier(.2,.7,.2,1) forwards}
-    @keyframes drawrule{to{transform:scaleX(1)}}
-    .js .hero-anim{opacity:0;transform:translateY(16px);animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
-    .js .hero-anim.d1{animation-delay:.05s}
-    .js .hero-anim.d2{animation-delay:.15s}
-    .js .hero-anim.d3{animation-delay:.30s}
-    .js .hero-anim.d4{animation-delay:.42s}
-
-    /* ============ Responsive ============ */
-    @media (max-width:880px){
-      .grid-2{grid-template-columns:1fr}
-      .steps{grid-template-columns:repeat(2,1fr);gap:28px}
-      .pricing{grid-template-columns:1fr}
-      .price-card.featured{order:-1}
+    /* Header */
+    .site-header {
+      position: sticky; top: 0; z-index: 50; background: var(--header-bg);
+      backdrop-filter: saturate(1.4) blur(12px); -webkit-backdrop-filter: saturate(1.4) blur(12px);
+      border-bottom: 1px solid transparent;
     }
-    @media (max-width:720px){
-      body{font-size:16px}
-      .nav-toggle{display:inline-flex}
-      .nav-links{
-        position:absolute;top:var(--header-h);left:0;right:0;
-        flex-direction:column;align-items:stretch;gap:2px;
-        background:var(--ink);backdrop-filter:blur(12px);box-shadow:0 24px 50px rgba(0,0,0,.5);
-        border-bottom:1px solid var(--line);padding:12px 16px 18px;
-        transform:translateY(-12px);opacity:0;pointer-events:none;visibility:hidden;
-        transition:opacity .22s ease, transform .22s ease, visibility .22s ease;
+    .site-header.scrolled { border-bottom-color: var(--line); }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 16px; }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); min-width: 0; }
+    .brand:hover { color: var(--ink); }
+    .brand img { width: 36px; height: 36px; flex: none; }
+    .brand-name { font-family: var(--head); font-weight: 700; font-size: 17px; line-height: 1.1; white-space: nowrap; }
+    .brand-name small { display: block; font-family: var(--body); font-weight: 500; font-size: 12.5px; color: var(--muted); letter-spacing: 0; }
+    .nav-right { display: flex; align-items: center; gap: 8px; }
+    .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; margin: 0; padding: 0; }
+    .nav-links a:not(.btn) { display: block; padding: 8px 12px; border-radius: 999px; color: var(--ink); text-decoration: none; font-weight: 500; font-size: 15px; }
+    .nav-links a:not(.btn):hover { background: var(--tint); color: var(--acc-deep); }
+    .nav-links .btn { padding: 10px 18px; font-size: 15px; margin-left: 8px; }
+    .nav-toggle, .theme-toggle {
+      background: var(--paper); border: 1px solid var(--line); border-radius: 999px; color: var(--ink); cursor: pointer;
+      transition: border-color .2s ease;
+    }
+    .nav-toggle:hover, .theme-toggle:hover { border-color: var(--acc); }
+    .nav-toggle { display: none; min-height: 44px; padding: 9px 16px; font: 600 15px var(--body); align-items: center; gap: 8px; }
+    .nav-toggle svg { width: 18px; height: 18px; }
+    .theme-toggle { width: 44px; height: 44px; display: inline-grid; place-items: center; padding: 0; flex: none; }
+    .theme-toggle svg { width: 19px; height: 19px; }
+    .theme-toggle .ic-sun { display: none; }
+    [data-theme="dark"] .theme-toggle .ic-sun { display: block; }
+    [data-theme="dark"] .theme-toggle .ic-moon { display: none; }
+
+    /* Hero */
+    .hero { padding: 32px 0 64px; }
+    .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; }
+    .hello { font-family: var(--head); font-weight: 500; font-size: clamp(20px, 2.2vw, 24px); color: var(--muted); letter-spacing: -0.01em; }
+    .hero h1 { margin-top: 14px; font-size: clamp(38px, 5vw, 60px); line-height: 1.03; letter-spacing: -0.04em; max-width: 13em; }
+    .hero-lead { font-size: clamp(18px, 1.9vw, 20.5px); line-height: 1.55; max-width: 31em; margin-top: 24px; }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+    .hero-note { margin-top: 14px; font-size: 14.5px; color: var(--muted); }
+
+    .proof {
+      margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--line);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 40em;
+    }
+    .proof h2 { grid-column: 1 / -1; font: 600 13.5px var(--body); color: var(--muted); letter-spacing: 0; margin-bottom: -8px; }
+    .proof p { font-size: 15px; line-height: 1.45; color: var(--muted); }
+    .proof strong { display: block; font-family: var(--head); font-weight: 700; font-size: 17px; line-height: 1.25; color: var(--ink); margin-bottom: 4px; letter-spacing: -0.01em; }
+
+    .portrait-stage { position: relative; justify-self: center; width: min(100%, 430px); aspect-ratio: 1; }
+    .portrait {
+      position: relative; width: 100%; height: 100%; border-radius: 50%; overflow: hidden;
+      background: linear-gradient(160deg, #14918E, #0B3A39);
+      display: grid; place-items: center;
+      box-shadow: 0 0 0 10px var(--paper), 0 0 0 11px var(--line), 0 30px 60px -30px var(--shadow);
+    }
+    .portrait .initials { font-family: var(--head); font-weight: 700; color: #fff; font-size: clamp(72px, 12vw, 140px); letter-spacing: -0.04em; user-select: none; }
+    .portrait img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .portrait-tag {
+      position: absolute; left: -4%; bottom: 8%;
+      background: var(--paper); color: var(--ink); border-radius: 999px; padding: 10px 18px;
+      border: 1px solid var(--line); box-shadow: 0 14px 30px -14px var(--shadow);
+      font-size: 14.5px; font-weight: 500; line-height: 1.3;
+    }
+    .portrait-tag small { display: block; color: var(--muted); font-size: 13px; font-weight: 400; }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .hello, .hero h1, .hero-lead { animation: lift .7s cubic-bezier(.2,.7,.2,1) both; }
+      .hero-cta, .hero-note, .proof { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
+      .hero h1 { animation-delay: .05s; }
+      .hero-lead { animation-delay: .1s; }
+      .hero-cta, .hero-note { animation-delay: .16s; }
+      .proof { animation-delay: .24s; }
+      .portrait-stage { animation: pop .9s cubic-bezier(.2,.8,.2,1) both .1s; }
+    }
+    @keyframes lift { from { transform: translateY(14px); } to { transform: none; } }
+    @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+    @keyframes pop { from { opacity: 0; transform: scale(.95); } to { opacity: 1; transform: none; } }
+
+    /* Section headers */
+    section.block { padding: 96px 0; }
+    .block-head { max-width: 680px; margin-bottom: 48px; }
+    .block-head h2 { font-size: clamp(30px, 4.2vw, 46px); }
+    .block-head p { margin-top: 16px; color: var(--muted); font-size: 18px; }
+    .alt { background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+    /* Beispiel: Team-Kontext */
+    .example-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 56px; align-items: start; }
+    .example-grid .block-head { margin-bottom: 0; }
+    .notes { list-style: none; padding: 0; margin: 32px 0 0; display: grid; gap: 18px; }
+    .notes li { display: grid; grid-template-columns: 28px 1fr; gap: 14px; align-items: start; }
+    .notes .n {
+      width: 28px; height: 28px; border-radius: 50%; background: var(--tint); color: var(--acc-deep);
+      display: grid; place-items: center; font: 700 14px var(--head);
+    }
+    [data-theme="dark"] .notes .n { color: var(--acc); }
+    .notes strong { display: block; font-weight: 600; }
+    .notes span { color: var(--muted); font-size: 16px; }
+
+    .doc { background: var(--doc-bg); border: 1px solid var(--line); border-radius: var(--r-md); overflow: hidden; }
+    .doc-head {
+      display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+      padding: 12px 18px; border-bottom: 1px solid var(--line); background: var(--paper);
+      font-size: 13.5px; color: var(--muted);
+    }
+    .doc-head code { font-family: var(--mono); font-size: 13.5px; color: var(--ink); }
+    .doc pre {
+      margin: 0; padding: 22px 26px 24px; overflow-x: auto;
+      font-family: var(--mono); font-size: 14px; line-height: 1.7; color: var(--ink); tab-size: 2;
+    }
+    .doc .h { color: var(--acc); font-weight: 400; }
+    .doc .c { color: var(--muted); }
+    .doc .m { display: inline-grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; background: var(--acc-soft); color: var(--ink); font: 700 11px var(--body); vertical-align: 1px; margin-left: 6px; }
+    .doc-foot { padding: 12px 18px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); background: var(--paper); }
+
+    /* Arbeitsweise */
+    .way-grid { display: grid; grid-template-columns: .82fr 1.18fr; gap: 56px; align-items: center; }
+    .model-title { font-size: clamp(36px, 5vw, 56px); letter-spacing: -0.035em; }
+    .model-title span { display: block; }
+    .model-title span:nth-child(3) { color: var(--muted); }
+    .way-lead { margin-top: 20px; color: var(--muted); font-size: 18px; max-width: 32em; }
+    .benefits { list-style: none; padding: 0; margin: 32px 0 0; display: grid; gap: 18px; }
+    .benefits li { display: grid; grid-template-columns: 40px 1fr; gap: 16px; align-items: start; }
+    .benefits .ic { width: 40px; height: 40px; border-radius: 12px; background: var(--tint); display: grid; place-items: center; color: var(--acc); }
+    .benefits .ic svg { width: 22px; height: 22px; }
+    .benefits strong { display: block; font-weight: 600; }
+    .benefits span { color: var(--muted); font-size: 16px; }
+
+    .cycle { position: relative; width: 100%; max-width: 620px; aspect-ratio: 1; margin: 0 auto; }
+    .cycle-steps { position: absolute; inset: 0; margin: 0; padding: 0; list-style: none; }
+    .cycle-ring { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .cycle-ring .r-base { stroke: var(--acc-soft); }
+    .cycle-ring .r-team { stroke: var(--team-line); }
+    .cycle-ring .r-arrow { stroke: var(--acc); }
+    .cycle-ring .r-arrow-team { stroke: var(--team); }
+    .cycle-center {
+      position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+      width: 28%; text-align: center; font-family: var(--head); font-weight: 500; font-size: 15px; line-height: 1.3; color: var(--muted);
+    }
+    .cycle-center strong { display: block; color: var(--ink); font-weight: 700; font-size: 18px; margin-bottom: 4px; }
+    .cycle-center .loop { display: none; width: 40px; height: 40px; color: var(--acc); }
+    .step {
+      position: absolute; width: 29%; transform: translate(-50%, -50%);
+      background: var(--paper); border: 2px solid var(--acc-soft); border-radius: var(--r-md);
+      padding: 14px 16px 15px;
+    }
+    .step .num {
+      display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%;
+      background: var(--btn); color: var(--on-btn); font: 700 13.5px var(--head); margin-bottom: 8px;
+    }
+    .step h3 { font-size: 18px; letter-spacing: -0.01em; }
+    .step p { font-size: 14px; line-height: 1.45; color: var(--muted); margin-top: 4px; }
+    .step-1 { left: 50%; top: 16%; }
+    .step-2 { left: 84%; top: 50%; }
+    .step-3 { left: 50%; top: 84%; border-color: var(--team-line); background: var(--team-soft); }
+    .step-3 .num { background: var(--team); color: var(--on-team); }
+    .step-4 { left: 16%; top: 50%; }
+    .legend { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 24px; font-size: 14.5px; color: var(--muted); }
+    .legend span { display: inline-flex; align-items: center; gap: 8px; }
+    .legend i { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+
+    /* Leistungen */
+    .fields { display: grid; grid-template-columns: 1.25fr 1fr; gap: 20px; }
+    .field {
+      background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 32px;
+      display: flex; flex-direction: column; min-width: 0;
+    }
+    .field-main { grid-row: span 2; background: var(--feature-bg); color: var(--feature-ink); border-color: var(--feature-bg); padding: 40px; }
+    .field h3 { font-size: 24px; }
+    .field-main h3 { font-size: clamp(28px, 3vw, 34px); }
+    .field .role { font-size: 14px; font-weight: 500; color: var(--muted); margin-top: 6px; }
+    .field-main .role { color: var(--feature-muted); }
+    .field p.desc { margin-top: 14px; color: var(--muted); }
+    .field-main p.desc { color: var(--feature-ink); opacity: .9; font-size: 18px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 24px 0 0; }
+    .chips li { font-size: 14px; padding: 6px 12px; border-radius: 999px; background: var(--tint); color: var(--ink); }
+    .field-main .chips li { background: rgba(255,255,255,.08); color: var(--feature-ink); }
+    .questions-label { font: 600 15px var(--body); color: var(--feature-acc); margin: 28px 0 0; }
+    .questions { list-style: none; margin: 12px 0 0; padding: 0 0 0 18px; border-left: 2px solid var(--feature-acc); display: grid; gap: 10px; }
+    .questions li { font-family: var(--head); font-weight: 500; font-size: 18px; line-height: 1.38; letter-spacing: -0.005em; }
+    .field-note { margin-top: auto; padding-top: 20px; font-size: 14.5px; color: var(--acc-deep); font-weight: 600; }
+    [data-theme="dark"] .field-note { color: var(--acc); }
+
+    /* Prinzipien */
+    .principles { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0 56px; }
+    .principles li { padding: 24px 0; border-top: 1px solid var(--line); }
+    .principles strong { display: block; font-family: var(--head); font-weight: 700; font-size: 21px; letter-spacing: -0.015em; line-height: 1.25; }
+    .principles span { display: block; margin-top: 6px; color: var(--muted); font-size: 16.5px; max-width: 30em; }
+
+    /* Formate */
+    .formats { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; }
+    .fmt {
+      grid-column: span 2; background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-md);
+      padding: 28px; display: flex; flex-direction: column; min-width: 0;
+    }
+    .fmt-intro { background: var(--tint); border-color: var(--acc-soft); }
+    .fmt-feature { grid-column: span 4; border: 2px solid var(--acc); }
+    .fmt-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+    .fmt h3 { font-size: 22px; }
+    .fmt-feature h3 { font-size: 27px; }
+    .price { font-size: 13.5px; font-weight: 600; padding: 5px 11px; border-radius: 999px; background: var(--tint); color: var(--ink); white-space: nowrap; }
+    .fmt-intro .price { background: var(--paper); }
+    .fmt-feature .price { background: var(--tint); color: var(--ink); }
+    /* Platzhalter im Entwurf: Preis noch festlegen */
+    .fmt > p { margin-top: 10px; color: var(--muted); font-size: 16px; }
+    .fmt > p.typical { font-size: 13.5px; color: var(--acc-deep); font-weight: 600; margin-top: 6px; }
+    [data-theme="dark"] .fmt > p.typical { color: var(--acc); }
+    .get { margin-top: 22px; }
+    .get h4 { font: 600 14.5px var(--body); color: var(--ink); margin: 0 0 10px; }
+    .get ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+    .get li { display: grid; grid-template-columns: 20px 1fr; gap: 10px; font-size: 15.5px; line-height: 1.45; }
+    .get li svg { width: 20px; height: 20px; color: var(--acc); margin-top: 1px; }
+    .fmt-feature .get ul { grid-template-columns: 1fr 1fr; column-gap: 28px; }
+    .exit-note {
+      margin-top: 28px; display: grid; grid-template-columns: 22px 1fr; gap: 12px; align-items: start;
+      background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-sm); padding: 14px 18px; font-size: 15.5px; color: var(--muted); max-width: 52em;
+    }
+    .exit-note svg { width: 22px; height: 22px; color: var(--acc); margin-top: 1px; }
+    .exit-note strong { color: var(--ink); font-weight: 600; }
+
+    /* Referenzen: Kurzformat Ausgangslage, Eingriff, Effekt */
+    .cases { display: grid; gap: 20px; }
+    .case {
+      background: var(--bg); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 32px;
+      display: grid; grid-template-columns: 1fr 1.3fr; gap: 32px 48px;
+    }
+    .case-meta { color: var(--muted); font-size: 15px; margin-top: 8px; }
+    .case h3 { font-size: 24px; }
+    .kpi { list-style: none; margin: 22px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+    .kpi li { background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-sm); padding: 12px 14px; font-size: 14px; line-height: 1.35; color: var(--muted); }
+    .kpi strong { display: block; font-family: var(--head); font-weight: 700; font-size: clamp(26px, 3vw, 32px); line-height: 1.05; letter-spacing: -0.03em; color: var(--acc); margin-bottom: 4px; }
+    .case dl { margin: 0; display: grid; grid-template-columns: 112px 1fr; gap: 12px 20px; font-size: 16px; align-content: start; }
+    .case dt { font-weight: 600; }
+    .case dd { margin: 0; color: var(--muted); }
+    .case dd strong { color: var(--ink); font-weight: 600; }
+    .case-bio > div:first-child { position: sticky; top: 100px; align-self: start; }
+
+    /* Passt / Aktuell */
+    .fit-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+    .fit { background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-md); padding: 28px; }
+    .fit h3 { font-size: 20px; display: flex; align-items: center; gap: 10px; }
+    .fit h3 svg { width: 22px; height: 22px; flex: none; }
+    .fit ul { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 10px; font-size: 16px; color: var(--muted); }
+    .fit li { padding-left: 18px; position: relative; }
+    .fit li::before { content: ""; position: absolute; left: 0; top: .62em; width: 7px; height: 7px; border-radius: 50%; background: var(--acc); }
+    .fit-no li::before { background: transparent; border: 1.5px solid var(--muted); }
+    .fit-now { background: var(--tint); border-color: var(--acc-soft); }
+    .fit-now .stand { font-size: 13.5px; color: var(--muted); margin-top: 4px; }
+    .fit-now li::before { background: var(--ink); }
+
+    /* FAQ */
+    .faq-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 64px; align-items: start; }
+    .faq-list { display: grid; gap: 12px; }
+    details { background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-md); }
+    details[open] { border-color: var(--acc-soft); }
+    summary {
+      list-style: none; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      font-family: var(--head); font-weight: 700; font-size: 19px; letter-spacing: -0.01em; border-radius: var(--r-md);
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary .plus { width: 32px; height: 32px; border-radius: 50%; background: var(--tint); color: var(--acc); display: grid; place-items: center; flex: none; transition: transform .25s ease; }
+    summary .plus svg { width: 16px; height: 16px; }
+    details[open] summary .plus { transform: rotate(45deg); background: var(--btn); color: var(--on-btn); }
+    details .answer { padding: 0 24px 22px; color: var(--muted); max-width: 42em; }
+    @media (prefers-reduced-motion: reduce) { summary .plus { transition: none; } }
+
+    /* Kontakt */
+    .contact { padding: 24px 0 96px; }
+    .contact-card {
+      background: var(--contact-bg); color: #fff; border-radius: 36px; padding: 56px;
+      display: grid; grid-template-columns: auto 1fr; gap: 48px; align-items: center;
+    }
+    .contact-portrait { width: 160px; height: 160px; border-radius: 50%; overflow: hidden; position: relative; background: #14918E; display: grid; place-items: center; border: 5px solid rgba(255,255,255,.16); }
+    .contact-portrait .initials { font-family: var(--head); font-weight: 700; font-size: 54px; color: #fff; }
+    .contact-portrait img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .contact-card h2 { font-size: clamp(30px, 4.2vw, 46px); letter-spacing: -0.03em; max-width: 16em; }
+    .contact-card p { margin-top: 14px; font-size: 18px; color: #D3E9E7; max-width: 34em; }
+    .contact-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .contact-card p.contact-small { font-size: 15px; margin-top: 18px; }
+    .contact-card a:not(.btn) { color: #fff; font-weight: 600; }
+    .contact-card :focus-visible { outline-color: #fff; }
+
+    /* Footer */
+    .site-footer { border-top: 1px solid var(--line); padding: 64px 0 40px; font-size: 15px; color: var(--muted); }
+    .legal { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+    .legal h2 { font-size: 20px; color: var(--ink); margin-bottom: 12px; }
+    .legal p + p { margin-top: 10px; }
+    .legal h3 { font-size: 15px; color: var(--ink); margin: 20px 0 6px; }
+    .legal-date { font-size: 13px; }
+    .legal address { font-style: normal; }
+    .legal address p { color: var(--ink); }
+    .foot-bar { align-items: center; margin-top: 48px; padding-top: 12px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .foot-bar a { color: var(--muted); display: inline-block; padding: 12px 6px; }
+    .foot-bar a:hover { color: var(--ink); }
+
+    /* Bewegung: Scroll-Reveals, Hero-Akzente, Timeline. Nur bei html.anim (JS + keine reduzierte Bewegung) */
+    :root { --ease: cubic-bezier(.2,.7,.2,1); }
+    .nav-links a.active:not(.btn) { color: var(--acc-deep); background: var(--tint); }
+    [data-theme="dark"] .nav-links a.active:not(.btn) { color: var(--acc); }
+
+    .hero h1 .hl {
+      background: linear-gradient(transparent 62%, var(--acc-soft) 62%, var(--acc-soft) 92%, transparent 92%) no-repeat 0 0 / 100% 100%;
+      -webkit-box-decoration-break: clone; box-decoration-break: clone;
+    }
+    .portrait-stage::before {
+      content: ""; position: absolute; inset: -9%; border-radius: 50%; z-index: -1;
+      background: radial-gradient(circle at 35% 30%, color-mix(in srgb, var(--acc) 30%, transparent), transparent 62%);
+      filter: blur(8px);
+    }
+
+    .doc-head .dots { display: inline-flex; gap: 6px; margin-right: 10px; vertical-align: -1px; }
+    .doc-head .dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--line); display: inline-block; }
+    .doc-head .dots i:first-child { background: var(--acc); }
+    .doc .cursor { display: inline-block; width: .55em; height: 1.1em; background: var(--acc); vertical-align: -.18em; margin-left: 3px; }
+
+    .kpi strong { font-variant-numeric: tabular-nums; }
+    .stack { margin-top: 22px; }
+    .stack li { font-family: var(--mono); font-size: 13px; background: var(--paper); border: 1px solid var(--line); }
+
+    .timeline { list-style: none; margin: 0; padding: 0; position: relative; display: grid; gap: 22px; }
+    .timeline::before {
+      content: ""; position: absolute; left: 7px; top: 10px; bottom: 10px; width: 2px; border-radius: 2px;
+      background: linear-gradient(var(--acc-soft), var(--acc)); transform-origin: 50% 0;
+    }
+    .timeline li { position: relative; padding-left: 36px; }
+    .tl-dot { position: absolute; left: 0; top: 4px; width: 16px; height: 16px; border-radius: 50%; background: var(--bg); border: 2px solid var(--acc); }
+    .timeline li.now .tl-dot { background: var(--acc); box-shadow: 0 0 0 4px var(--acc-soft); }
+    .timeline h4 { margin: 0; font-family: var(--head); font-weight: 700; font-size: 17px; line-height: 1.3; letter-spacing: -0.01em; }
+    .timeline p { margin-top: 4px; color: var(--muted); font-size: 16px; }
+
+    .fmt, .field, .fit, .case, details, .step { transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s ease; }
+    .btn { transition: background-color .2s ease, color .2s ease, border-color .2s ease, transform .2s var(--ease), box-shadow .2s ease; }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .hero h1 .hl { background-size: 0% 100%; animation: mark 1s var(--ease) .75s forwards; }
+      .doc .cursor { animation: blink 1.1s steps(1) infinite; }
+    }
+    @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+      .fmt:hover, .field:hover, .fit:hover, .case:hover { transform: translateY(-4px); box-shadow: 0 26px 44px -30px var(--shadow); }
+      .fmt:hover, .fit:hover, .case:hover { border-color: var(--acc-soft); }
+      .btn-primary:hover, .btn-light:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -12px var(--shadow); }
+      .btn-primary:hover svg { animation: nudge .5s var(--ease); }
+    }
+    @keyframes mark { to { background-size: 100% 100%; } }
+    @keyframes blink { 50% { opacity: 0; } }
+    @keyframes nudge { 40% { transform: translateX(3px); } }
+
+    /* Reveal-Zustände */
+    html.anim .rv { opacity: 0; translate: 0 12px; transition: opacity .6s var(--ease) var(--d, 0s), translate .6s var(--ease) var(--d, 0s), transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s ease; }
+    html.anim .rv.rv-pop { translate: 0 0; scale: .96; transition: opacity .6s var(--ease) var(--d, 0s), scale .6s var(--ease) var(--d, 0s), transform .3s var(--ease), border-color .3s ease; }
+    html.anim .rv.in { opacity: 1; translate: 0 0; scale: 1; }
+    html.anim .model-title span { opacity: 0; translate: 0 .35em; transition: opacity .7s var(--ease), translate .7s var(--ease); }
+    html.anim .model-title.in span { opacity: 1; translate: 0 0; }
+    html.anim .model-title.in span:nth-child(2) { transition-delay: .15s; }
+    html.anim .model-title.in span:nth-child(3) { transition-delay: .3s; }
+    html.anim .cycle-ring .r-base, html.anim .cycle-ring .r-team { stroke-dasharray: 100; stroke-dashoffset: 100; transition: stroke-dashoffset 1.6s var(--ease) .2s; }
+    html.anim .cycle.in .cycle-ring .r-base, html.anim .cycle.in .cycle-ring .r-team { stroke-dashoffset: 0; }
+    html.anim .doc pre { clip-path: inset(0 0 100% 0); }
+    html.anim .doc.in pre { clip-path: inset(0 0 0 0); transition: clip-path .9s var(--ease) .2s; }
+    html.anim .timeline::before { transform: scaleY(0); transition: transform 1.6s var(--ease) .1s; }
+    html.anim .timeline.in::before { transform: scaleY(1); }
+    html.anim .timeline li { opacity: 0; translate: 14px 0; transition: opacity .6s var(--ease), translate .6s var(--ease); transition-delay: calc(var(--i) * .16s + .15s); }
+    html.anim .timeline.in li { opacity: 1; translate: 0 0; }
+    html.anim .tl-dot { scale: .4; transition: scale .5s var(--ease); transition-delay: calc(var(--i) * .16s + .2s); }
+    html.anim .timeline.in .tl-dot { scale: 1; }
+    html.anim .stack li { opacity: 0; scale: .96; transition: opacity .4s var(--ease), scale .4s var(--ease); transition-delay: calc(var(--i) * .05s + .2s); }
+    html.anim .stack.in li { opacity: 1; scale: 1; }
+
+    /* Bausteine des KI-Setups */
+    .brain { margin-top: 72px; }
+    .brain-head { display: flex; justify-content: space-between; align-items: end; gap: 24px 48px; flex-wrap: wrap; }
+    .brain-head h3 { font-size: clamp(24px, 3vw, 32px); letter-spacing: -0.025em; }
+    .brain-head p { margin-top: 10px; color: var(--muted); max-width: 36em; }
+    .brain-stats { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, auto); gap: 16px 28px; }
+    .brain-stats li { font-size: 13.5px; line-height: 1.3; color: var(--muted); max-width: 8.5em; }
+    .brain-stats strong { display: block; font-family: var(--head); font-size: 30px; line-height: 1.05; letter-spacing: -0.03em; color: var(--acc); font-variant-numeric: tabular-nums; }
+    .bento { margin-top: 32px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .tile { background: var(--bg); border: 1px solid var(--line); border-radius: var(--r-md); padding: 24px; min-width: 0; transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s ease; }
+    .tile .t-ic { width: 40px; height: 40px; border-radius: 12px; background: var(--tint); color: var(--acc); display: grid; place-items: center; }
+    .tile .t-ic svg { width: 21px; height: 21px; }
+    .tile h4 { margin: 16px 0 0; font-family: var(--head); font-size: 19px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.25; }
+    .tile .t-tag { display: block; margin-top: 4px; font-family: var(--mono); font-size: 12.5px; color: var(--acc-deep); }
+    [data-theme="dark"] .tile .t-tag { color: var(--acc); }
+    .tile p { margin-top: 10px; font-size: 15.5px; line-height: 1.5; color: var(--muted); }
+    .tile-main { grid-row: span 2; background: var(--feature-bg); border-color: var(--feature-bg); color: var(--feature-ink); display: flex; flex-direction: column; }
+    .tile-main .t-ic { background: rgba(255,255,255,.08); color: var(--feature-acc); }
+    .tile-main .t-tag { color: var(--feature-acc) !important; }
+    .tile-main p { color: var(--feature-muted); }
+    .tree { margin: auto 0 0; padding: 18px 0 0; font-family: var(--mono); font-size: 13px; line-height: 1.75; color: var(--feature-ink); white-space: pre; overflow-x: auto; }
+    .tree .c { color: var(--feature-muted); }
+    .tree .a { color: var(--feature-acc); }
+    .tile-accent { background: var(--tint); border-color: var(--acc-soft); }
+    .tile-accent .t-ic { background: var(--paper); }
+    @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+      .tile:hover { transform: translateY(-4px); box-shadow: 0 26px 44px -30px var(--shadow); border-color: var(--acc-soft); }
+      .tile-main:hover { border-color: var(--feature-bg); }
+    }
+    html.anim .tree .ln { opacity: 0; transition: opacity .35s ease; transition-delay: calc(var(--i) * .12s + .4s); }
+    html.anim .tile-main.in .tree .ln { opacity: 1; }
+    @media (max-width: 1000px) {
+      .bento { grid-template-columns: 1fr 1fr; }
+      .tile-main { grid-row: auto; grid-column: span 2; }
+    }
+    @media (max-width: 700px) {
+      .brain { margin-top: 56px; }
+      .bento { grid-template-columns: 1fr; }
+      .tile-main { grid-column: auto; }
+      .brain-stats { gap: 16px; }
+    }
+
+    /* Responsive */
+    @media (max-width: 1000px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .portrait-stage { width: min(70%, 340px); order: -1; justify-self: start; }
+      .example-grid, .way-grid { grid-template-columns: 1fr; gap: 40px; }
+      .fields { grid-template-columns: 1fr; }
+      .field-main { grid-row: auto; }
+      .formats { grid-template-columns: 1fr 1fr; }
+      .fmt { grid-column: span 1; }
+      .fmt-feature { grid-column: span 2; }
+      .case { grid-template-columns: 1fr; }
+      .case-bio > div:first-child { position: static; }
+      .fit-grid { grid-template-columns: 1fr 1fr; }
+      .fit-now { grid-column: 1 / -1; }
+      .faq-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+    @media (max-width: 980px) {
+      .nav-toggle { display: inline-flex; }
+      .nav-links {
+        display: none; position: absolute; top: 72px; left: 12px; right: 12px; flex-direction: column; align-items: stretch;
+        background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-md); padding: 10px;
+        box-shadow: 0 24px 40px -24px var(--shadow);
       }
-      .site-header.open .nav-links{transform:none;opacity:1;pointer-events:auto;visibility:visible}
-      .site-header.open .nav-toggle .ic-open{display:none}
-      .site-header.open .nav-toggle .ic-close{display:block}
-      .nav-links a{padding:13px 12px;font-size:16px}
-      .nav-links a.is-active:not(.nav-cta)::after{display:none}
-      .nav-cta{margin-left:0;margin-top:8px;justify-content:center;min-height:48px;display:inline-flex;align-items:center}
+      .nav-links.open { display: flex; }
+      .nav-links a:not(.btn) { padding: 12px 14px; font-size: 16px; }
+      .nav-links .btn { margin: 8px 0 0; }
     }
-    @media (max-width:480px){
-      .steps{grid-template-columns:1fr}
-      .hero-actions .btn{flex:1 1 100%}
-    }
+    @media (max-width: 700px) {
+      body { font-size: 16.5px; }
+      .wrap { padding: 0 20px; }
+      .hero { padding: 28px 0 56px; }
+      .portrait-stage { width: min(38%, 140px); }
+      .portrait { box-shadow: 0 0 0 6px var(--paper), 0 0 0 7px var(--line), 0 20px 40px -24px var(--shadow); }
+      .portrait-tag { left: auto; right: -78%; bottom: 4%; padding: 7px 13px; font-size: 13px; white-space: nowrap; }
+      .hero-cta .btn { flex: 1 1 100%; }
+      .proof { grid-template-columns: 1fr; gap: 14px; }
+      section.block { padding: 72px 0; }
+      .principles { grid-template-columns: 1fr; }
 
-    @media (prefers-reduced-motion:reduce){
-      html{scroll-behavior:auto}
-      *{animation-duration:.001ms!important;animation-delay:0ms!important;transition-duration:.001ms!important}
-      .js .reveal{opacity:1!important;transform:none!important}
-      .js .hero-anim{opacity:1!important;transform:none!important}
-      .js .hero-rule{transform:scaleX(1)!important}
+      .cycle { aspect-ratio: auto; display: grid; gap: 28px; max-width: none; }
+      .cycle-steps { position: static; display: grid; gap: 28px; }
+      .cycle-ring { display: none; }
+      .step { position: relative; left: auto; top: auto; transform: none; width: 100%; padding: 18px 20px; }
+      .step::after { content: ""; position: absolute; left: 32px; bottom: -28px; width: 2px; height: 28px; background: var(--acc-soft); }
+      .cycle-center {
+        position: relative; left: auto; top: auto; transform: none; width: 100%; text-align: left;
+        display: grid; grid-template-columns: 40px 1fr; gap: 14px; align-items: center;
+        background: var(--tint); border-radius: var(--r-md); padding: 16px 18px; font-size: 15px;
+      }
+      .cycle-center .loop { display: block; }
+
+      .formats { grid-template-columns: 1fr; }
+      .fmt, .fmt-feature { grid-column: auto; }
+      .fmt-feature .get ul { grid-template-columns: 1fr; }
+      .field, .field-main, .case { padding: 26px 22px; border-radius: 22px; }
+      .questions li { font-size: 17px; }
+      .case dl { grid-template-columns: 1fr; gap: 2px; }
+      .case dd + dt { margin-top: 10px; }
+      .kpi li { padding: 10px; font-size: 13px; }
+      .fit-grid { grid-template-columns: 1fr; }
+      .doc pre { font-size: 12.5px; padding: 16px 14px; white-space: pre-wrap; overflow-wrap: anywhere; }
+
+      summary { font-size: 17px; padding: 18px; }
+      details .answer { padding: 0 18px 20px; }
+
+      .contact-card { grid-template-columns: 1fr; padding: 32px 20px; border-radius: 26px; gap: 24px; }
+      .contact-portrait { width: 104px; height: 104px; }
+      .contact-portrait .initials { font-size: 36px; }
+      .contact-actions .btn { flex: 1 1 100%; }
+      .legal { grid-template-columns: 1fr; gap: 32px; }
+    }
+    @media (max-width: 380px) {
+      .brand-name small { display: none; }
+    }
+    @media (max-width: 340px) {
+      .kpi { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      body { transition: none; }
     }
   </style>
 </head>
-
-<body id="top">
+<body>
   <a class="skip" href="#main">Zum Inhalt springen</a>
-  <div class="progress" id="progress" aria-hidden="true"></div>
 
-  <header class="site-header" id="header">
-    <nav class="nav wrap" aria-label="Hauptnavigation">
-      <a class="brand" href="#top" aria-label="Tegrovio – Start">
-        <img src="favicon.svg" alt="" width="22" height="22" />
-        <span>Tegrovio</span>
+  <header class="site-header" id="top">
+    <nav class="wrap nav" aria-label="Hauptnavigation">
+      <a class="brand" href="#top">
+        <img src="favicon.svg" alt="" width="36" height="36" />
+        <span class="brand-name">Dominik Palzer<small>Tegrovio</small></span>
       </a>
-
-      <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="navLinks">
-        <svg class="ic-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-        <svg class="ic-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
-      </button>
-
-      <div class="nav-links" id="navLinks">
-        <a href="#leistungen">Leistungen</a>
-        <a href="#prozess">Ablauf</a>
-        <a href="#pakete">Pakete</a>
-        <a href="#ueber-mich">Über mich</a>
-        <a href="#faq">FAQ</a>
-        <a href="#kontakt" class="nav-cta">Erstgespräch</a>
+      <div class="nav-right">
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#beispiel">Praxis</a></li>
+          <li><a href="#arbeitsweise">Arbeitsweise</a></li>
+          <li><a href="#formate">Formate</a></li>
+          <li><a href="#referenzen">Referenzen</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a class="btn btn-primary" href="#kontakt">Erstgespräch</a></li>
+        </ul>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Dunkles Design aktivieren">
+          <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></svg>
+          <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>
+        </button>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          Menü
+        </button>
       </div>
     </nav>
   </header>
 
   <main id="main">
-    <!-- ============ HERO ============ -->
-    <section class="hero">
-      <div class="wrap">
-        <p class="eyebrow hero-anim d1"><b>// senior devops</b> · gitlab ci/cd · düsseldorf</p>
-        <h1 class="hero-anim d2">CI/CD, die <span class="grad">liefert</span>.</h1>
-        <div class="hero-rule" aria-hidden="true"></div>
-        <p class="lead hero-anim d3">
-          Ich beschleunige <strong>GitLab CI/CD-Pipelines</strong>, stabilisiere Releases und etabliere
-          saubere Standards – hands-on direkt im Repo. Pragmatisch, transparent, ohne Buzzword-Bingo.
-        </p>
-        <div class="hero-actions hero-anim d4">
-          <a class="btn btn--primary" href="#kontakt">Erstgespräch anfragen <span class="arr">→</span></a>
-          <a class="btn" href="#pakete">Pakete &amp; Preise</a>
-          <a class="btn btn--ghost" href="mailto:kontakt@tegrovio.de">kontakt@tegrovio.de</a>
+    <!-- Hero: Headline beschreibt das Angebot, Beleg direkt darunter -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="hello">Hi, ich bin Dominik.</p>
+          <h1 id="hero-title">Ich helfe Teams, KI so einzusetzen, dass sie <span class="hl">echte Arbeit abnimmt.</span></h1>
+          <p class="hero-lead">
+            Welche Aufgaben kann KI bei euch übernehmen, wie bekommt sie den richtigen Kontext, und wo sind die Grenzen?
+            Ich konzipiere und empfehle, euer Team setzt um. So bleibt das Wissen im Haus.
+          </p>
+          <div class="hero-cta">
+            <!-- Sobald ein Kalender-Link existiert (z. B. Cal.com), hier als Ziel eintragen. Nur verlinken, nicht einbetten. -->
+            <a class="btn btn-primary" href="mailto:kontakt@tegrovio.de?subject=Anfrage%20Erstgespr%C3%A4ch">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>
+              Erstgespräch anfragen
+            </a>
+            <a class="btn btn-ghost" href="#beispiel">Aus der Praxis ansehen</a>
+          </div>
+          <p class="hero-note">Kostenlos, 20 bis 30 Minuten. Ich nehme bewusst nur wenige Projekte parallel an.</p>
+
+          <section class="proof" aria-labelledby="proof-title">
+            <h2 id="proof-title">Zuletzt</h2>
+            <p><strong>10 Risiken gefunden, 6 davon hoch</strong>Betriebsmodell für fünf Automationen, von der Geschäftsführung abgenommen.</p>
+            <p><strong>Impulsvortrag „KI im Arbeitsalltag“</strong>Für ein Softwareunternehmen, im internen Wissensformat am Morgen.</p>
+          </section>
         </div>
-        <div class="hero-status hero-anim d4" aria-hidden="true">
-          <span class="dot"><i></i>pipeline: green</span>
-          <span>stage: ready</span>
-          <span>focus: gitlab-first</span>
+
+        <div class="portrait-stage">
+          <div class="portrait">
+            <span class="initials" aria-hidden="true">DP</span>
+            <picture>
+              <source type="image/avif" srcset="images/dominik-320.avif 320w, images/dominik-860.avif 860w" sizes="(max-width: 700px) 140px, (max-width: 1000px) 340px, 430px" />
+              <img src="images/dominik-860.jpg" srcset="images/dominik-320.jpg 320w, images/dominik-860.jpg 860w" sizes="(max-width: 700px) 140px, (max-width: 1000px) 340px, 430px" alt="Portrait von Dominik Palzer" width="860" height="860" fetchpriority="high" decoding="async" onerror="this.remove()" />
+            </picture>
+          </div>
+          <p class="portrait-tag">Düsseldorf<small>komplett remote</small></p>
         </div>
       </div>
     </section>
 
-    <!-- ============ TECH STRIP ============ -->
-    <section class="band band--tight" aria-label="Tech-Stack">
-      <div class="wrap reveal">
-        <p class="eyebrow"><b>// stack</b> · womit ich arbeite</p>
-        <div class="chips stagger reveal">
-          <span class="chip">GitLab CI/CD</span>
-          <span class="chip">GitLab Runner &amp; Caching</span>
-          <span class="chip">Release-Automation</span>
-          <span class="chip">Renovate</span>
-          <span class="chip">Docker / Container Registry</span>
-          <span class="chip">Semantic Versioning</span>
-          <span class="chip">SAST / DAST Gates</span>
-          <span class="chip">Pipeline Templates</span>
+    <!-- Beispiel: echtes Arbeitsergebnis statt Deko -->
+    <section class="block alt" id="beispiel" aria-labelledby="example-title">
+      <div class="wrap example-grid">
+        <div>
+          <div class="block-head">
+            <h2 id="example-title">So sieht das bei mir aus</h2>
+            <p>Kein ausgedachtes Beispiel: Das hier stammt aus <a href="https://brewmind.app" target="_blank" rel="noopener">BrewMind</a>, meiner eigenen Espresso-App, die ich mit KI-Agenten baue. Im Kasten ein gekürzter Auszug aus dem Kontext, den jede KI-Sitzung dort mitbekommt. Dasselbe Vorgehen übertrage ich auf euer Team.</p>
+          </div>
+          <ol class="notes">
+            <li><span class="n" aria-hidden="true">1</span><div><strong>Nur rein, was kein Werkzeug prüft</strong><span>Was Tests und Linter ohnehin erzwingen, steht nicht im Kontext. Er bleibt kurz, und die KI liest nur, was sie sonst falsch machen würde.</span></div></li>
+            <li><span class="n" aria-hidden="true">2</span><div><strong>Zuständigkeit sichtbar machen</strong><span>Jede Aufgabe sagt, wer dran ist: ich, eine offene Entscheidung oder die KI. Gebaut wird nur, was entschieden ist.</span></div></li>
+            <li><span class="n" aria-hidden="true">3</span><div><strong>Kosten messen statt schätzen</strong><span>Die Auswertung aller Sitzungen zeigte: Das teuerste Modell las jede Runde rund 200.000 Tokens Kontext neu und machte fast alles selbst. Nach dem Umbau gehen Suchen und Umsetzen an günstigere Modelle. Drei Wochen später: fünfmal so viel delegiert, gut ein Viertel weniger Kontext je Runde.</span></div></li>
+          </ol>
+        </div>
+
+        <figure class="doc" style="margin:0" aria-labelledby="doc-cap">
+          <div class="doc-head"><span><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><code>AGENTS.md</code></span><span>Auszug, gekürzt</span></div>
+<pre><code><span class="h">## Was Tooling NICHT erzwingt</span><span class="m" aria-hidden="true">1</span>
+- Stores halten State, keine Logik.
+  Logik lebt in services/.
+- Duplikation ist billiger als die
+  falsche Abstraktion.
+- Features außerhalb des Phasenplans:
+  Issue mit Label „geparkt“, nicht bauen.
+
+<span class="h">## Issues</span><span class="m" aria-hidden="true">2</span>
+<span class="c">Dominik sieht, wo er ran muss.
+Ein Agent sieht, was er bauen darf.</span>
+- dran: dominik (Gerät, Konto, Geld)
+- dran: entscheidung (Code wartet)
+- dran: agent (darf gebaut werden)
+
+<span class="h">## Delegation</span><span class="m" aria-hidden="true">3</span>
+- Suchen, Umsetzen: günstiges Modell
+- Architektur, Schema: starkes Modell
+- Bleibt oben: entscheiden, committen<span class="cursor" aria-hidden="true"></span></code></pre>
+          <figcaption class="doc-foot" id="doc-cap">Je nach Werkzeug heißt so eine Datei anders, etwa Projektanweisungen, <code>AGENTS.md</code> oder <code>CLAUDE.md</code>. Das Prinzip ist überall gleich.</figcaption>
+        </figure>
+      </div>
+
+      <div class="wrap brain">
+        <div class="brain-head">
+          <div>
+            <h3>Die Bausteine dahinter</h3>
+            <p>Eine Datei allein reicht nicht. Damit KI wirklich mitarbeitet, braucht sie ein Gedächtnis, feste Abläufe und klare Übergaben. So ist das bei BrewMind aufgebaut, und so ein Setup konzipiere ich für euer Team.</p>
+          </div>
+          <ul class="brain-stats">
+            <li><strong data-count="300" data-suffix="+">300+</strong>Notizen im Second Brain</li>
+            <li><strong>10</strong>Rollen-Agenten</li>
+            <li><strong>12</strong>feste Routinen</li>
+          </ul>
+        </div>
+        <div class="bento">
+          <article class="tile tile-main">
+            <span class="t-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5M8 7h7M8 11h5"/></svg></span>
+            <h4>Second Brain</h4>
+            <span class="t-tag">im Repo, versioniert mit Git</span>
+            <p>Die KI weiß, was entschieden wurde und warum, statt jedes Mal bei null anzufangen. Wissen in neun Typen, von Entscheidungen bis zu technischen Schulden, mit Skripten für Suche, Verlinkung und Prüfung.</p>
+<pre class="tree" aria-hidden="true"><span class="ln" style="--i:0"><span class="a">memory/</span></span>
+<span class="ln" style="--i:1">├─ MEMORY.md    <span class="c">← Index</span></span>
+<span class="ln" style="--i:2">├─ decision_…   <span class="c">Entscheidungen</span></span>
+<span class="ln" style="--i:3">├─ lesson_…     <span class="c">Lektionen</span></span>
+<span class="ln" style="--i:4">├─ arch_…       <span class="c">Architektur</span></span>
+<span class="ln" style="--i:5">├─ debt_…       <span class="c">Altlasten</span></span>
+<span class="ln" style="--i:6">└─ <span class="c">… und viele mehr</span></span></pre>
+          </article>
+          <article class="tile">
+            <span class="t-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="19" cy="19" r="2"/><path d="M7 12h4l6-6M11 12l6 6"/></svg></span>
+            <h4>Router &amp; Gedächtnis</h4>
+            <span class="t-tag">nur laden, was gebraucht wird</span>
+            <p>Spart Tokens und damit Geld. Ein Index entscheidet, welches Wissen in die Sitzung kommt. Was zuletzt passiert ist, verdichtet eine Abschluss-Routine ins Gedächtnis, wie eine Schlafphase.</p>
+          </article>
+          <article class="tile">
+            <span class="t-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 4v5h8V4M8 20v-6h8v6"/></svg></span>
+            <h4>Wissen mit Zustand</h4>
+            <span class="t-tag">Übergabe nur über Dateien</span>
+            <p>Keine Arbeit geht verloren. Plan, Mission und Git halten fest, wo es steht, und eine neue Sitzung macht genau dort weiter.</p>
+          </article>
+          <article class="tile">
+            <span class="t-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a3 3 0 0 1 3-3h15"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a3 3 0 0 1-3 3H3"/></svg></span>
+            <h4>Routinen</h4>
+            <span class="t-tag">Planen · Umsetzen · Abschließen</span>
+            <p>Gleiche Qualität bei jedem Durchlauf. Feste Abläufe für Planung, Umsetzung, Diagnose und Audit, geplante Jobs prüfen das Gedächtnis gegen den Code.</p>
+          </article>
+          <article class="tile tile-accent">
+            <span class="t-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></span>
+            <h4>Herstellerunabhängig</h4>
+            <span class="t-tag">Markdown im eigenen Repo</span>
+            <p>Kein Lock-in. Das Wissen liegt als einfaches Markdown im eigenen Repo, Skills sind per Symlink in die Werkzeuge eingebunden. Wechselt das Werkzeug, bleibt das Wissen.</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- ============ PROBLEM ============ -->
-    <section class="band" id="problem" aria-labelledby="problem-h">
-      <div class="wrap">
-        <div class="head-block reveal">
-          <p class="eyebrow"><b>// problem</b></p>
-          <h2 id="problem-h">Woran CI/CD in der Praxis scheitert</h2>
-          <p class="lead" style="margin-top:14px">Wenn dir mindestens zwei davon bekannt vorkommen, lohnt sich ein kurzes Gespräch.</p>
+    <!-- Arbeitsweise -->
+    <section class="block" id="arbeitsweise" aria-labelledby="way-title">
+      <div class="wrap way-grid">
+        <div>
+          <h2 class="model-title" id="way-title">
+            <span>Konzeption.</span>
+            <span>Empfehlung.</span>
+            <span>Review.</span>
+          </h2>
+          <p class="way-lead">So arbeite ich: Ich konzipiere und empfehle, euer Team setzt um, ich prüfe den Umsetzungsstand gegen das Konzept.</p>
+          <ul class="benefits">
+            <li>
+              <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></svg></span>
+              <div><strong>Wissen bleibt in eurem Team</strong><span>Keine Abhängigkeit von externen Umsetzern.</span></div>
+            </li>
+            <li>
+              <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>
+              <div><strong>Planbare, kleine Schritte</strong><span>Jeder Schritt hat einen festen Preis. Danach entscheidet ihr, ob es weitergeht.</span></div>
+            </li>
+            <li>
+              <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg></span>
+              <div><strong>Klare Ergebnisse</strong><span>Konzept, konkrete Empfehlungen und Review-Feedback.</span></div>
+            </li>
+          </ul>
         </div>
-        <ul class="flist prose reveal stagger">
-          <li><span class="mk">01</span><span><strong>Builds dauern ewig.</strong> Caches greifen nicht, Runner sind falsch dimensioniert, alles läuft seriell.</span></li>
-          <li><span class="mk">02</span><span><strong>Pipelines brechen unvorhersehbar</strong> und blockieren Releases – niemand weiß genau warum.</span></li>
-          <li><span class="mk">03</span><span><strong>Zu viele manuelle Schritte:</strong> Versioning, Releases, Deployments und Hotfixes laufen per Hand.</span></li>
-          <li><span class="mk">04</span><span><strong>Security &amp; Scans kommen zu spät</strong> – oder fallen im Alltag ganz unter den Tisch.</span></li>
-          <li><span class="mk">05</span><span><strong>Niemand „owned" die Pipeline.</strong> Änderungen sind riskant, Wissen steckt in einzelnen Köpfen.</span></li>
+
+        <div>
+          <div class="cycle">
+            <svg class="cycle-ring" viewBox="0 0 100 100" aria-hidden="true">
+              <circle class="r-base" cx="50" cy="50" r="34" fill="none" stroke-width="1.1" pathLength="100"/>
+              <path class="r-team" d="M 50 84 A 34 34 0 0 1 16 50" fill="none" stroke-width="1.1" pathLength="100"/>
+              <path class="r-team" d="M 84 50 A 34 34 0 0 1 50 84" fill="none" stroke-width="1.1" pathLength="100"/>
+              <g fill="none" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+                <path class="r-arrow" d="M -1.6 -1.8 L 1.2 0 L -1.6 1.8" transform="translate(74.04 25.96) rotate(45)"/>
+                <path class="r-arrow-team" d="M -1.6 -1.8 L 1.2 0 L -1.6 1.8" transform="translate(74.04 74.04) rotate(135)"/>
+                <path class="r-arrow-team" d="M -1.6 -1.8 L 1.2 0 L -1.6 1.8" transform="translate(25.96 74.04) rotate(225)"/>
+                <path class="r-arrow" d="M -1.6 -1.8 L 1.2 0 L -1.6 1.8" transform="translate(25.96 25.96) rotate(315)"/>
+              </g>
+            </svg>
+            <ol class="cycle-steps" aria-label="Arbeitsmodell als Kreislauf in vier Schritten">
+              <li class="step step-1"><span class="num" aria-hidden="true">1</span><h3>Ich konzipiere</h3><p>Ist-Stand anschauen, mit den Beteiligten sprechen.</p></li>
+              <li class="step step-2"><span class="num" aria-hidden="true">2</span><h3>Ich empfehle</h3><p>Zielbild und priorisierte Empfehlungen.</p></li>
+              <li class="step step-3"><span class="num" aria-hidden="true">3</span><h3>Euer Team setzt um</h3><p>In eurem Tempo, mit euren Leuten.</p></li>
+              <li class="step step-4"><span class="num" aria-hidden="true">4</span><h3>Ich reviewe</h3><p>Umsetzungsstand gegen das Konzept, konkretes Feedback.</p></li>
+            </ol>
+            <p class="cycle-center">
+              <svg class="loop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.35-5.65"/><path d="M20 4v4h-4"/></svg>
+              <span><strong>Und dann von vorn</strong>mit den nächsten Prioritäten, so oft ihr es braucht.</span>
+            </p>
+          </div>
+          <div class="legend" aria-hidden="true">
+            <span><i style="background:var(--acc)"></i>mein Teil</span>
+            <span><i style="background:var(--team)"></i>euer Teil</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Leistungen -->
+    <section class="block" id="leistungen" aria-labelledby="fields-title" style="padding-top:0">
+      <div class="wrap">
+        <div class="block-head">
+          <h2 id="fields-title">Womit ich euch helfe</h2>
+          <p>Ein Schwerpunkt: KI im Arbeitsalltag. Dazu Automatisierung und CI/CD als technisches Fundament.</p>
+        </div>
+        <div class="fields">
+          <article class="field field-main">
+            <h3>KI-Beratung &amp; Enablement</h3>
+            <p class="role">Mein Schwerpunkt</p>
+            <p class="desc">Ich zeige, wie ihr LLMs wie Claude oder ChatGPT, Assistenten und Agenten in eure echte Arbeit einbaut: mit dem richtigen Kontext, sinnvollen Workflows und einem Blick auf Kosten und Grenzen.</p>
+            <p class="questions-label">Fragen, die danach beantwortet sind</p>
+            <ul class="questions">
+              <li>Welche Aufgaben kann KI bei euch heute schon übernehmen?</li>
+              <li>Wie bekommt die KI den richtigen Kontext, ohne Tokens zu verschwenden?</li>
+              <li>Wo sind die Grenzen, und was darf mit euren Daten passieren?</li>
+            </ul>
+            <ul class="chips" aria-label="Themen">
+              <li>Grundkonzepte von LLMs</li>
+              <li>Kontext &amp; Prompting</li>
+              <li>Tokens und Kosten</li>
+              <li>Werkzeuge &amp; Agenten</li>
+              <li>Grenzen &amp; Datenschutz</li>
+            </ul>
+          </article>
+
+          <article class="field">
+            <h3>Abläufe automatisieren</h3>
+            <p class="role">Automatisierung</p>
+            <p class="desc">Skripte, Workflows und KI-Agenten, die wiederkehrende Arbeit übernehmen. Und zwar so, dass sie zuverlässig laufen und jemand merkt, wenn nicht.</p>
+            <ul class="chips">
+              <li>Skripte</li>
+              <li>Workflows</li>
+              <li>KI-Agenten</li>
+              <li>Monitoring</li>
+            </ul>
+            <p class="field-note">Auch zur Absicherung bestehender Automationen.</p>
+          </article>
+
+          <article class="field">
+            <h3>CI/CD &amp; DevOps</h3>
+            <p class="role">Das technische Fundament</p>
+            <p class="desc">Pipelines, die euch Arbeit abnehmen. Als Review und Konzept, die Umsetzung macht euer Team.</p>
+            <ul class="chips">
+              <li>GitLab CI/CD Pipeline-Reviews</li>
+              <li>Release-Automation</li>
+              <li>Renovate</li>
+              <li>Standards &amp; Templates</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Prinzipien -->
+    <section class="block alt" id="prinzipien" aria-labelledby="pr-title">
+      <div class="wrap">
+        <div class="block-head">
+          <h2 id="pr-title">Wie ich über KI im Team denke</h2>
+          <p>Ich arbeite selbst jeden Tag mit KI. Diese Leitsätze haben sich dabei bewährt, unabhängig vom Hersteller.</p>
+        </div>
+        <ul class="principles">
+          <li><strong>Kontext schlägt Prompt.</strong><span>Die beste Formulierung hilft wenig, wenn die KI euer Umfeld nicht kennt.</span></li>
+          <li><strong>Klein anfangen, mit echter Arbeit.</strong><span>Eine Aufgabe, die jede Woche nervt, ist ein besserer Start als eine KI-Strategie auf Folien.</span></li>
+          <li><strong>Ein Mensch entscheidet.</strong><span>KI liefert Entwürfe und Vorschläge. Die Verantwortung bleibt im Team.</span></li>
+          <li><strong>Erst die Daten, dann das Werkzeug.</strong><span>Vorher klären, was mit euren Daten passieren darf. Danach wählt ihr das passende Werkzeug.</span></li>
+          <li><strong>Belegt oder nur plausibel?</strong><span>Wenn KI prüft, trägt jeder Befund ein Urteil: am Code belegt oder nur plausibel. Nur das Erste ist Arbeit.</span></li>
+          <li><strong>Es muss ohne mich weitergehen.</strong><span>Euer Team setzt um und versteht, warum. Sonst war die Beratung nichts wert.</span></li>
         </ul>
       </div>
     </section>
 
-    <!-- ============ LEISTUNGEN ============ -->
-    <section class="band" id="leistungen" aria-labelledby="leistungen-h">
+    <!-- Formate -->
+    <section class="block" id="formate" aria-labelledby="fmt-title">
       <div class="wrap">
-        <div class="head-block reveal">
-          <p class="eyebrow"><b>// leistungen</b></p>
-          <h2 id="leistungen-h">End-to-end Unterstützung – von der Analyse bis ins Repo</h2>
+        <div class="block-head">
+          <h2 id="fmt-title">So fangen wir an</h2>
+          <p>Keine Dauerberatung. Jeder Schritt hat ein klares Ergebnis und einen Preis, den wir vorher festlegen.</p>
         </div>
-        <div class="grid-2 reveal stagger">
-          <div>
-            <ul class="flist">
-              <li><span class="mk">✓</span><span><strong>CI/CD Enablement (GitLab)</strong>Pipelines, Stages, Quality Gates, Release-Flows, Runner &amp; Caching, Artefakte.</span></li>
-              <li><span class="mk">✓</span><span><strong>Pipeline-Optimierung</strong>Schnellere Feedback-Loops, parallele Ausführung, mehr Stabilität &amp; Observability.</span></li>
-            </ul>
-          </div>
-          <div>
-            <ul class="flist">
-              <li><span class="mk">✓</span><span><strong>Dependency Automation</strong>Renovate-Setup, Update-Strategien, Risiko senken – inkl. JDK-Update-Automation auf Wunsch.</span></li>
-              <li><span class="mk">✓</span><span><strong>Developer Experience</strong>Templates, Standards, Doku &amp; Onboarding – damit Teams nicht jedes Mal bei Null starten.</span></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ PROZESS ============ -->
-    <section class="band" id="prozess" aria-labelledby="prozess-h">
-      <div class="wrap">
-        <div class="head-block reveal">
-          <p class="eyebrow"><b>// ablauf</b></p>
-          <h2 id="prozess-h">So läuft die Zusammenarbeit</h2>
-        </div>
-        <div class="steps reveal stagger">
-          <div class="step"><span class="num">01</span><h3>Erstgespräch</h3><p>20 Minuten: Zielbild, Pain-Points und Rahmenbedingungen klären.</p></div>
-          <div class="step"><span class="num">02</span><h3>Audit im Repo</h3><p>Schnelle Diagnose mit priorisierter Maßnahmenliste – Quick Wins und Risiken.</p></div>
-          <div class="step"><span class="num">03</span><h3>Umsetzung</h3><p>Konkrete MRs, messbare Verbesserungen und saubere Doku.</p></div>
-          <div class="step"><span class="num">04</span><h3>Übergabe</h3><p>Templates &amp; Standards, damit ihr unabhängig weiterarbeiten könnt.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ PAKETE ============ -->
-    <section class="band" id="pakete" aria-labelledby="pakete-h">
-      <div class="wrap">
-        <div class="head-block reveal">
-          <p class="eyebrow"><b>// pakete</b></p>
-          <h2 id="pakete-h">Fixpreis-Pakete für einen leichten Einstieg</h2>
-          <p class="lead" style="margin-top:14px">Danach optional stunden- oder tageweise Umsetzung – Umfang &amp; Abrechnung stimmen wir vorab ab.</p>
-        </div>
-        <div class="pricing reveal stagger">
-          <div class="card price-card">
-            <div class="price-top"><h3>Pipeline Health Check</h3><span class="tag">Fixpreis</span></div>
-            <p class="desc">60–90 Min Kickoff + Repo-Review + konkrete, priorisierte Maßnahmenliste.</p>
-            <div class="money">499&nbsp;€</div>
-            <ul class="plist">
-              <li><span class="ck">✓</span><span>Bottlenecks: Caches, Runner, Parallelisierung</span></li>
-              <li><span class="ck">✓</span><span>Stabilität: Retries, Timeouts, Runner-Setup</span></li>
-              <li><span class="ck">✓</span><span>Security- &amp; Quality-Gates (pragmatisch)</span></li>
-            </ul>
-          </div>
-
-          <div class="card price-card featured">
-            <div class="price-top"><h3>Pipeline Optimierung</h3><span class="tag tag--hot">Beliebt</span></div>
-            <p class="desc">Umsetzung im Repo (MRs). Ziel: spürbar schnellere Feedback-Loops und weniger Release-Stress.</p>
-            <div class="money"><span class="pre">ab</span>1.200&nbsp;€</div>
-            <ul class="plist">
-              <li><span class="ck">✓</span><span>Performance-Tuning: Caching, Stages, Runner</span></li>
-              <li><span class="ck">✓</span><span>Release-Flow: Versioning, Artifacts, Deploy</span></li>
-              <li><span class="ck">✓</span><span>Doku &amp; Standards als Templates</span></li>
-            </ul>
-          </div>
-
-          <div class="card price-card">
-            <div class="price-top"><h3>Renovate Setup</h3><span class="tag">Fixpreis</span></div>
-            <p class="desc">Automatisierte Dependency-Updates inkl. Strategie: Grouping, Schedules, Risk-Controls.</p>
-            <div class="money">600&nbsp;€</div>
-            <ul class="plist">
-              <li><span class="ck">✓</span><span>Renovate-Config + Best Practices</span></li>
-              <li><span class="ck">✓</span><span>Update-Gruppen &amp; Auto-Merge-Regeln</span></li>
-              <li><span class="ck">✓</span><span>Optional: JDK-Update-Automation</span></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ ÜBER MICH ============ -->
-    <section class="band" id="ueber-mich" aria-labelledby="ueber-h">
-      <div class="wrap">
-        <div class="grid-2">
-          <div class="reveal">
-            <p class="eyebrow"><b>// über mich</b></p>
-            <h2 id="ueber-h">Dominik Palzer</h2>
-            <p class="lead" style="margin-top:16px">
-              Ich arbeite seit Jahren im Umfeld von Platform Engineering, DevOps und CI/CD.
-              Mein Schwerpunkt: <strong>Automation &amp; Standards</strong> – damit Teams schneller liefern,
-              ohne Qualität oder Sicherheit zu opfern.
-            </p>
-            <div class="hero-actions" style="margin-top:8px">
-              <a class="btn" href="https://www.linkedin.com/in/dominik-palzer/" rel="me noopener" target="_blank">LinkedIn <span class="arr">↗</span></a>
-              <a class="btn btn--ghost" href="#kontakt">Kontakt</a>
+        <div class="formats">
+          <article class="fmt fmt-intro">
+            <div class="fmt-top"><h3>Erstgespräch</h3><span class="price">kostenlos</span></div>
+            <p>Etwa 20 bis 30 Minuten, per Video oder Telefon.</p>
+            <div class="get">
+              <h4>Das bekommt ihr</h4>
+              <ul>
+                <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 10.5 3 3 7-7"/></svg>Einen ersten Blick auf Ziel und Pain-Points</li>
+                <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 10.5 3 3 7-7"/></svg>Eine Empfehlung für den passenden Einstieg</li>
+              </ul>
             </div>
+          </article>
+
+          <article class="fmt fmt-feature">
+            <div class="fmt-top"><h3>KI-Impulsvortrag</h3><span class="price">nach Absprache</span></div>
+            <p class="typical">Der leichteste Einstieg</p>
+            <p>15 bis 60 Minuten plus Fragerunde, remote per Video. Zugeschnitten auf euren Arbeitsalltag, von den Grundlagen bis zu konkreten Workflows.</p>
+            <div class="get">
+              <h4>Das bekommt ihr</h4>
+              <ul>
+                <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 10.5 3 3 7-7"/></svg>Die Grundkonzepte von LLMs, verständlich erklärt</li>
+                <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 10.5 3 3 7-7"/></svg>Kontext und Tokens gezielt nutzen</li>
+                <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 10.5 3 3 7-7"/></svg>Beispiele aus eurem Arbeitsalltag</li>
+                <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 10.5 3 3 7-7"/></svg>Grenzen und Datenschutz</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="fmt">
+            <div class="fmt-top"><h3>Analyse &amp; Konzept</h3><span class="price">Fixpreis</span></div>
+            <p class="typical">Für KI-Einsatz, Automatisierung oder Pipelines</p>
+            <p>Ich schaue mir euren Ist-Stand an und spreche mit den Beteiligten. Daraus entstehen ein Zielbild und Empfehlungen, die euer Team direkt umsetzen kann.</p>
+          </article>
+
+          <article class="fmt">
+            <div class="fmt-top"><h3>Review-Termin</h3><span class="price">pauschal</span></div>
+            <p class="typical">Wenn euer Team ein Stück umgesetzt hat</p>
+            <p>Ich prüfe den Umsetzungsstand gegen das Konzept, gebe konkretes Feedback und wir legen die nächsten Prioritäten fest.</p>
+          </article>
+
+          <article class="fmt">
+            <div class="fmt-top"><h3>Konzeptbausteine</h3><span class="price">Fixpreis</span></div>
+            <p class="typical">Einzeln beauftragbar</p>
+            <p>Einzelne Themen gezielt konzipieren: KI-Workflows für ein Team, Kontext- und Token-Strategie, Pipeline-Review, Automationen absichern.</p>
+          </article>
+        </div>
+        <p class="exit-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>
+          <span><strong>Kein Risiko über den Schritt hinaus.</strong> Den Preis legen wir nach dem Erstgespräch fest. Nach jedem Schritt könnt ihr aufhören, ohne Folgekosten.</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- Referenzen -->
+    <section class="block alt" id="referenzen" aria-labelledby="refs-title">
+      <div class="wrap">
+        <div class="block-head">
+          <h2 id="refs-title">Was zuletzt dabei herauskam</h2>
+          <p>Anonymisiert, aber konkret. Keine Logos, keine erfundenen Zitate.</p>
+        </div>
+        <div class="cases">
+          <article class="case">
+            <div>
+              <h3>Kundenautomationen absichern</h3>
+              <p class="case-meta">Mittelständisches Unternehmen, automatisierte Buchhaltungsprozesse für Endkunden, 2026</p>
+              <ul class="kpi">
+                <li><strong>10</strong>Risiken gefunden</li>
+                <li><strong>6</strong>davon hoch</li>
+                <li><strong>10 h</strong>Beratung insgesamt</li>
+              </ul>
+            </div>
+            <dl>
+              <dt>Ausgangslage</dt>
+              <dd>Fünf Automationen im festen Monatszyklus, teils voneinander abhängig, auf Basis von UI-Automation und Power Automate. Betrieb stark personenabhängig, manuelle Überwachung, keine Testumgebung.</dd>
+              <dt>Eingriff</dt>
+              <dd>Ein Interview, zwei schriftliche Nachfassrunden. Daraus Ist-Prozesslandkarte, Risiko-Map, Zielbild, Reifegradmodell und Maßnahmenplan.</dd>
+              <dt>Effekt</dt>
+              <dd><strong>Von der Geschäftsführung abgenommen.</strong> Das Team setzt die Maßnahmen vor dem Kunden-Go-live um. Ein Review zum Umsetzungsstand ist geplant.</dd>
+            </dl>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hintergrund -->
+    <section class="block" id="hintergrund" aria-labelledby="bio-title">
+      <div class="wrap">
+        <div class="block-head">
+          <h2 id="bio-title">Wer dahintersteht</h2>
+          <p>Erst Entwickler, dann CI/CD und Plattform, heute dazu KI im Arbeitsalltag. Die Stationen im Überblick.</p>
+        </div>
+          <article class="case case-bio">
+            <div>
+              <h3>Werdegang</h3>
+              <p class="case-meta">Seit 2011 in der Softwareentwicklung</p>
+              <ul class="chips stack" aria-label="Technologien">
+                <li style="--i:0">Java</li>
+                <li style="--i:1">Spring Boot</li>
+                <li style="--i:2">React</li>
+                <li style="--i:3">Python</li>
+                <li style="--i:4">GitLab CI</li>
+                <li style="--i:5">Docker</li>
+                <li style="--i:6">Kubernetes</li>
+                <li style="--i:7">Helm</li>
+                <li style="--i:8">Azure</li>
+                <li style="--i:9">Claude</li>
+              </ul>
+            </div>
+            <ol class="timeline" aria-label="Werdegang">
+              <li style="--i:0"><span class="tl-dot" aria-hidden="true"></span><h4>Anfänge</h4><p>Während der IT-Ausbildung ein Online-Spiel mit eigener Website, Datenbank und einem Map-Editor in C++ entwickelt. Bis zu 72 Spieler gleichzeitig, die Community baute mit dem Editor eigene Karten.</p></li>
+              <li style="--i:1"><span class="tl-dot" aria-hidden="true"></span><h4>Entwicklung</h4><p>Fullstack mit Java/Spring Boot, React und PHP/Symfony. Migrationen von JSF auf React und Spring Boot mitgetragen, Altlasten abgebaut, neue Technologien evaluiert und etabliert. Aus Studium und eigenen Projekten dazu Python, C# und C++.</p></li>
+              <li style="--i:2"><span class="tl-dot" aria-hidden="true"></span><h4>CI/CD</h4><p>Die Pipeline eines Kernteams aufgebaut: Docker, Review-Container für jede Änderung, Tests Ende zu Ende automatisiert und laufend auf Tempo optimiert.</p></li>
+              <li style="--i:3"><span class="tl-dot" aria-hidden="true"></span><h4>Wissen</h4><p>Interne TechTalks zu CI/CD und Automatisierung. Neue Arbeitsweisen wie Conventional Commits so eingeführt, dass das Team sie heute selbstverständlich nutzt.</p></li>
+              <li style="--i:4"><span class="tl-dot" aria-hidden="true"></span><h4>KI</h4><p>Täglich mit Claude, für Reviews zeitweise zusätzlich Codex, im Hackathon Modelle über LiteLLM verglichen. Was ich empfehle, habe ich vorher selbst ausprobiert, im Job und an <a href="https://brewmind.app" target="_blank" rel="noopener">BrewMind</a>.</p></li>
+              <li class="now" style="--i:5"><span class="tl-dot" aria-hidden="true"></span><h4>Heute</h4><p>Platform Engineering, DevOps und Architektur: wiederverwendbare GitLab-CI-Components als Firmenstandard, Kubernetes mit Helm auf Azure, Semantic Release, Testcontainers. Erster Ansprechpartner für GitLab CI im Unternehmen.</p></li>
+            </ol>
+          </article>
+      </div>
+    </section>
+
+    <!-- Passt / passt nicht / Aktuell -->
+    <section class="block alt" id="passt" aria-labelledby="fit-title">
+      <div class="wrap">
+        <div class="block-head">
+          <h2 id="fit-title">Passen wir zusammen?</h2>
+          <p>Lieber vorher ehrlich als hinterher enttäuscht.</p>
+        </div>
+        <div class="fit-grid">
+          <div class="fit">
+            <h3><svg viewBox="0 0 24 24" fill="none" stroke="var(--acc)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.8 2.8L16.5 9.5"/></svg>Passt, wenn ihr</h3>
+            <ul>
+              <li>Zugang zu KI habt, aber noch nicht viel daraus macht</li>
+              <li>selbst umsetzen und das Wissen behalten wollt</li>
+              <li>klein starten und dann entscheiden wollt</li>
+            </ul>
           </div>
-          <div class="reveal">
-            <p class="eyebrow"><b>// passt gut, wenn …</b></p>
-            <ul class="flist">
-              <li><span class="mk">✓</span><span>ihr <strong>GitLab CI/CD</strong> nutzt und schneller &amp; stabiler werden wollt.</span></li>
-              <li><span class="mk">✓</span><span>Releases aktuell zu <strong>riskant oder zu manuell</strong> sind.</span></li>
-              <li><span class="mk">✓</span><span>ein Platform-/Enablement-Team <strong>Templates &amp; Standards</strong> etablieren möchte.</span></li>
+          <div class="fit fit-no">
+            <h3><svg viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m9 9 6 6M15 9l-6 6"/></svg>Passt eher nicht, wenn ihr</h3>
+            <ul>
+              <li>jemanden sucht, der die Umsetzung übernimmt</li>
+              <li>eine Dauerbegleitung im Tagesgeschäft braucht</li>
+              <li>ein bestimmtes Produkt eingeführt haben wollt</li>
+            </ul>
+          </div>
+          <div class="fit fit-now">
+            <h3>Aktuell</h3>
+            <p class="stand">Stand: Oktober 2026</p>
+            <ul>
+              <li>Wie Teams Kontext und Automationen gemeinsam nutzen, statt dass jede Person für sich arbeitet</li>
+              <li>BrewMind mit KI-Agenten bauen und messen, was Kontext und Delegation kosten</li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ FAQ ============ -->
-    <section class="band" id="faq" aria-labelledby="faq-h">
-      <div class="wrap">
-        <div class="head-block reveal">
-          <p class="eyebrow"><b>// faq</b></p>
-          <h2 id="faq-h">Häufige Fragen</h2>
+    <!-- FAQ -->
+    <section class="block" id="faq" aria-labelledby="faq-title">
+      <div class="wrap faq-grid">
+        <div class="block-head" style="margin:0">
+          <h2 id="faq-title">Häufige Fragen</h2>
+          <p>Deine Frage ist nicht dabei? Schreib mir an <a href="mailto:kontakt@tegrovio.de?subject=Frage">kontakt@tegrovio.de</a>.</p>
         </div>
-        <div class="faq prose reveal">
+        <div class="faq-list">
           <details>
-            <summary>Arbeitest du nur mit GitLab?</summary>
-            <div class="answer"><p>Mein Schwerpunkt ist GitLab CI/CD – dort bin ich am schnellsten. GitHub Actions und andere Setups schaue ich mir auf Anfrage gerne an.</p></div>
+            <summary>Setzt du auch um?<span class="plus" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M8 2v12M2 8h12"/></svg></span></summary>
+            <div class="answer"><p>Nein, bewusst nicht. Ich arbeite in Konzeption, Empfehlung und Review. Euer Team setzt um, dadurch bleibt das Wissen im Haus und ihr seid nicht von externen Umsetzern abhängig.</p></div>
           </details>
           <details>
-            <summary>Wie läuft die Abrechnung?</summary>
-            <div class="answer"><p>Zum Einstieg arbeite ich mit klaren Fixpreis-Paketen. Danach unterstütze ich stunden- oder tageweise – Umfang und Abrechnung stimmen wir vorab ab. Als Kleinunternehmer gemäß § 19 UStG weise ich keine Umsatzsteuer aus.</p></div>
+            <summary>Brauchen wir schon KI-Erfahrung?<span class="plus" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M8 2v12M2 8h12"/></svg></span></summary>
+            <div class="answer"><p>Nein. Ein Impulsvortrag startet bei den Grundkonzepten und holt euch dort ab, wo ihr steht. Wer schon Erfahrung hat, steigt tiefer bei Werkzeugen, Agenten und Automatisierung ein.</p></div>
           </details>
           <details>
-            <summary>Remote oder vor Ort?</summary>
-            <div class="answer"><p>Primär remote und hands-on direkt im Repository (MRs). Im Raum Düsseldorf ist ein Termin vor Ort nach Absprache möglich.</p></div>
+            <summary>Welche KI-Werkzeuge empfiehlst du?<span class="plus" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M8 2v12M2 8h12"/></svg></span></summary>
+            <div class="answer"><p>Das hängt von euren Daten, eurem Budget und dem ab, was ihr schon nutzt. Ich arbeite selbst täglich mit Claude, die Prinzipien gelten aber genauso für ChatGPT, Copilot und andere. Ich verkaufe keine Lizenzen und bin an keinen Hersteller gebunden.</p></div>
           </details>
           <details>
-            <summary>Wie schnell können wir starten?</summary>
-            <div class="answer"><p>Das Erstgespräch lässt sich meist kurzfristig terminieren. Den Health Check kann ich in der Regel innerhalb weniger Tage einplanen.</p></div>
+            <summary>Wie viel Zeit hast du für unser Projekt?<span class="plus" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M8 2v12M2 8h12"/></svg></span></summary>
+            <div class="answer"><p>Ich nehme bewusst nur wenige Projekte parallel an. Interviews, Reviews und Vorträge planen wir vorher fest ein, damit ihr euch auf die Termine verlassen könnt.</p></div>
           </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ KONTAKT ============ -->
-    <section class="band" id="kontakt" aria-labelledby="kontakt-h">
-      <div class="wrap">
-        <div class="contact-card reveal">
-          <p class="eyebrow"><b>// kontakt</b></p>
-          <h2 id="kontakt-h">Lass uns kurz über euer Setup sprechen</h2>
-          <p class="lead prose" style="margin-top:16px">
-            Schreib mir in zwei Sätzen, wo es klemmt – z.&nbsp;B. „Pipelines zu langsam", „Release-Prozess unsauber"
-            oder „Renovate einführen". Ich melde mich zeitnah mit einem konkreten Vorschlag fürs Vorgehen.
-          </p>
-          <div class="hero-actions" style="margin-top:24px">
-            <a class="btn btn--primary" href="mailto:kontakt@tegrovio.de?subject=Anfrage%20CI%2FCD%20Support&body=Hi%20Dominik%2C%0A%0AWir%20brauchen%20Unterst%C3%BCtzung%20bei%20...%0A%0ARepo%2FStack%3A%20...%0AZiel%3A%20...%0AZeitrahmen%3A%20...%0A%0AViele%20Gr%C3%BC%C3%9Fe">E-Mail senden <span class="arr">→</span></a>
-            <a class="btn" href="#pakete">Pakete ansehen</a>
-          </div>
+          <details>
+            <summary>Wie gehst du mit vertraulichen Informationen um?<span class="plus" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M8 2v12M2 8h12"/></svg></span></summary>
+            <div class="answer"><p>Vertraulich. Eine Vertraulichkeitsvereinbarung unterschreibe ich gern. Referenzen nenne ich nur anonymisiert, so wie auf dieser Seite.</p></div>
+          </details>
+          <details>
+            <summary>Kommst du auch vor Ort vorbei?<span class="plus" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M8 2v12M2 8h12"/></svg></span></summary>
+            <div class="answer"><p>Nein, ich arbeite ausschließlich remote, per Video oder Telefon. Das gilt auch für Interviews, Reviews und Vorträge. Für euch fallen dadurch keine Reisekosten an.</p></div>
+          </details>
+          <details>
+            <summary>Wie läuft die Abrechnung?<span class="plus" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M8 2v12M2 8h12"/></svg></span></summary>
+            <div class="answer"><p>Zum Fixpreis oder pauschal, je nach Format. Den Umfang legen wir vorher fest. Als Kleinunternehmer gemäß § 19 UStG weise ich keine Umsatzsteuer aus.</p></div>
+          </details>
         </div>
       </div>
     </section>
 
-    <!-- ============ LEGAL ============ -->
-    <section class="band legal" id="impressum" aria-labelledby="impressum-h">
+    <!-- Kontakt -->
+    <section class="contact" id="kontakt" aria-labelledby="contact-title">
       <div class="wrap">
-        <div class="grid-2">
-          <div class="reveal">
-            <p class="eyebrow"><b>// impressum</b></p>
-            <h2 id="impressum-h">Impressum</h2>
-            <p style="margin-top:14px"><strong>Angaben gemäß § 5 TMG</strong></p>
-            <p class="addr">
-              Tegrovio<br/>
-              Inhaber: Dominik Palzer<br/>
-              Sternatlerweg 65<br/>
-              40235 Düsseldorf<br/>
-              E-Mail: kontakt@tegrovio.de
-            </p>
-            <p>Kleinunternehmer gemäß § 19 UStG – es wird keine Umsatzsteuer ausgewiesen.</p>
+        <div class="contact-card">
+          <div class="contact-portrait">
+            <span class="initials" aria-hidden="true">DP</span>
+            <picture>
+              <source type="image/avif" srcset="images/dominik-320.avif" />
+              <img src="images/dominik-320.jpg" alt="" width="320" height="320" loading="lazy" decoding="async" onerror="this.remove()" />
+            </picture>
           </div>
-          <div class="reveal" id="datenschutz">
-            <p class="eyebrow"><b>// datenschutz</b></p>
-            <h2>Datenschutz</h2>
-            <p style="margin-top:14px">Diese Website ist statisch (GitHub Pages). Es werden keine Cookies gesetzt und keine Formulare übertragen.</p>
-            <ul class="flist">
-              <li><span class="mk">·</span><span>Schriftarten werden <strong>lokal ausgeliefert</strong> – keine externen Requests an Dritte (z.&nbsp;B. Google Fonts).</span></li>
-              <li><span class="mk">·</span><span>Beim Aufruf entstehen Server-Logs beim Hosting-Provider (GitHub Pages).</span></li>
-              <li><span class="mk">·</span><span>Kontakt per E-Mail: Inhalte werden ausschließlich zur Bearbeitung deiner Anfrage verarbeitet.</span></li>
-            </ul>
+          <div>
+            <h2 id="contact-title">Lass uns über KI bei euch sprechen.</h2>
+            <p>Schreib mir in zwei Sätzen, wo ihr gerade steht und was ihr vorhabt. Ich melde mich mit einem Terminvorschlag für das Erstgespräch.</p>
+            <div class="contact-actions">
+              <!-- Sobald ein Kalender-Link existiert, wird dieser Button zu "Termin buchen" und die E-Mail wandert nach hinten. -->
+              <a class="btn btn-light" href="mailto:kontakt@tegrovio.de?subject=Anfrage%20Erstgespr%C3%A4ch&amp;body=Hallo%20Dominik%2C%0A%0AWorum%20geht%20es%3A%20...%0AWo%20steht%20ihr%20heute%3A%20...%0AZeitrahmen%3A%20...%0A%0AViele%20Gr%C3%BC%C3%9Fe">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>
+                Erstgespräch anfragen
+              </a>
+              <button class="btn btn-outline-light copy-btn" type="button" data-copy="kontakt@tegrovio.de">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2.5"/><path d="M16 8V6.5A2.5 2.5 0 0 0 13.5 4h-7A2.5 2.5 0 0 0 4 6.5v7A2.5 2.5 0 0 0 6.5 16H8"/></svg>
+                <span class="label">Adresse kopieren</span><span class="ok">Kopiert</span>
+              </button>
+            </div>
+            <p class="contact-small">kontakt@tegrovio.de · <a href="https://www.linkedin.com/in/dominik-palzer/" target="_blank" rel="me noopener">LinkedIn</a></p>
+            <p class="sr-only" aria-live="polite" id="copyStatus"></p>
           </div>
         </div>
       </div>
     </section>
-
-    <footer class="site-footer wrap">
-      <div>© <span id="y"></span> Tegrovio · Dominik Palzer</div>
-      <div class="foot-links">
-        <a href="#leistungen">Leistungen</a>
-        <a href="#pakete">Pakete</a>
-        <a href="#faq">FAQ</a>
-        <a href="#impressum">Impressum</a>
-        <a href="#datenschutz">Datenschutz</a>
-      </div>
-    </footer>
   </main>
 
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="legal">
+        <section id="impressum" aria-labelledby="imp-title">
+          <h2 id="imp-title">Impressum</h2>
+          <p>Angaben gemäß § 5 DDG</p>
+          <address>
+            <p>Tegrovio<br />Inhaber: Dominik Palzer<br />Sterntalerweg 65<br />40235 Düsseldorf</p>
+            <p>E-Mail: <a href="mailto:kontakt@tegrovio.de">kontakt@tegrovio.de</a></p>
+            <p>USt-IdNr.: DE461888332</p>
+          </address>
+          <p>Kleinunternehmer gemäß § 19 UStG, es wird keine Umsatzsteuer ausgewiesen.</p>
+        </section>
+        <section id="datenschutz" aria-labelledby="ds-title">
+          <h2 id="ds-title">Datenschutz</h2>
+          <p>Diese Website setzt keine Cookies, nutzt kein Tracking und lädt keine Inhalte von Drittanbietern. Die Schriften werden lokal ausgeliefert.</p>
+          <p><a href="datenschutz.html">Datenschutzerklärung lesen</a></p>
+        </section>
+      </div>
+      <div class="foot-bar">
+        <span>© <span id="y">2026</span> Tegrovio, Dominik Palzer</span>
+        <span class="foot-links"><a href="https://www.linkedin.com/in/dominik-palzer/" target="_blank" rel="me noopener">LinkedIn</a> <a href="#impressum">Impressum</a> <a href="datenschutz.html">Datenschutz</a></span>
+      </div>
+    </div>
+  </footer>
+
   <script>
-    // year
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // mobile nav toggle
-    (function(){
-      var header = document.getElementById('header');
-      var toggle = document.getElementById('navToggle');
-      var links = document.getElementById('navLinks');
-      function close(){ header.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); toggle.setAttribute('aria-label','Menü öffnen'); }
-      toggle.addEventListener('click', function(){
-        var open = header.classList.toggle('open');
-        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-        toggle.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
-      });
-      links.addEventListener('click', function(e){ if(e.target.tagName === 'A') close(); });
-      window.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
-    })();
-
-    // scroll progress bar
-    (function(){
-      var bar = document.getElementById('progress');
-      var ticking = false;
-      function update(){
-        var h = document.documentElement;
-        var max = h.scrollHeight - h.clientHeight;
-        var p = max > 0 ? h.scrollTop / max : 0;
-        bar.style.transform = 'scaleX(' + p + ')';
-        ticking = false;
+    // Theme-Umschalter
+    (function () {
+      var root = document.documentElement;
+      var btn = document.getElementById('themeToggle');
+      var meta = document.getElementById('themeColor');
+      function apply(t) {
+        root.setAttribute('data-theme', t);
+        btn.setAttribute('aria-label', t === 'dark' ? 'Helles Design aktivieren' : 'Dunkles Design aktivieren');
+        meta.setAttribute('content', t === 'dark' ? '#0B1312' : '#F5F7F7');
       }
-      window.addEventListener('scroll', function(){ if(!ticking){ ticking = true; requestAnimationFrame(update); } }, {passive:true});
-      update();
-    })();
-
-    // reveal on scroll
-    (function(){
-      var els = document.querySelectorAll('.reveal');
-      if(!('IntersectionObserver' in window)){ els.forEach(function(el){ el.classList.add('in'); }); return; }
-      var io = new IntersectionObserver(function(entries){
-        entries.forEach(function(en){
-          if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
-        });
-      }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
-      els.forEach(function(el){ io.observe(el); });
-    })();
-
-    // scroll-spy active nav link
-    (function(){
-      var ids = ['leistungen','prozess','pakete','ueber-mich','faq'];
-      var map = {};
-      ids.forEach(function(id){
-        var link = document.querySelector('.nav-links a[href="#'+id+'"]');
-        var sec = document.getElementById(id);
-        if(link && sec) map[id] = {link:link, sec:sec};
+      apply(root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
+      btn.addEventListener('click', function () {
+        var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        apply(next);
+        try { localStorage.setItem('tegrovio-theme', next); } catch (e) {}
       });
-      if(!('IntersectionObserver' in window)) return;
-      var io = new IntersectionObserver(function(entries){
-        entries.forEach(function(en){
-          var id = en.target.id;
-          if(map[id] && en.isIntersecting){
-            Object.keys(map).forEach(function(k){ map[k].link.classList.remove('is-active'); });
-            map[id].link.classList.add('is-active');
+    })();
+
+    // E-Mail-Adresse kopieren
+    (function () {
+      var status = document.getElementById('copyStatus');
+      document.querySelectorAll('.copy-btn').forEach(function (b) {
+        b.addEventListener('click', function () {
+          var text = b.getAttribute('data-copy');
+          var done = function () {
+            b.classList.add('copied');
+            status.textContent = 'E-Mail-Adresse kopiert';
+            setTimeout(function () { b.classList.remove('copied'); status.textContent = ''; }, 2000);
+          };
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(done, function () { window.location.href = 'mailto:' + text; });
+          } else {
+            window.location.href = 'mailto:' + text;
           }
         });
-      }, {rootMargin:'-45% 0px -50% 0px', threshold:0});
-      Object.keys(map).forEach(function(k){ io.observe(map[k].sec); });
+      });
+    })();
+
+    // Mobile Navigation und Header-Linie
+    (function () {
+      var toggle = document.querySelector('.nav-toggle');
+      var links = document.getElementById('nav-links');
+      toggle.addEventListener('click', function () {
+        var open = links.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      links.addEventListener('click', function (e) {
+        if (e.target.closest('a')) { links.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); }
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && links.classList.contains('open')) { links.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); toggle.focus(); }
+      });
+      var header = document.querySelector('.site-header');
+      var onScroll = function () { header.classList.toggle('scrolled', window.scrollY > 8); };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      requestAnimationFrame(onScroll);
+    })();
+    // Bewegung: Reveals, Zähler, aktive Navigation
+    (function () {
+      var root = document.documentElement;
+      // Aktiven Abschnitt in der Navigation markieren
+      if ('IntersectionObserver' in window) {
+        var navLinks = {};
+        document.querySelectorAll('.nav-links a:not(.btn)').forEach(function (a) { navLinks[a.getAttribute('href').slice(1)] = a; });
+        var spy = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            var a = navLinks[e.target.id];
+            if (a && e.isIntersecting) {
+              Object.keys(navLinks).forEach(function (k) { navLinks[k].classList.remove('active'); });
+              a.classList.add('active');
+            }
+          });
+        }, { rootMargin: '-45% 0px -50% 0px' });
+        Object.keys(navLinks).forEach(function (id) { var el = document.getElementById(id); if (el) spy.observe(el); });
+        var hero = document.querySelector('.hero');
+        if (hero) new IntersectionObserver(function (entries) {
+          if (entries[0].isIntersecting) Object.keys(navLinks).forEach(function (k) { navLinks[k].classList.remove('active'); });
+        }, { rootMargin: '-45% 0px -50% 0px' }).observe(hero);
+      }
+
+      if (!root.classList.contains('anim')) return;
+
+      var groups = [
+        ['.block-head', ''], ['.notes li', ''], ['.doc', ''], ['.benefits li', ''],
+        ['.step', 'pop'], ['.cycle-center', 'pop'], ['.legend', ''],
+        ['.field', ''], ['.principles li', ''], ['.fmt', ''], ['.exit-note', ''],
+        ['.case', ''], ['.fit', ''], ['.brain-head', ''], ['.tile', ''], ['.faq-list details', ''], ['.contact-card', '']
+      ];
+      var targets = [];
+      groups.forEach(function (g) {
+        var count = new Map();
+        document.querySelectorAll(g[0]).forEach(function (el) {
+          var n = count.get(el.parentNode) || 0;
+          count.set(el.parentNode, n + 1);
+          el.classList.add('rv');
+          if (g[1] === 'pop') el.classList.add('rv-pop');
+          el.style.setProperty('--d', Math.min(n * 0.09, 0.45) + 's');
+          targets.push(el);
+        });
+      });
+      document.querySelectorAll('.model-title, .cycle, .timeline, .stack, .kpi, .brain-stats').forEach(function (el) { targets.push(el); });
+
+      var countUp = function (el) {
+        var end = parseInt(el.getAttribute('data-count'), 10), suf = el.getAttribute('data-suffix') || '', t0 = null, dur = 1100;
+        var step = function (t) {
+          if (t0 === null) t0 = t;
+          var k = Math.min(1, (t - t0) / dur);
+          el.textContent = Math.round(end * (1 - Math.pow(1 - k, 3))) + suf;
+          if (k < 1) requestAnimationFrame(step);
+        };
+        el.textContent = '0';
+        requestAnimationFrame(step);
+      };
+
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          e.target.classList.add('in');
+          if (e.target.classList.contains('kpi') || e.target.classList.contains('brain-stats')) e.target.querySelectorAll('[data-count]').forEach(countUp);
+          io.unobserve(e.target);
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+      targets.forEach(function (el) { io.observe(el); });
     })();
   </script>
 </body>
